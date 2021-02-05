@@ -83,6 +83,23 @@
                     <a href="index.php#contact"><i class="fa fa-address-book"></i> Contact</a>
                 </li>';
             }
+            @endphp
+            <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        <li class="nav-item dropdown"><a class="nav-link" href="{{ url('/products') }}">Control Panel</a></li>
+                       <li class="nav-item dropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                        </li>
+                        
+                    </ul>
+            @php
             echo '</ul>';
             @endphp
         </nav>
