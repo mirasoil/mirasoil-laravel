@@ -13,8 +13,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//RUTE ACCESATE FARA A FI LOGAT
 Route::get('/', 'ProductController@index'); //afisare lista produse pe pagina de start
 Route::resource('products', 'ProductController');// Ruta de resurse va genera CRUD URI
+
+//View pentru pagina despre noi - ruta este /about care apeleaza view-ul about din subdirectorul pages
+Route::get('/about', function(){
+    return view('pages.about');
+});
+
+//View pentru pagina prelucrare - ruta este /manufacture care apeleaza view-ul manufacture din subdirectorul pages
+Route::get('/manufacture', function(){
+    return view('pages.manufacture');
+});
+
+//View pentru pagina specifica fiecarui produs - ruta este /products/id-ul produsului care apeleaza view-ul show din subdirectorul products
+//!!!!ATENTIE - este valabil doar pentru admini momentan
+Route::get('/products/{id}', function(){
+    return view('products.show');
+});
+
+Route::get('/shop', 'ShopController@index');
+
+Route::get('/transport', function(){
+    return view('pages.transport');
+});
 
 Route::view('/', 'welcome');
     Auth::routes();
@@ -36,16 +59,17 @@ Route::view('/', 'welcome');
     Route::view('/user', 'user')->middleware('auth:user'); //pagina de useri (dashboard-ul cu Hi awesome user) e vizibil doar pentru useri, dupa logare sunt redirectionati aici
     
     //CRUD pe cos - accesibil doar pentru useri
-    Route::patch('update-cart', 'ShopsController@update')->middleware('auth:user'); //modific cosul (doar pentru useri) - prin patch pentru a modifica toate datele existente (in mare parte doar cantitatea in cazul de fata)
-    Route::delete('remove-from-cart', 'ShopsController@remove')->middleware('auth:user');  //sterg din cos
+    // Route::patch('update-cart', 'ShopController@update')->middleware('auth:user'); //modific cosul (doar pentru useri) - prin patch pentru a modifica toate datele existente (in mare parte doar cantitatea in cazul de fata)
+    // Route::delete('remove-from-cart', 'ShopController@remove')->middleware('auth:user');  //sterg din cos
 
-    Route::get('/shop', 'ShopsController@index')->middleware('auth:user');  //afisare magazin - user
-    Route::get('cart', 'ShopsController@cart')->middleware('auth:user');  //cosul propriu zis - user
-    Route::get('add-to-cart/{id}', 'ShopsController@addToCart')->middleware('auth:user');  //adaug in cos
-    Route::patch('update-cart', 'ShopsController@update')->middleware('auth:user');  //modific cos
-    Route::delete('remove-from-cart', 'ShopsController@remove')->middleware('auth:user'); //sterg din cos
-    Route::get('/confirm', 'ShopsController@confirm')->middleware('auth:user'); //pentru confirmarea comenzii
-    Route::get('cart/success', 'ShopsController@empty')->middleware('auth:user');
+
+   
+    Route::get('cart', 'ShopController@cart')->middleware('auth:user');  //cosul propriu zis - user
+    Route::get('add-to-cart/{id}', 'ShopController@addToCart')->middleware('auth:user');  //adaug in cos
+    Route::patch('update-cart', 'ShopController@update')->middleware('auth:user');  //modific cos
+    Route::delete('remove-from-cart', 'ShopController@remove')->middleware('auth:user'); //sterg din cos
+    Route::get('/confirm', 'ShopController@confirm')->middleware('auth:user'); //pentru confirmarea comenzii
+    Route::get('cart/success', 'ShopController@empty')->middleware('auth:user');
 
     //CRUD pe products, doar adminii au acces la pagina de modificare produse in baza de date
     Route::GET('/products', 'ProductController@index')->middleware('auth:admin');
