@@ -1,8 +1,6 @@
 Pasi de urmat:
-1.Sa adaug in right-sidebar buton de logout (user+admin) si control panel pentru admini
-2.Sa refac rutele (la register ma duce pe registe simplu nu register/admin sau register/user)
-3.Pagina de home va fi vechiul index
-4.Lab-ul cu task e terminat, urmeaza cel pentru useri
+1.Sa fac modelele Product si Shop sa se conecteze la aceeasi baza de date
+2.Sa fac partea de newsletter
 5.You rock, keep working!
 
 
@@ -12,4 +10,4 @@ Pasi de urmat:
 7.Right-sidebar si left-sidebar - configurare rute
 8.In shop.blade.php trebuie sa pun un link spre pagina cu fiecare produs individual
 
-!!!Pe viitor, ShopController si ProductsController se vor conecta la acelasi model
+!!!Pe viitor, ShopController si ProductsController se vor conecta la acelasi model - momentan doar adminul are acces la pagina individuala a fiecarui produs

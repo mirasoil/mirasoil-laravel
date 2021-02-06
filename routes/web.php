@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactUsFormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,11 +36,23 @@ Route::get('/products/{id}', function(){
 
 Route::get('/shop', 'ShopController@index');
 
+//Pagina de transport, vizibila pentru oricine
 Route::get('/transport', function(){
     return view('pages.transport');
 });
 
-Route::view('/', 'welcome');
+//Pagina de informatii utile, vizibila pentru oricine
+Route::get('/info', function(){
+    return view('pages.info');
+});
+
+Route::get('/contact', 'ContactUsFormController@createForm');
+
+Route::post('/contact', 'ContactUsFormController@ContactUsForm')->name('contact.store');
+
+Route::get('/', function(){
+    return view('welcome');
+});
     Auth::routes();
 
     //Accesarea paginilor de login specifice fiecarui tip de utilizator
@@ -62,6 +75,7 @@ Route::view('/', 'welcome');
     // Route::patch('update-cart', 'ShopController@update')->middleware('auth:user'); //modific cosul (doar pentru useri) - prin patch pentru a modifica toate datele existente (in mare parte doar cantitatea in cazul de fata)
     // Route::delete('remove-from-cart', 'ShopController@remove')->middleware('auth:user');  //sterg din cos
 
+    // Route::get('/show/{id}', 'ShopController@show')->middleware('auth:user');
 
    
     Route::get('cart', 'ShopController@cart')->middleware('auth:user');  //cosul propriu zis - user

@@ -57,7 +57,7 @@
                         <a href="/info"><i class="fa fa-info-circle"></i> Informații utile</a>
                     </li>
                     <li class="{{ Request::is('contact') ? 'active' : '' }}">
-                        <a href="/"><i class="fa fa-address-book"></i> Contact</a>
+                        <a href="/#contact"><i class="fa fa-address-book"></i> Contact</a>
                     </li>
                 </ul>
         </nav>

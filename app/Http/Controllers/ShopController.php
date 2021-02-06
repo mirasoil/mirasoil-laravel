@@ -82,6 +82,12 @@ class ShopController extends Controller
     public function empty(){
         session()->forget('cart');
         return redirect()->back()->with('success', 'Cosul dumneavoastra de cumparaturi este gol!');
-        } 
+    } 
+
+    public function show($id)
+    {
+        $shop = Shop::find($id);
+        return view('shop.show', compact('show'));
+    }
 
 }

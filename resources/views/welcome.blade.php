@@ -184,42 +184,7 @@
             </div>            
     </div>
 </section>
-<!-------------------Contact----------------->
-<section id="contact">
-    <div class="container ">
-        <h1>Contact</h1>
-        <div class="row ">
-            <div class="col-md-6 ">
-                <form class="contact-form " action="includes/contact.inc.php" method="POST">
-                    <div class="form-group ">
-                        <input type="text " name="name" class="form-control contact-control  " placeholder="Numele dumneavoastră " required="required">
-                    </div>
-                    <div class="form-group ">
-                        <input type="tel" name="phone" class="form-control contact-control  " placeholder="Număr de telefon " required="required">
-                    </div>
-                    <div class="form-group ">
-                        <input type="email " name="email" class="form-control contact-control  " placeholder="Email " required="required">
-                    </div>
-                    <div class="form-group ">
-                        <textarea class="form-control contact-control  " name="message" rows="4 " placeholder="Mesaj " required="required"></textarea>
-                    </div>
-                    <button type="submit" name="contact-submit" class="btn btn-primary" data-toggle="modal" data-target="#errorsystem">Trimite mesaj</button>
-                </form>
-            </div>
-            <div class="col-md-6 contact-info ">
-                <div class="follow "><b>Adresă:</b> <a href="https://www.google.ro/maps/place/Mirasoil/@46.3684154,23.6983053,17z/data=!3m1!4b1!4m5!3m4!1s0x47495b1cddbd8c7f:0xc5717c5adb87f1ba!8m2!3d46.3684154!4d23.700494"> <i class="fas fa-map-marker-alt"></i> </a> Str. Principală, Nr. 130, Miraslău, Alba</div>
-                <div class="follow "><b>Telefon: </b><a href="tel:+40754916986"><i class="fas fa-phone-alt"> </i> </a> +40754916986</div>
-                <div class="follow "><b>Email: </b><a href="mailto:contact@mirasoil.ro"><i class="fas fa-envelope"> </i> </a>contact@mirasoil.ro</div>
-                <div class="follow "><label><b>Social: </b> </label>
-                    <a href="https://www.facebook.com/mirasoil16/"><i class="fab fa-facebook-square"></i></a>
-                    <a href="https://www.instagram.com/mirasoil16/"><i class="fab fa-instagram "></i></a>
-                    <a href="https://www.instagram.com/mirasoil16/"><i class="fab fa-google-plus-g"></i></a>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+@include('sections.contact')
 <!---Social--->
 <section id="social">
     <div class="container">
