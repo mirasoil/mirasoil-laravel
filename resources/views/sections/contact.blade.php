@@ -58,13 +58,13 @@
                 </form>
             </div>
             <div class="col-md-6 contact-info ">
-                <div class="follow "><b>Adresă:</b> <a href="https://www.google.ro/maps/place/Mirasoil/@46.3684154,23.6983053,17z/data=!3m1!4b1!4m5!3m4!1s0x47495b1cddbd8c7f:0xc5717c5adb87f1ba!8m2!3d46.3684154!4d23.700494"> <i class="fas fa-map-marker-alt"></i> </a> Str. Principală, Nr. 130, Miraslău, Alba</div>
-                <div class="follow "><b>Telefon: </b><a href="tel:+40754916986"><i class="fas fa-phone-alt"> </i> </a> +40754916986</div>
-                <div class="follow "><b>Email: </b><a href="mailto:contact@mirasoil.ro"><i class="fas fa-envelope"> </i> </a>contact@mirasoil.ro</div>
+                <div class="follow "><b>Adresă:</b> <a href="https://www.google.ro/maps/place/Mirasoil/@46.3684154,23.6983053,17z/data=!3m1!4b1!4m5!3m4!1s0x47495b1cddbd8c7f:0xc5717c5adb87f1ba!8m2!3d46.3684154!4d23.700494"> <i class="fas fa-map-marker-alt"></i>Str. Principală, Nr. 130, Miraslău, Alba</a></div>
+                <div class="follow "><b>Telefon: </b><a href="tel:+40754916986"><i class="fas fa-phone-alt"> </i>+40754916986</a></div>
+                <div class="follow "><b>Email: </b><a href="mailto:contact@mirasoil.ro"><i class="fas fa-envelope"> </i>contact@mirasoil.ro</a></div>
                 <div class="follow "><label><b>Social: </b> </label>
-                    <a href="https://www.facebook.com/mirasoil16/"><i class="fab fa-facebook-square"></i></a>
-                    <a href="https://www.instagram.com/mirasoil16/"><i class="fab fa-instagram "></i></a>
-                    <a href="https://www.instagram.com/mirasoil16/"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="https://www.facebook.com/mirasoil16/" class="social-icons"><i class="fab fa-facebook-square"></i></a>
+                    <a href="https://www.instagram.com/mirasoil16/" class="social-icons"><i class="fab fa-instagram "></i></a>
+                    <a href="https://www.instagram.com/mirasoil16/" class="social-icons"><i class="fab fa-google-plus-g"></i></a>
 
                 </div>
             </div>

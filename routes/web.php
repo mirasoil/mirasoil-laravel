@@ -46,6 +46,11 @@ Route::get('/info', function(){
     return view('pages.info');
 });
 
+//TEST
+Route::get('/test', function(){
+    return view('test');
+});
+
 Route::get('/contact', 'ContactUsFormController@createForm');
 
 Route::post('/contact', 'ContactUsFormController@ContactUsForm')->name('contact.store');

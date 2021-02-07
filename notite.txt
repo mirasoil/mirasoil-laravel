@@ -1,13 +1,19 @@
 Pasi de urmat:
 1.Sa fac modelele Product si Shop sa se conecteze la aceeasi baza de date
-2.Sa fac partea de newsletter
+2.Newsletter
+3.Confirm order
+4.Stilizare butoane si card-uri pagina principala
+
 5.You rock, keep working!
 
 
-6.Meniul pe care il am acum este potrivit pentru tablete, ar trebui sa gasesc ceva pentru desktop
+6.Meniu pentru desktop -- ?
 
 
 7.Right-sidebar si left-sidebar - configurare rute
-8.In shop.blade.php trebuie sa pun un link spre pagina cu fiecare produs individual
+8.In shop.blade.php trebuie sa pun un link spre pagina cu fiecare produs individual - users can't access ProductController
+
+
+9.Animatie - meh..
 
 !!!Pe viitor, ShopController si ProductsController se vor conecta la acelasi model - momentan doar adminul are acces la pagina individuala a fiecarui produs

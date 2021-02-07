@@ -51,6 +51,80 @@ a, a:hover, a:focus {
   color: #3399ff 
 }
 
+/* ---------------------------------------------------
+   ANIMATIE
+----------------------------------------------------- */
+.animated-text{
+   font-size: 100px;
+   font-family: sans-serif;
+   position: absolute;
+   top: 5%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   z-index: 10;
+}
+.animated-text span{
+   display: inline-block;
+   font-weight: bolder;
+   color: #fff;
+   animation: mover 6s linear infinite;
+  
+}
+@keyframes mover{
+   0%{
+      text-shadow: 0 0 20px rgba(0,0,0,0);
+   }
+   50%{
+      text-shadow: 0 0 20px rgb(156, 125, 241);
+      transform: translateY(30px);
+   }
+   100%{
+      text-shadow: 0 0 20px rgba(0,0,0,0);
+   }
+}
+.animated-text span:nth-child(1){
+   animation-delay: 0.4s;
+}
+.animated-text span:nth-child(2){
+   animation-delay: 0.8s;
+}
+.animated-text span:nth-child(3){
+   animation-delay: 1.2s;
+}
+.animated-text span:nth-child(4){
+   animation-delay: 1.6s;
+}
+.animated-text span:nth-child(5){
+   animation-delay: 2s;
+}
+.animated-text span:nth-child(6){
+   animation-delay: 2.4s;
+}
+.animated-text span:nth-child(7){
+   animation-delay: 2.8s;
+}
+.animated-text span:nth-child(8){
+   animation-delay: 3.2s;
+}
+
+/*A doua animatie*/
+.header-animated{
+   animation: type 3s steps(29) infinite 3s;
+   overflow: hidden;
+   white-space: nowrap;
+   font-family: 'Courier New', Courier, monospace;
+   border-right: 3px solid rgb(156, 125, 241);;
+   color:  rgb(156, 125, 241);
+   width: 29ch;
+}
+@keyframes type{
+   0%{
+      width:0ch;
+   }
+   100%{
+      width:29ch;
+   }
+}
 
 /* ---------------------------------------------------
    SIDEBAR STYLE
@@ -242,6 +316,7 @@ a[data-toggle="collapse"] {
 
 #slider {
    width: 100%;
+   margin-top: 12%;;
 }
 
 .carousel-item {
@@ -435,8 +510,26 @@ div.col-md-6.findButton{
 
 .follow {
    background: #fff;
-   padding: 10px;
+   padding: 15px;
+   line-height: 30px;
    margin: 15px;
+   margin-top: 20px;
+}
+
+.follow a, .follow a:hover{
+   text-decoration: none;
+   color: inherit;
+   margin-left: 5px;
+}
+
+.follow i{
+   color: #007bff;
+   margin-right: 5px;
+}
+
+.social-icons{
+   font-size: 20px;
+   margin-left: 20px;
 }
 
 .contact-info .fa {

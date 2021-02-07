@@ -1,5 +1,19 @@
 @extends('layouts.master')
 @section('content')
+<section id="animatie">
+    <div class="animated-text">
+        <span class="animation-text">M</span>
+        <span class="animation-text">I</span>
+        <span class="animation-text">R</span>
+        <span class="animation-text">A</span>
+        <span class="animation-text">S</span>
+        <span class="animation-text">O</span>
+        <span class="animation-text">I</span>
+        <span class="animation-text">L</span>
+        <h2 class="header-animated">Produse naturale din lavanda.</h2>
+    </div>
+</section>
+<section>
 <div id="slider">
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -31,6 +45,7 @@
         </a>
     </div>
 </div>
+</section>
 <!----------------About-------------->
 <section id="about">
     <div class="container">
