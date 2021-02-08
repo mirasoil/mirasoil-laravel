@@ -25,3 +25,22 @@ Pasi de urmat:
 
 
 !!!Pe viitor, ShopController si ProductsController se vor conecta la acelasi model - momentan doar adminul are acces la pagina individuala a fiecarui produs
+
+
+
+
+
+
+
+I need a table for cart...
+NOT WORKING
+// add cart items to a specific user
+    // $userId = auth()->user()->id; // or any string represents user identifier
+    // Cart::session($userId)->add(array(
+    //     'name' => $cart->name,
+    //     'price' => $cart->price,
+    //     'quantity' => $cart->quantity,
+    //     'associatedModel' => $ProductController
+    // ));
+
+In checkout -> controller -> user's info or just let them empty, fill them and store them in the orders table

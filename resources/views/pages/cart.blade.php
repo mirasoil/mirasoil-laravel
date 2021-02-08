@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('title', 'Cos')
 @section('content')
+<div class="container">
  @if (\Session::has('cart-success'))
 <div class="alert alert-success">
 <p id="message-response">{{ \Session::get('cart-success') }}</p>
@@ -40,7 +41,7 @@
         <td data-th="Quantity">
             <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity" />
         </td>
-        <td data-th="Subtotal" class="text-center">${{ $details['price'] * $details['quantity'] }}</td>
+        <td data-th="Subtotal" class="text-center" id="total-price">${{ $details['price'] * $details['quantity'] }}</td>
         <td class="actions" data-th="">
             <button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}"><i class="fa fa-refresh"></i>Update</button>
             <button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $id }}"><i class="fa fa-trash-o"></i>Delete</button>
@@ -61,7 +62,7 @@
     </tr>
 </tfoot>
 </table>
-    <a href="{{ url('/confirm') }}" class="btn btn-warning" style="float:right;">Confirm order</a>
+    <a href="{{ url('/checkout') }}" class="btn btn-warning" style="float:right;">Confirm order</a>
 @for ($i = 0; $i < 13; $i++)
     <br>
 @endfor
@@ -82,7 +83,7 @@
  $(".remove-from-cart").click(function (e) {
         e.preventDefault();
         var ele = $(this);
-        if(confirm("Are you sure?")) {
+        if(confirm("Sunteti sigur ca doriti sa stergeti acest produs?")) {
             $.ajax({
                 url: "{{ url('remove-from-cart') }}",
                 method: "DELETE",
@@ -96,4 +97,5 @@
     }
  });
  </script>
+</div>
 @endsection

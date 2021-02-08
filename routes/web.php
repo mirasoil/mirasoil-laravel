@@ -92,7 +92,7 @@ Route::post('newsletter', 'NewsletterController@store');
     Route::get('add-to-cart/{id}', 'ShopController@addToCart')->middleware('auth:user');  //adaug in cos
     Route::patch('update-cart', 'ShopController@update')->middleware('auth:user');  //modific cos
     Route::delete('remove-from-cart', 'ShopController@remove')->middleware('auth:user'); //sterg din cos
-    Route::get('/confirm', 'ShopController@confirm')->middleware('auth:user'); //pentru confirmarea comenzii
+    Route::get('/checkout', 'ShopController@getCheckout')->middleware('auth:user'); //pentru confirmarea comenzii
     Route::get('cart/success', 'ShopController@empty')->middleware('auth:user');
 
     //CRUD pe products, doar adminii au acces la pagina de modificare produse in baza de date

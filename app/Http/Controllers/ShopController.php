@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Shop;
+use Session;
+use Cart;
 
 use Illuminate\Http\Request;
 
@@ -73,21 +75,25 @@ class ShopController extends Controller
         session()->flash('cart-success', 'Produsul a fost sters.');
         }  
     }
-    //Confirmarea comenzii care initial ne redirecta pe pagina confirm cu un mesaj specific dar acum doar goleste cosul si afiseaza un mesaj
-    public function confirm(){
-        session()->forget('cart');
-        return redirect()->back()->with('cart-success', 'Comanda a fost plasata cu succes!');
-    }
     //Functie ce gleste cosul si returneaza un mesaj specific
     public function empty(){
         session()->forget('cart');
         return redirect()->back()->with('cart-success', 'Cosul dumneavoastra de cumparaturi este gol!');
     } 
 
-    public function show($id)
-    {
-        $shop = Shop::find($id);
-        return view('shop.show', compact('show'));
+    // public function show($id)
+    // {
+    //     $shop = Shop::find($id);
+    //     return view('shop.show', compact('show'));
+    // }
+
+    //Confirmarea comenzii care initial ne redirecta pe pagina confirm cu un mesaj specific dar acum doar goleste cosul si afiseaza un mesaj
+    public function getCheckout(){
+        if(!Session::has('cart')) {
+            return view('pages.cart');
+        }
+        $cart = session()->get('cart');
+        return view('pages.checkout');
     }
 
 }
