@@ -1,11 +1,14 @@
 Pasi de urmat:
-1.Sa fac modelele Product si Shop sa se conecteze la aceeasi baza de date
-2.Newsletter
+1.Product si Shop sa se conecteze la aceeasi baza de date
+
+2.Newsletter - /newsletter colecteaza datele dar nu exista - try ajax validation
+
+
 3.Confirm order
+
 4.Stilizare butoane si card-uri pagina principala
 
-5.You rock, keep working!
-
+5.Search bar with  ajax - the search page is stable, I need it integrated in nav section
 
 6.Meniu pentru desktop -- ?
 
@@ -15,5 +18,10 @@ Pasi de urmat:
 
 
 9.Animatie - meh..
+
+
+10.Cos (https://github.com/Crinsane/LaravelShoppingcart)
+11.Cashier/Stripe
+
 
 !!!Pe viitor, ShopController si ProductsController se vor conecta la acelasi model - momentan doar adminul are acces la pagina individuala a fiecarui produs

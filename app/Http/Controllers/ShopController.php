@@ -33,13 +33,13 @@ class ShopController extends Controller
         ]
     ];
     session()->put('cart', $cart);
-    return redirect()->back()->with('success', 'Produs adaugat cu succes!');
+    return redirect()->back()->with('cart-success', 'Produs adaugat cu succes!');
     }
     // daca cart nu este gol at verificam daca produsul exista pt a incrementa cantitate
     if(isset($cart[$id])) {
         $cart[$id]['quantity']++;
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Produs adaugat cu succes!');
+        return redirect()->back()->with('cart-success', 'Produs adaugat cu succes!');
     }
     // daca item nu exista in cos at addaugam la cos cu quantity = 1
     $cart[$id] = [
@@ -49,7 +49,7 @@ class ShopController extends Controller
         "image" => $shop->image
     ];
     session()->put('cart', $cart);
-    return redirect()->back()->with('success', 'Produs adaugat cu succes!');
+    return redirect()->back()->with('cart-success', 'Produs adaugat cu succes!');
     }
 
     public function update(Request $request){
@@ -58,9 +58,9 @@ class ShopController extends Controller
             $cart = session()->get('cart');
             $cart[$request->id]["quantity"] = $request->quantity;
             session()->put('cart', $cart);
-            session()->flash('success', 'Cos actualizat!');
+            session()->flash('cart-success', 'Cos actualizat!');
         }
-        return view('pages.cart')->with('success', 'Produs actualizat');
+        return view('pages.cart')->with('cart-success', 'Produs actualizat');
     }
 
     public function remove(Request $request){
@@ -70,18 +70,18 @@ class ShopController extends Controller
             unset($cart[$request->id]);
             session()->put('cart', $cart);
             }
-        session()->flash('success', 'Produsul a fost sters.');
+        session()->flash('cart-success', 'Produsul a fost sters.');
         }  
     }
     //Confirmarea comenzii care initial ne redirecta pe pagina confirm cu un mesaj specific dar acum doar goleste cosul si afiseaza un mesaj
     public function confirm(){
         session()->forget('cart');
-        return redirect()->back()->with('success', 'Comanda a fost plasata cu succes!');
+        return redirect()->back()->with('cart-success', 'Comanda a fost plasata cu succes!');
     }
     //Functie ce gleste cosul si returneaza un mesaj specific
     public function empty(){
         session()->forget('cart');
-        return redirect()->back()->with('success', 'Cosul dumneavoastra de cumparaturi este gol!');
+        return redirect()->back()->with('cart-success', 'Cosul dumneavoastra de cumparaturi este gol!');
     } 
 
     public function show($id)

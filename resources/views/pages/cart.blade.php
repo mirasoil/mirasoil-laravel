@@ -1,10 +1,16 @@
 @extends('layouts.master')
 @section('title', 'Cos')
 @section('content')
- <div id="message-response"> <!--- mesaje de succes pt insert delete ---->
-    
- </div>
- 
+ @if (\Session::has('cart-success'))
+<div class="alert alert-success">
+<p id="message-response">{{ \Session::get('cart-success') }}</p>
+</div><br />
+@endif
+@if (\Session::has('cart-failure'))
+<div class="alert alert-danger">
+<p id="message-response">{{ \Session::get('cart-failure') }}</p>
+</div><br />
+@endif
  <table id="cart" class="table table-hover table-condensed">
     <thead>
         <tr>
@@ -82,8 +88,8 @@
                 method: "DELETE",
                 data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
                 success: function (response) {
-                    $("#message-response").addClass("alert alert-success")  //stilizare
-                    $("#message-response").html("Product deleted succesfully")  //continutul mesajului
+                    // $("#message-response").addClass("alert alert-success")  //stilizare
+                    $("#message-response").html("Produsul a fost sters")  //continutul mesajului
                     $("#product-show").remove(); //vreau doar sa dispara paragraful cu produsul sters, fara reload
             }
         });

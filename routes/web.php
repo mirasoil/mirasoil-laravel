@@ -58,6 +58,11 @@ Route::post('/contact', 'ContactUsFormController@ContactUsForm')->name('contact.
 Route::get('/', function(){
     return view('welcome');
 });
+
+Route::get('newsletter', 'NewsletterController@create');
+Route::post('newsletter', 'NewsletterController@store');
+
+
     Auth::routes();
 
     //Accesarea paginilor de login specifice fiecarui tip de utilizator
