@@ -4,7 +4,7 @@
     <div class="col-lg-12 col-sm-12 col-12 main-section">
         <div class="dropdown" id="dropdown-cart">
             <button type="button" class="btn btn-info" data-toggle="dropdown" id="cart-button">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>Cos<span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
             </button>
         	<div class="dropdown-menu" id="dropdown-cart-menu">
                 <div class="row total-header-section">
@@ -27,35 +27,32 @@
             					</div>
         						<div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
         							<p>{{ $details['name'] }}</p>
-        							<span class="price text-info"> {{ $details['price'] }} lei</span> <span class="count"> Quantity:{{ $details['quantity'] }}</span>
+									<p class="text-muted small">Cantitate: <span class="price text-info">{{ $details['quantity'] }} buc</span></p>
+        							<p class="text-muted small">Pret/buc: <span class="price text-info">{{ $details['price'] }} RON</span></p>
         						</div>
         					</div>
  						@endforeach
  					@endif
  					<div class="row">
             			<div class="col-lg-12 col-sm-12 col-12 text-center checkout">
-            				<a href="{{ url('cart') }}" class="btn btn-primary btn-block">Show all</a>
+            				<a href="{{ url('cart') }}" class="btn btn-primary btn-block">Vezi cos</a>
         				</div>
     				</div>
     			</div>
 			</div>
 		</div>	
 	</div>
-	<div class="container page" id="cart-for-products">
-		<div class="row">
-			@foreach($shop as $product)
-				<div class="col-xs-18 col-sm-4 col-md-4">
-					<div class="thumbnail">
-						<img src="img/{{$product->image}}" style=" height:300px;">
-						<div class="caption">
-							<h4>{{ $product->name }}</h4>
-							<p>{{Str::limit($product->description, 50)}}</p>
-							<p><strong>Price: </strong> {{ $product->price }} lei</p>
-							<p class="btn-holder"><a href="{{ url('add-to-cart/'.$product->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>
-						</div>
-					</div>
-				</div>
-			@endforeach
+	<div class="card-deck justify-content-center">	
+		@foreach($shop as $product)
+		<div class="ml-5 text-center shadow p-4 bg-white rounded" style="width: 23rem;">
+			<img class="card-img-top" src="img/{{$product->image}}" height="320">
+			<div class="card-body text-center">
+				<h4>{{ $product->name }}</h4>
+				<p>{{Str::limit($product->description, 50)}}</p>
+				<p><strong>Pret: </strong> {{ $product->price }} RON</p>
+				<p class="btn-holder"><a href="{{ url('add-to-cart/'.$product->id) }}" class="btn btn-warning btn-block text-center" role="button">Adauga in cos</a> </p>
+			</div>
 		</div>
+		@endforeach	
 	</div>
 @endsection

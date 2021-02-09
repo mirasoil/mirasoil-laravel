@@ -16,6 +16,11 @@ class ShopController extends Controller
     public function cart(){
         return view('pages.cart', compact('cart'));
     }
+    public function show($id)
+    {
+        $shop = Shop::find($id);
+        return view('shop.show', compact('shop'));
+    }
     //se preia produsul si se verifica daca acesta exista sau nu
     public function addToCart($id){
         $shop = Shop::find($id);
@@ -93,7 +98,7 @@ class ShopController extends Controller
             return view('pages.cart');
         }
         $cart = session()->get('cart');
-        return view('pages.checkout');
+        return view('pages.revieworder');
     }
 
 }

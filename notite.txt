@@ -3,6 +3,7 @@ Pasi de urmat:
 
 2.Newsletter - /newsletter colecteaza datele dar nu exista - try ajax validation
 
+3.Guests should have access to individual products pages
 
 4.Stilizare butoane si card-uri pagina principala
 
@@ -12,7 +13,7 @@ Pasi de urmat:
 
 
 7.Left-sidebar - configurare rute
-8.In shop.blade.php trebuie sa pun un link spre pagina cu fiecare produs individual - users can't access ProductController
+8.In shop.blade.php trebuie sa pun un link spre pagina cu fiecare produs individual - guests can't access individual pages
 
 
 9.Animatie - meh..

@@ -1,5 +1,5 @@
 <!-- Footer -->
-<section id="footer-section">
+<section id="footer-section" class="pt-5">
 <footer>
     <div class="footer-wrap">
     <div class="container first_class">
@@ -80,15 +80,15 @@
                 <div class="col-md-3 col-sm-6">
                     <h3>Produsele noastre</h3>
                     <ul class="footer-category">
-                        <li><a href="produs.php?codProdus=1">Ulei</a>
+                        <li><a href="/shop/1">Ulei</a>
                         </li>
-                        <li><a href="produs.php?codProdus=2">Hidrolat</a>
+                        <li><a href="/shop/2">Hidrolat</a>
                         </li>
-                        <li><a href="produs.php?codProdus=3">Sapun</a>
+                        <li><a href="/shop/3">Sapun</a>
                         </li>
-                        <li><a href="produs.php?codProdus=4">Sirop</a>
+                        <li><a href="/shop/4">Sirop</a>
                         </li>
-                        <li><a href="produs.php?codProdus=6">Buchete</a>
+                        <li><a href="/shop/6">Buchete</a>
                         </li>
                     </ul>
                     <div class="clearfix"></div>

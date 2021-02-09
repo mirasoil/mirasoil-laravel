@@ -82,21 +82,25 @@ Route::post('newsletter', 'NewsletterController@store');
     Route::view('/user', 'user')->middleware('auth:user'); //pagina de useri (dashboard-ul cu Hi awesome user) e vizibil doar pentru useri, dupa logare sunt redirectionati aici
     
     Route::get('/user', 'UserController@index')->middleware('auth:user');    //pagina de dashboard pentru useri, formularul de update al datelor
-    Route::patch('user/{id}', 'UserController@update')->middleware('auth:user');    //modificarea propriu-zisa a datelor in tabela dupa id-ul userului autentificat
+    Route::patch('user/{id}', 'UserController@update')->middleware('auth:user');    //modificarea propriu-zisa a datelor in tabela dupa id-ul userului
 
     //CRUD pe cos - accesibil doar pentru useri
     // Route::patch('update-cart', 'ShopController@update')->middleware('auth:user'); //modific cosul (doar pentru useri) - prin patch pentru a modifica toate datele existente (in mare parte doar cantitatea in cazul de fata)
     // Route::delete('remove-from-cart', 'ShopController@remove')->middleware('auth:user');  //sterg din cos
 
-    // Route::get('/show/{id}', 'ShopController@show')->middleware('auth:user');
+    //pentru accesul userilor la pagina individuala a produselor
+    Route::get('/shop/{id}', 'ShopController@show')->middleware('auth:user');
 
    
     Route::get('cart', 'ShopController@cart')->middleware('auth:user');  //cosul propriu zis - user
     Route::get('add-to-cart/{id}', 'ShopController@addToCart')->middleware('auth:user');  //adaug in cos
     Route::patch('update-cart', 'ShopController@update')->middleware('auth:user');  //modific cos
     Route::delete('remove-from-cart', 'ShopController@remove')->middleware('auth:user'); //sterg din cos
-    Route::get('/checkout', 'ShopController@getCheckout')->middleware('auth:user'); //pentru confirmarea comenzii
+    Route::get('/revieworder', 'ShopController@getCheckout')->middleware('auth:user'); //pentru confirmarea comenzii
     Route::get('cart/success', 'ShopController@empty')->middleware('auth:user');
+
+    //pentru checkout
+    Route::get('/checkout', 'CheckoutController@index')->middleware('auth:user');
 
     //CRUD pe products, doar adminii au acces la pagina de modificare produse in baza de date
     Route::GET('/products', 'ProductController@index')->middleware('auth:admin');

@@ -19,6 +19,9 @@
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <!---Link footer--->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    @yield('extra-scripts')
+
 </head>
 <body class="wrapper">
 <!--Left Sidebar Holder --> 
@@ -31,6 +34,9 @@
 
 @include('sections.footer')
 </div>
-    @include('sections.right-sidebar')
-    </body>
+@include('sections.right-sidebar')
+
+@yield('extra-js')
+
+</body>
 </html>

@@ -2,7 +2,7 @@
 @section('title', 'Cos')
 @section('content')
 <div class="container">
-    <div class="py-5 text-center">
+    <div class="py-2 text-center">
         <h2>Cosul meu</h2>
         <p class="lead"></p>
     </div>
@@ -16,7 +16,7 @@
 <p id="message-response">{{ \Session::get('cart-failure') }}</p>
 </div><br />
 @endif
- <table id="cart" class="table table-hover table-condensed">
+ <table id="cart" class="table table-hover table-condensed mt-3">
     <thead>
         <tr>
             <th style="width:45%">Produse</th>
@@ -31,7 +31,6 @@
  @if(session('cart'))
  @foreach(session('cart') as $id => $details)
  <?php $total += $details['price'] * $details['quantity'] ?>
-
     <tr id="product-show">
         <td data-th="Product">
         <div class="row">
@@ -67,12 +66,9 @@
     </tr>
     <tr>
         <td colspan="4" class="hidden-xs"></td>
-        <td class="text-center"><a href="{{ url('/checkout') }}" class="btn btn-warning">Plaseaza comanda</a></td>
+        <td class="text-center"><a href="{{ url('/revieworder') }}" class="btn btn-warning">Plaseaza comanda</a></td>
 </tfoot>
 </table>
-@for ($i = 0; $i < 13; $i++)
-    <br>
-@endfor
  <script>
  $(".update-cart").click(function (e) {
         e.preventDefault();
