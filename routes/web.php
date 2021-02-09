@@ -81,6 +81,9 @@ Route::post('newsletter', 'NewsletterController@store');
     Route::view('/admin', 'admin')->middleware('auth:admin'); //pagina de admin e vizibila doar pentru admini (dashboard-ul cu Hi, boss!)
     Route::view('/user', 'user')->middleware('auth:user'); //pagina de useri (dashboard-ul cu Hi awesome user) e vizibil doar pentru useri, dupa logare sunt redirectionati aici
     
+    Route::get('/user', 'UserController@index')->middleware('auth:user');    //pagina de dashboard pentru useri, formularul de update al datelor
+    Route::patch('user/{id}', 'UserController@update')->middleware('auth:user');    //modificarea propriu-zisa a datelor in tabela dupa id-ul userului autentificat
+
     //CRUD pe cos - accesibil doar pentru useri
     // Route::patch('update-cart', 'ShopController@update')->middleware('auth:user'); //modific cosul (doar pentru useri) - prin patch pentru a modifica toate datele existente (in mare parte doar cantitatea in cazul de fata)
     // Route::delete('remove-from-cart', 'ShopController@remove')->middleware('auth:user');  //sterg din cos

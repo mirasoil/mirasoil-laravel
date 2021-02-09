@@ -1,9 +1,9 @@
 @extends('layouts.master')
 @section('content')
 <div id="checkout" class="container">
-<div class="py-5 text-center">
+            <div class="py-5 text-center">
                 <h2>Detalii Comanda</h2>
-                <p class="lead">.</p>
+                <p class="lead"></p>
             </div>
             <div class="row">
                 <!-- Sectiunea Cosul Meu si Adresa facturare -->
@@ -45,20 +45,20 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="firstName">Prenume</label>
-                <input type="text" class="form-control" id="firstName" placeholder="Prenume" value="Teodora" disabled="">
+                <input type="text" class="form-control" id="firstName" placeholder="Prenume" value="{{ Auth::user()->firstname }}" disabled="">
             </div>
             <div class="col-md-6 mb-3">
                 <label for="lastName">Nume</label>
-                <input type="text" class="form-control" id="lastName" placeholder="Nume" value="Ispas" disabled="">
+                <input type="text" class="form-control" id="lastName" placeholder="Nume" value="{{ Auth::user()->lastname }}" disabled="">
             </div>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="exemplu@example.com" value="ispasteodora@gmail.com" b="" disabled="">
+            <input type="email" class="form-control" id="email" placeholder="exemplu@example.com" value="{{ Auth::user()->email }}" b="" disabled="">
             </div>
         <div class="form-group">
             <label for="address">Adresa</label>
-            <textarea class="form-control" id="address" rows="3" disabled="">Miraslau, str. Principala, nr. 130</textarea>
+            <textarea class="form-control" id="address" rows="3" disabled="">{{ Auth::user()->address }}</textarea>
         </div>
     </div>  
                 </div>
@@ -70,35 +70,35 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label for="firstName">Prenume</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="Prenume" value="Teodora" required="">
+                                <input type="text" class="form-control" id="firstName" placeholder="Prenume" value="{{ Auth::user()->firstname }}" required="">
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="lastName">Nume</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Nume" value="Ispas" required="">
+                                <input type="text" class="form-control" id="lastName" placeholder="Nume" value="{{ Auth::user()->lastname }}" required="">
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-6 form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="you@example.com" value="ispasteodora@gmail.com">
+                                <input type="email" class="form-control" id="email" placeholder="you@example.com" value="{{ Auth::user()->email }}">
                             </div>
                             <div class="col-md-6 form-group">
                                 <label for="tel">Număr de telefon</label>
-                                <input type="email" class="form-control" id="tel" placeholder="07xxxxxxxx" value="" required="">
+                                <input type="email" class="form-control" id="tel" placeholder="{{ Auth::user()->phone }}" value="" required="">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="address">Adresa</label>
-                            <textarea class="form-control" id="address" rows="3" required="">Miraslau, str. Principala, nr. 130</textarea>
+                            <textarea class="form-control" id="address" rows="3" required="">{{ Auth::user()->address }}</textarea>
                         </div>
 
                         <div class="row">
                             <div class="col-md-4 mb-3">
                                 <label for="state">Judet</label>
                                 <select class="custom-select d-block w-100" id="state" required="">
-                                <option value="">Alege...</option>
+                                <option value="">{{ Auth::user()->county }}</option>
                                 <option>Bucuresti</option>
                                 <option>Alba</option>
                                 <option>Arad</option>
@@ -144,12 +144,12 @@
                                 </select>
                             </div>
                             <div class="col-md-5 mb-3">
-                                <label for="country">Localitate</label>
-                                <input type="text" class="form-control" id="zip" placeholder="" required="">
+                                <label for="locality">Localitate</label>
+                                <input type="text" class="form-control" id="locality" placeholder="{{ Auth::user()->locality }}" required="">
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label for="zip">Cod Postal</label>
-                                <input type="text" class="form-control" id="zip" placeholder="" required="">
+                                <input type="text" class="form-control" id="zip" placeholder="{{ Auth::user()->zipcode }}" required="">
                             </div>
                         </div>
                         <hr class="mb-4">

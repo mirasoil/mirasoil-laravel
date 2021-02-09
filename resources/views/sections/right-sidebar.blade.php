@@ -10,13 +10,13 @@
                     
                         @if(Auth::guard('user')->check())
                             <li class="{{ Request::is('account') ? 'active' : '' }}">
-                                <a href="cont.php"><i class="fa fa-user"></i> Contul meu</a>
+                                <a href="/user"> Contul meu</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Delogare') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
@@ -30,7 +30,7 @@
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Delogare') }}
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
@@ -38,11 +38,14 @@
                             </li>                       
                         @else 
                                 <li>
-                                    <a href="{{ url('/login/user') }}">Login as user</a>
+                                    <a href="{{ url('/login/user') }}">Logare client</a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('/login/admin') }}">Login as admin</a>
-                                </li>                     
+                                    <a href="{{ url('/login/admin') }}">Logare admin</a>
+                                </li>     
+                                <li>
+                                <a href="{{ url('/register/user') }}">Inregistrare</a>
+                                </li>                
                         @endif
                     </ul>
                     @if(Auth::guard('user')->check())

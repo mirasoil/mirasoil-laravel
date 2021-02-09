@@ -2,6 +2,10 @@
 @section('title', 'Cos')
 @section('content')
 <div class="container">
+    <div class="py-5 text-center">
+        <h2>Cosul meu</h2>
+        <p class="lead"></p>
+    </div>
  @if (\Session::has('cart-success'))
 <div class="alert alert-success">
 <p id="message-response">{{ \Session::get('cart-success') }}</p>
@@ -15,11 +19,11 @@
  <table id="cart" class="table table-hover table-condensed">
     <thead>
         <tr>
-            <th style="width:50%">Product</th>
-            <th style="width:10%">Price</th>
-            <th style="width:8%">Quantity</th>
-            <th style="width:22%" class="text-center">Subtotal</th>
-            <th style="width:10%"></th>
+            <th style="width:45%">Produse</th>
+            <th style="width:10%">Pret unitar</th>
+            <th style="width:8%">Cantitate</th>
+            <th style="width:17%" class="text-center">Subtotal</th>
+            <th style="width:20%" class="text-center">Actiune</th>
         </tr>
     </thead>
     <tbody>
@@ -41,28 +45,31 @@
         <td data-th="Quantity">
             <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity" />
         </td>
-        <td data-th="Subtotal" class="text-center" id="total-price">${{ $details['price'] * $details['quantity'] }}</td>
-        <td class="actions" data-th="">
-            <button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}"><i class="fa fa-refresh"></i>Update</button>
-            <button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $id }}"><i class="fa fa-trash-o"></i>Delete</button>
+        <td data-th="Subtotal" class="text-center" id="total-price">{{ $details['price'] * $details['quantity'] }} Lei</td>
+        <td class="actions text-center" data-th="">
+            <button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}" style="margin: 10px;"><i class="fa fa-refresh"></i>Modifica</button>
+            <button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $id }}" style="margin: 10px;"><i class="fa fa-trash-o"></i>Sterge</button>
         </td>
     </tr>
  @endforeach
  @endif
  </tbody>
  <tfoot>
-    <tr class="visible-xs">
-        <td class="text-center"><strong>Total {{ $total }}</strong></td>
-        <td class="text-center"><a href="{{ url('/cart/success') }}" class="btn btn-warning"><strong>Empty Cart</strong></a></td>
+    <tr class="visible-sm">
+        <td colspan="3" class="hidden-xs"></td>
+        <td class="text-center" style="font-size: 1.1rem;"><strong>Total: </strong> {{ $total }} Lei</td>
+        <td></td>
     </tr>
     <tr>
-        <td><a href="{{ url('/shop') }}" class="btn btn-warning">Continue shopping</a></td>
-        <td colspan="2" class="hidden-xs"></td>
-        <td class="hidden-xs text-center"><strong>Total ${{ $total }}</strong></td>
+        <td><a href="{{ url('/shop') }}" class="btn btn-warning">Contina cumparaturile</a></td>
+        <td colspan="3" class="hidden-xs"></td>
+        <td class="text-center"><a href="{{ url('/cart/success') }}" class="btn btn-warning text-center">Goleste cosul</a></td>
     </tr>
+    <tr>
+        <td colspan="4" class="hidden-xs"></td>
+        <td class="text-center"><a href="{{ url('/checkout') }}" class="btn btn-warning">Plaseaza comanda</a></td>
 </tfoot>
 </table>
-    <a href="{{ url('/checkout') }}" class="btn btn-warning" style="float:right;">Confirm order</a>
 @for ($i = 0; $i < 13; $i++)
     <br>
 @endfor

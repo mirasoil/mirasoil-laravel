@@ -4,8 +4,6 @@ Pasi de urmat:
 2.Newsletter - /newsletter colecteaza datele dar nu exista - try ajax validation
 
 
-3.Confirm order
-
 4.Stilizare butoane si card-uri pagina principala
 
 5.Search bar with  ajax - the search page is stable, I need it integrated in nav section
@@ -13,7 +11,7 @@ Pasi de urmat:
 6.Meniu pentru desktop -- ?
 
 
-7.Right-sidebar si left-sidebar - configurare rute
+7.Left-sidebar - configurare rute
 8.In shop.blade.php trebuie sa pun un link spre pagina cu fiecare produs individual - users can't access ProductController
 
 
@@ -27,7 +25,7 @@ Pasi de urmat:
 !!!Pe viitor, ShopController si ProductsController se vor conecta la acelasi model - momentan doar adminul are acces la pagina individuala a fiecarui produs
 
 
-
+12.In tabela useri mai am nevoie de: adresa, nr de telefon, eventual nume prenume separat
 
 
 
@@ -42,5 +40,3 @@ NOT WORKING
     //     'quantity' => $cart->quantity,
     //     'associatedModel' => $ProductController
     // ));
-
-In checkout -> controller -> user's info or just let them empty, fill them and store them in the orders table
