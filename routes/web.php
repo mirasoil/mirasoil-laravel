@@ -15,8 +15,11 @@ use App\Http\Controllers\ContactUsFormController;
 */
 
 //RUTE ACCESATE FARA A FI LOGAT
-Route::get('/', 'ProductController@index'); //afisare lista produse pe pagina de start
-Route::resource('products', 'ProductController');// Ruta de resurse va genera CRUD URI
+
+//Pagina principala
+Route::get('/', function(){
+    return view('welcome');
+});
 
 //View pentru pagina despre noi - ruta este /about care apeleaza view-ul about din subdirectorul pages
 Route::get('/about', function(){
@@ -34,6 +37,7 @@ Route::get('/products/{id}', function(){
     return view('products.show');
 });
 
+//Magazin - doar vizualizare
 Route::get('/shop', 'ShopController@index');
 
 //Pagina de transport, vizibila pentru oricine
@@ -51,16 +55,16 @@ Route::get('/test', function(){
     return view('test');
 });
 
+//pentru formularul de contact de pe pagina principala
 Route::get('/contact', 'ContactUsFormController@createForm');
-
 Route::post('/contact', 'ContactUsFormController@ContactUsForm')->name('contact.store');
 
-Route::get('/', function(){
-    return view('welcome');
-});
 
 Route::get('newsletter', 'NewsletterController@create');
 Route::post('newsletter', 'NewsletterController@store');
+
+//for search bar
+Route::get('/search','SearchController@search');
 
 
     Auth::routes();

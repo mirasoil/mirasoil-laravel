@@ -9,7 +9,7 @@ class NewsletterController extends Controller
 {
     public function create()
     {
-        return view('/'.'/#footer-section');
+        return view('/#footer-section');
     }
 
     public function store(Request $request)
@@ -17,9 +17,9 @@ class NewsletterController extends Controller
         if ( ! Newsletter::isSubscribed($request->email) ) 
         {
             Newsletter::subscribePending($request->email);
-            return redirect()->to('/')->with('subscribe-success', 'Ai fost abonat cu succes!');
+            return redirect()->to('/#footer-section')->with('subscribe-success', 'Ai fost abonat cu succes!');
         }
-        return redirect()->to('/')->with('subscribe-failure', 'Se pare ca adresa introdusa este deja abonata.');
+        return redirect()->to('/#footer-section')->with('subscribe-failure', 'Se pare ca adresa introdusa este deja abonata.');
             
     }
 }

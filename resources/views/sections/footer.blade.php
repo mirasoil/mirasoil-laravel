@@ -5,8 +5,8 @@
     <div class="container first_class">
             <div class="row">
                 <div class="col-md-4 col-sm-6">
-                    <h3>Fii primul care afla!</h3>
-                    <p>Aboneaza-te la newsletter-ul nostru.</p>
+                    <h3>Fii primul care află!</h3>
+                    <p>Abonează-te la newsletter-ul nostru.</p>
                 </div>
                 <div class="col-md-4 col-sm-6" id="subscribe-container">
                 <form method="post" action="{{url('newsletter')}}" class="newsletter">
@@ -48,7 +48,7 @@
             </div>  
                 </div>
                     <div class="clearfix"></div>
-                <div class="col-md-12"><h3 style="text-align: right;">Hai sa socializam!</h3></div>
+                <div class="col-md-12"><h3 style="text-align: right;">Hai să socializăm!</h3></div>
                 </div>
             </div>
     </div>
@@ -56,15 +56,15 @@
             <div class="container second_class_bdr">
             <div class="row">
                 <div class="col-md-4 col-sm-6">
-
-                    <div class="footer-logo"><img src="img/Logo-mirasoil.png" width="100" height="100" alt="logo">
+                    <div class="footer-logo">
+                        <img src="{{ url('img/Logo-mirasoil.png') }}" width="100" height="100" alt="logo" class="ml-5">
                     </div>
                     <p>Magazin online pentru produsele tale favorite !</p>
                 </div>
                 <div class="col-md-2 col-sm-6">
                     <h3>Acces rapid</h3>
                     <ul class="footer-links">
-                        <li><a href="/">Acasa</a>
+                        <li><a href="/">Acasă</a>
                         </li>
                         <li><a href="/about">Despre noi</a>
                         </li>
@@ -72,7 +72,7 @@
                         </li>
                         <li><a href="/#contact">Contact</a>
                         </li>
-                        <li><a href="/info" target="_blank">Termeni &amp; Conditii</a>
+                        <li><a href="/info" target="_blank">Termeni &amp; Condiții</a>
                         </li>
                         
                     </ul>
@@ -84,7 +84,7 @@
                         </li>
                         <li><a href="/shop/2">Hidrolat</a>
                         </li>
-                        <li><a href="/shop/3">Sapun</a>
+                        <li><a href="/shop/3">Săpun</a>
                         </li>
                         <li><a href="/shop/4">Sirop</a>
                         </li>
@@ -96,7 +96,7 @@
                 <div class="col-md-3 col-sm-6">
                     <h3>Evenimente</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Sedinte foto</a>
+                        <li><a href="#">Ședințe foto</a>
                         </li>
 
                         <!-- <li><a href="#">Jobs &AMP; Internship Fair 2019</a>

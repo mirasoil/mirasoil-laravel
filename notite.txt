@@ -7,7 +7,7 @@ Pasi de urmat:
 
 4.Stilizare butoane si card-uri pagina principala
 
-5.Search bar with  ajax - the search page is stable, I need it integrated in nav section
+5.Search bar with  ajax - autocomplete + styling
 
 6.Meniu pentru desktop -- ?
 
@@ -20,14 +20,9 @@ Pasi de urmat:
 
 
 10.Cos (https://github.com/Crinsane/LaravelShoppingcart)
-11.Cashier/Stripe
 
 
 !!!Pe viitor, ShopController si ProductsController se vor conecta la acelasi model - momentan doar adminul are acces la pagina individuala a fiecarui produs
-
-
-12.In tabela useri mai am nevoie de: adresa, nr de telefon, eventual nume prenume separat
-
 
 
 
@@ -41,3 +36,8 @@ NOT WORKING
     //     'quantity' => $cart->quantity,
     //     'associatedModel' => $ProductController
     // ));
+
+
+
+
+Obs. pretul trebuie modificat - decimal

@@ -8,7 +8,7 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::orderBy('name','ASC')->paginate(5);   //apelam modelul care va face legatura cu BD de unde va afisa produsele
+        $products = Product::orderBy('id','ASC')->paginate(5);   //apelam modelul care va face legatura cu BD de unde va afisa produsele
         $value = ($request->input('page',1)-1)*5;
         return view('products.list', compact('products'))->with('i', $value);     //compact substituie ->with, e o metoda comprimata
     }

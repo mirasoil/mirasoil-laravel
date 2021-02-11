@@ -40,6 +40,6 @@ class ContactUsFormController extends Controller
         });
 
         // 
-        return back()->with('success', 'Am primit mesajul tau si dorim sa iti multumim pentru interesul acordat. Revenim in cel mai scurt timp cu un raspuns.');
+        return redirect('/#contact')->with('success', 'Am primit mesajul tau si dorim sa iti multumim pentru interesul acordat. Revenim in cel mai scurt timp cu un raspuns.');
     }
 }
