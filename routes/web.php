@@ -3,19 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactUsFormController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 //RUTE ACCESATE FARA A FI LOGAT
-
 //Pagina principala
 Route::get('/', function(){
     return view('welcome');
@@ -30,15 +18,6 @@ Route::get('/about', function(){
 Route::get('/manufacture', function(){
     return view('pages.manufacture');
 });
-
-//View pentru pagina specifica fiecarui produs - ruta este /products/id-ul produsului care apeleaza view-ul show din subdirectorul products
-//!!!!ATENTIE - este valabil doar pentru admini momentan
-Route::get('/products/{id}', function(){
-    return view('products.show');
-});
-
-//Magazin - doar vizualizare
-Route::get('/shop', 'ShopController@index');
 
 //Pagina de transport, vizibila pentru oricine
 Route::get('/transport', function(){
@@ -59,7 +38,7 @@ Route::get('/test', function(){
 Route::get('/contact', 'ContactUsFormController@createForm');
 Route::post('/contact', 'ContactUsFormController@ContactUsForm')->name('contact.store');
 
-
+//pentru newsletter - parte de backend, redirectarea se face pe pagina de home la sectiunea contact
 Route::get('newsletter', 'NewsletterController@create');
 Route::post('newsletter', 'NewsletterController@store');
 
@@ -84,28 +63,46 @@ Route::get('/search','SearchController@search');
     Route::view('/home', 'home')->middleware('auth'); //pagina home e vizibila doar daca sunt logat
     Route::view('/admin', 'admin')->middleware('auth:admin'); //pagina de admin e vizibila doar pentru admini (dashboard-ul cu Hi, boss!)
     Route::view('/user', 'user')->middleware('auth:user'); //pagina de useri (dashboard-ul cu Hi awesome user) e vizibil doar pentru useri, dupa logare sunt redirectionati aici
-    
-    Route::get('/user', 'UserController@index')->middleware('auth:user');    //pagina de dashboard pentru useri, formularul de update al datelor
-    Route::patch('user/{id}', 'UserController@update')->middleware('auth:user');    //modificarea propriu-zisa a datelor in tabela dupa id-ul userului
 
-    //CRUD pe cos - accesibil doar pentru useri
-    // Route::patch('update-cart', 'ShopController@update')->middleware('auth:user'); //modific cosul (doar pentru useri) - prin patch pentru a modifica toate datele existente (in mare parte doar cantitatea in cazul de fata)
-    // Route::delete('remove-from-cart', 'ShopController@remove')->middleware('auth:user');  //sterg din cos
-
-    //pentru accesul userilor la pagina individuala a produselor
-    Route::get('/shop/{id}', 'ShopController@show')->middleware('auth:user');
-
-   
-    Route::get('cart', 'ShopController@cart')->middleware('auth:user');  //cosul propriu zis - user
-    Route::get('add-to-cart/{id}', 'ShopController@addToCart')->middleware('auth:user');  //adaug in cos
-    Route::patch('update-cart', 'ShopController@update')->middleware('auth:user');  //modific cos
-    Route::delete('remove-from-cart', 'ShopController@remove')->middleware('auth:user'); //sterg din cos
-    Route::get('/revieworder', 'ShopController@getCheckout')->middleware('auth:user'); //pentru confirmarea comenzii
-    Route::get('cart/success', 'ShopController@empty')->middleware('auth:user');
-
-    //pentru checkout
-    Route::get('/checkout', 'CheckoutController@index')->middleware('auth:user');
 
     //CRUD pe products, doar adminii au acces la pagina de modificare produse in baza de date
-    Route::GET('/products', 'ProductController@index')->middleware('auth:admin');
-    Route::resource('products', 'ProductController')->middleware('auth:admin');
+    Route::middleware(['auth:admin'])->group(function () { 
+        Route::GET('/products', 'ProductController@index');
+        Route::resource('products','ProductController');
+
+        //View pentru pagina specifica fiecarui produs - ruta este /products/id-ul produsului care apeleaza view-ul show din subdirectorul products
+        Route::get('/products/{id}', function(){
+            return view('products.show');
+        });       
+    });
+
+    //Paginile accesibile userilor logati
+    Route::middleware(['auth:user'])->group(function () {
+        Route::GET('/shop', 'ProductController@indexUser');
+        Route::get('/shop/{id}', 'ProductController@showUser');
+
+        Route::get('/user', 'UserController@index');    //pagina de dashboard pentru useri, formularul de update al datelor
+        Route::patch('user/{id}', 'UserController@update');    //modificarea propriu-zisa a datelor in tabela dupa id-ul userului
+    
+        Route::get('cart', 'ShopController@cart');  //cosul propriu zis - user
+        Route::get('add-to-cart/{id}', 'ShopController@addToCart');  //adaug in cos
+        Route::patch('update-cart', 'ShopController@update');  //modific cos
+        Route::delete('remove-from-cart', 'ShopController@remove'); //sterg din cos
+        Route::get('/revieworder', 'ShopController@getCheckout'); //pentru confirmarea comenzii
+        Route::patch('revieworder/{id}', 'ShopController@updateUserInfo'); //pentru pagina de revieworder, actualizare date utilizator
+        Route::get('cart/success', 'ShopController@empty');  //golire cos
+
+        //pentru checkout
+        Route::get('/checkout', 'CheckoutController@index');      
+    });
+
+    //Paginile accesibile vizitatorilor
+    Route::group(['middleware' => ['guest']], function () {
+        //Magazin - doar vizualizare pentru guest
+        Route::GET('/shop', 'ProductController@indexGuest');
+        //Pagina individuala produs pentru guest
+        Route::get('/shop/{id}', 'ProductController@showGuest');
+        // Route::get('/login/user', 'Auth\LoginController@showUserLoginForm');    //pentru redirectare din shop - Authenticate.php, RedirectIfAuthenticated.php, login.blade.php ????
+        // Route::post('/login/user', 'Auth\LoginController@userLogin');
+    });
+    

@@ -1,9 +1,16 @@
+De rezolvat: redirectionare pentru utilizatori neautentificati pe pagina de login/user nu login !
+
+
 Pasi de urmat:
-1.Product si Shop sa se conecteze la aceeasi baza de date
+1.Product si Shop sa se conecteze la aceeasi baza de date - done - second check on routes 
+-afisarea produselor se face acum doar din ProductController cu functii separate pentru fiecare tip de utilizator
+-in ShopController se pastreaza doar crud-ul pentru cos (fara vizualizare)
+
+!!!ATENTIE:-user nelogat - accesare cos -este redirectionat spre pagina de login (route = login) care nu exista teoretic, trebuie modificat, by default ruta de login sa fie login/user
 
 2.Newsletter - /newsletter colecteaza datele dar nu exista - try ajax validation
+-se primeste mail de confirmare-mailchimp => stocare in baza de date
 
-3.Guests should have access to individual products pages
 
 4.Stilizare butoane si card-uri pagina principala
 
@@ -14,7 +21,7 @@ Pasi de urmat:
 
 7.Left-sidebar - configurare rute
 8.In shop.blade.php trebuie sa pun un link spre pagina cu fiecare produs individual - guests can't access individual pages
-
+-cart: link spre pagina individuala produs
 
 9.Animatie - meh..
 
@@ -41,3 +48,5 @@ NOT WORKING
 
 
 Obs. pretul trebuie modificat - decimal
+
+In revieworder - la actualizare date, daca nu se selecteaza judetul acesta se pune by default null la actualizare

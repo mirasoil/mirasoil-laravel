@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="py-2 text-center">
-        <h2>Cosul meu</h2>
+        <h2>Coșul meu</h2>
         <p class="lead"></p>
     </div>
  @if (\Session::has('cart-success'))
@@ -20,10 +20,10 @@
     <thead>
         <tr>
             <th style="width:45%">Produse</th>
-            <th style="width:10%">Pret unitar</th>
+            <th style="width:10%">Preț unitar</th>
             <th style="width:8%">Cantitate</th>
             <th style="width:17%" class="text-center">Subtotal</th>
-            <th style="width:20%" class="text-center">Actiune</th>
+            <th style="width:20%" class="text-center">Acțiune</th>
         </tr>
     </thead>
     <tbody>
@@ -46,8 +46,8 @@
         </td>
         <td data-th="Subtotal" class="text-center" id="total-price">{{ $details['price'] * $details['quantity'] }} Lei</td>
         <td class="actions text-center" data-th="">
-            <button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}" style="margin: 10px;"><i class="fa fa-refresh"></i>Modifica</button>
-            <button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $id }}" style="margin: 10px;"><i class="fa fa-trash-o"></i>Sterge</button>
+            <button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}" style="margin: 10px;"><i class="fa fa-refresh"></i>Modifică</button>
+            <button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $id }}" style="margin: 10px;"><i class="fa fa-trash-o"></i>Șterge</button>
         </td>
     </tr>
  @endforeach
@@ -60,13 +60,13 @@
         <td></td>
     </tr>
     <tr>
-        <td><a href="{{ url('/shop') }}" class="btn btn-warning">Contina cumparaturile</a></td>
+        <td><a href="{{ url('/shop') }}" class="btn btn-warning">Continuă cumpărăturile</a></td>
         <td colspan="3" class="hidden-xs"></td>
-        <td class="text-center"><a href="{{ url('/cart/success') }}" class="btn btn-warning text-center">Goleste cosul</a></td>
+        <td class="text-center"><a href="{{ url('/cart/success') }}" class="btn btn-warning text-center">Golește coșul</a></td>
     </tr>
     <tr>
         <td colspan="4" class="hidden-xs"></td>
-        <td class="text-center"><a href="{{ url('/revieworder') }}" class="btn btn-warning">Plaseaza comanda</a></td>
+        <td class="text-center"><a href="{{ url('/revieworder') }}" class="btn btn-warning">Plasează comanda</a></td>
 </tfoot>
 </table>
  <script>

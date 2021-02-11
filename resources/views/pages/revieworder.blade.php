@@ -2,7 +2,7 @@
 @section('content')
 <div id="checkout" class="container">
     <div class="py-5 text-center">
-        <h2>Detalii Comanda</h2>
+        <h2>Detalii Comandă</h2>
         <p class="lead"></p>
     </div>
     <div class="row">
@@ -34,66 +34,98 @@
                 </li>
             </ul>
             <div class="card p-2 mb-3">
-                <a href="/cart" class="btn btn-danger m-1"> &lt;&lt; Înapoi la Cosul meu</a> 
-                <a href="/shop" class="btn btn-warning m-1"> &lt;&lt;&lt; Continua Cumparaturile </a>
-                <a href="#" class="btn btn-success m-1"> Finalizare Comanda &gt;&gt;&gt; </a>    
+                <a href="/cart" class="btn btn-danger m-1"> &lt;&lt; Înapoi la Coșul meu</a> 
+                <a href="/shop" class="btn btn-warning m-1"> &lt;&lt;&lt; Continuă Cumpărăturile </a>
+                <a href="{{ url('checkout') }}" class="btn btn-success m-1"> Finalizare Comandă &gt;&gt;&gt; </a>    
             </div>
-            <h4 class="d-flex text-center mb-3"><span class="text-muted">Adresa facturare</span></h4>
+            <h4 class="d-flex text-center mb-3"><span class="text-muted">Adresă facturare</span></h4>
             <hr>
             <div class="card p-2">
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">Prenume</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="Prenume" value="{{ Auth::user()->firstname }}" disabled="">
+                        <input type="text" class="form-control" id="firstName1" placeholder="Prenume" value="{{ Auth::user()->firstname }}" disabled="">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="lastName">Nume</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Nume" value="{{ Auth::user()->lastname }}" disabled="">
+                        <input type="text" class="form-control" id="lastName1" placeholder="Nume" value="{{ Auth::user()->lastname }}" disabled="">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="exemplu@example.com" value="{{ Auth::user()->email }}" b="" disabled="">
+                    <input type="email" class="form-control" id="email1" placeholder="exemplu@example.com" value="{{ Auth::user()->email }}" b="" disabled="">
                 </div>
                 <div class="form-group">
-                    <label for="address">Adresa</label>
-                    <textarea class="form-control" id="address" rows="3" disabled="">{{ Auth::user()->address }}</textarea>
+                    <label for="address">Adresă</label>
+                    <textarea class="form-control" id="address1" rows="3" disabled="">{{ Auth::user()->address }}</textarea>
                 </div>
             </div>  
         </div>
         <div class="col-md-8 order-md-1">
-            <form class="needs-validation" novalidate="">
+            <form method="POST" action="{{ url('revieworder',['id' => $id=Auth::user()->id]) }}">
+            @csrf
+            @method('PATCH')
                 <!-- Sectiunea Adresa de Livrare -->
-                <h4 class="mb-3">Adresa livrare</h4><hr>
+                <h4 class="mb-3">Adresă livrare</h4><hr>
                 <div class="card p-2 mb-3 shadow-sm">
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="firstName">Prenume</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="Prenume" value="{{ Auth::user()->firstname }}" required="">
+                            <label for="firstname">Prenume</label>
+                            <input type="text" name="firstname" class="form-control @error('firstname') is-invalid @enderror" id="firstname" value="{{ Auth::user()->firstname }}" required="">
+
+                            @error('firstname')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="lastName">Nume</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="Nume" value="{{ Auth::user()->lastname }}" required="">
+                            <label for="lastname">Nume</label>
+                            <input type="text" name="lastname" class="form-control @error('lastname') is-invalid @enderror" id="lastname" value="{{ Auth::user()->lastname }}" required="">
+
+                            @error('lastname')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="you@example.com" value="{{ Auth::user()->email }}">
+                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" value="{{ Auth::user()->email }}">
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="col-md-6 form-group">
                             <label for="tel">Număr de telefon</label>
-                            <input type="email" class="form-control" id="tel" placeholder="{{ Auth::user()->phone }}" value="" required="">
+                            <input type="phone" name="phone" class="form-control @error('phone') is-invalid @enderror" id="phone" required value="{{ Auth::user()->phone }}" required="">
+
+                            @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="address">Adresa</label>
-                        <textarea class="form-control" id="address" rows="3" required="">{{ Auth::user()->address }}</textarea>
+                        <label for="address">Adresă</label>
+                        <textarea class="form-control @error('address') is-invalid @enderror" name="address" id="address" rows="3" required="">{{ Auth::user()->address }}</textarea>
+
+                        @error('address')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="row">
                         <div class="col-md-4 mb-3">
-                            <label for="state">Judet</label>
-                            <select class="custom-select d-block w-100" id="state" required="">
+                            <label for="county">Județ</label>
+                            <select class="custom-select d-block w-100" name="county" id="county">
                             <option value="">{{ Auth::user()->county }}</option>
                             <option>Bucuresti</option>
                             <option>Alba</option>
@@ -141,27 +173,46 @@
                         </div>
                         <div class="col-md-5 mb-3">
                             <label for="locality">Localitate</label>
-                            <input type="text" class="form-control" id="locality" placeholder="{{ Auth::user()->locality }}" required="">
+                            <input type="text" name="locality" class="form-control @error('locality') is-invalid @enderror" id="locality" required="" value="{{ Auth::user()->locality }}">
+
+                            @error('locality')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="col-md-3 mb-3">
-                            <label for="zip">Cod Postal</label>
-                            <input type="text" class="form-control" id="zip" placeholder="{{ Auth::user()->zipcode }}" required="">
+                            <label for="zipcode">Cod Poștal</label>
+                            <input type="zipcode" name="zipcode" class="form-control @error('zipcode') is-invalid @enderror" id="zipcode" value="{{ Auth::user()->zipcode }}" required="">
+
+                            @error('zipcode')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group row mb-0">
+                        <div class="col-md-8">
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('Actualizează') }}
+                            </button>
                         </div>
                     </div>
                     <hr class="mb-4">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="same-address">
-                        <label class="custom-control-label" for="same-address">Adresa de livrare este aceeasi cu adresa de facturare</label>
+                        <label class="custom-control-label" for="same-address">Adresa de livrare este aceeași cu adresa de facturare</label>
                     </div>
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="save-info">
-                        <label class="custom-control-label" for="save-info">Salveaza informatia pentru mai tarziu</label>
+                        <label class="custom-control-label" for="save-info">Salvează informația pentru mai târziu</label>
                     </div>
                 </div>
             </form>
         </div>  
     </div>
-    <button class="btn btn-primary btn-lg btn-block" type="submit"><a href="{{ url('checkout') }}" style="text-decoration:none;color:white;">Continuati plata</a></button>
+    <button class="btn btn-primary btn-lg btn-block" type="submit"><a href="{{ url('checkout') }}" style="text-decoration:none;color:white;">Continuați plata</a></button>
 </div>
 @for ($i = 0; $i < 5; $i++)
     <br>

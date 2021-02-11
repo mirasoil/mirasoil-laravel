@@ -4,23 +4,24 @@ namespace App\Http\Controllers;
 use App\Shop;
 use Session;
 use Cart;
+use App\User;
 
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    public function index(){
-        $shop = Shop::all();
-        return view('pages.shop', compact('shop'));
-    }
+    // public function index(){
+    //     $shop = Shop::all();
+    //     return view('pages.shop', compact('shop'));
+    // }
     public function cart(){
         return view('pages.cart', compact('cart'));
     }
-    public function show($id)
-    {
-        $shop = Shop::find($id);
-        return view('shop.show', compact('shop'));
-    }
+    // public function show($id)
+    // {
+    //     $shop = Shop::find($id);
+    //     return view('shop.show', compact('shop'));
+    // }
     //se preia produsul si se verifica daca acesta exista sau nu
     public function addToCart($id){
         $shop = Shop::find($id);
@@ -99,6 +100,22 @@ class ShopController extends Controller
         }
         $cart = session()->get('cart');
         return view('pages.revieworder');
+    }
+
+    public function updateUserInfo(Request $request, $id){
+
+        $user = User::findOrFail($id);
+        $user-> firstname = $request->firstname;
+        $user-> lastname = $request->lastname;
+        $user-> email = $request->email;
+        $user-> address = $request->address;
+        $user-> phone = $request->phone;
+        $user-> county = $request->county;
+        $user-> locality = $request->locality;
+        $user-> zipcode = $request->zipcode;
+        $user->save();
+
+        return redirect()->back()->with('user-success', 'Informatiile au fost actualizate!');
     }
 
 }

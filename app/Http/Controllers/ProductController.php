@@ -8,9 +8,35 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::orderBy('id','ASC')->paginate(5);   //apelam modelul care va face legatura cu BD de unde va afisa produsele
+        $products = Product::orderBy('id','ASC')->paginate(5);   //apelam modelul care va face legatura cu BD de unde va afisa produsele - pentru admin
         $value = ($request->input('page',1)-1)*5;
-        return view('products.list', compact('products'))->with('i', $value);     //compact substituie ->with, e o metoda comprimata
+        return view('products.list', compact('products'))->with('i', $value);     
+    }
+
+    public function indexUser(Request $request)
+    {
+        $shop = Product::orderBy('id','ASC')->paginate(5);   //pentru afisarea paginii de produse din acelasi tabel pentru useri logati
+        $value = ($request->input('page',1)-1)*5;
+        return view('pages.shop', compact('shop'));    
+    }
+
+    public function indexGuest(Request $request)
+    {
+        $shop = Product::orderBy('id','ASC')->paginate(5);   //pentru afisarea paginii de produse din products pentru vizitatori
+        $value = ($request->input('page',1)-1)*5;
+        return view('pages.shop', compact('shop'));    
+    }
+
+    public function showUser($id)  //afisarea paginii individuale a produselor conectandu-ne la acelasi model => acelasi tabel (products)
+    {
+        $shop = Product::find($id);
+        return view('shop.show', compact('shop'));
+    }
+
+    public function showGuest($id)
+    {
+        $shop = Product::find($id);
+        return view('shop.show', compact('shop'));
     }
 
     public function create()

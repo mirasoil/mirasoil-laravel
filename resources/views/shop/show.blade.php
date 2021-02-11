@@ -14,8 +14,8 @@
                         <h3 class="product-title">{{$shop->name}}</h3>
                         <div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div>
                     <hr>
-                    <div class="product-price"><strong>Pret:</strong> {{$shop->price}} RON</div>
-                    <div class="product-stock">In stoc</div>
+                    <div class="product-price"><strong>Preț:</strong> {{$shop->price}} RON</div>
+                    <div class="product-stock">În stoc</div>
                     <hr>
                     <div class="btn-group cart">
                         <a href="{{ url('add-to-cart/'.$shop->id) }}" class="btn btn-success btn-block text-center" type="button">
