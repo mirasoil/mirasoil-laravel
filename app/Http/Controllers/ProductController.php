@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Product;
 use App\User;
-use Auth;
+use Session;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -17,44 +17,28 @@ class ProductController extends Controller
 
     public function indexUser(Request $request)
     {
-        if(!Auth::guard('admin')){
-            $shop = Product::orderBy('id','ASC')->paginate(5);   //pentru afisarea paginii de produse din acelasi tabel pentru useri logati
-            $value = ($request->input('page',1)-1)*5;
-            return view('pages.shop', compact('shop'));
-        } else {
-            return redirect()->back()->with('message-area-failure', 'Nu ai permisiunea de a accesa aceasta pagina!');
-        }   
+        $shop = Product::orderBy('id','ASC')->paginate(3);   //pentru afisarea paginii de produse din acelasi tabel pentru useri logati
+        $value = ($request->input('page',1)-1)*5;
+        return view('pages.shop', compact('shop'))->with('i', $value);    
     }
 
     public function indexGuest(Request $request)
     {
-        if(!Auth::guard('admin')){
-            $shop = Product::orderBy('id','ASC')->paginate(5);   //pentru afisarea paginii de produse din products pentru vizitatori
-            $value = ($request->input('page',1)-1)*5;
-            return view('pages.shop', compact('shop'));  
-        } else {
-            return redirect()->back()->with('message-area-failure', 'Nu ai permisiunea de a accesa aceasta pagina!');
-        }  
+        $shop = Product::orderBy('id','ASC')->paginate(3);   //pentru afisarea paginii de produse din products pentru vizitatori
+        $value = ($request->input('page',1)-1)*5;
+        return view('pages.shop', compact('shop'))->with('i', $value);   
     }
 
     public function showUser($id)  //afisarea paginii individuale a produselor conectandu-ne la acelasi model => acelasi tabel (products)
     {
-        if(!Auth::guard('admin')){
-            $shop = Product::find($id);
-            return view('pages.details', compact('shop'));
-        }else {
-            return redirect()->back()->with('message-area-failure', 'Nu ai permisiunea de a accesa aceasta pagina!');
-        }
+        $shop = Product::find($id);
+        return view('pages.details', compact('shop'));
     }
 
     public function showGuest($id)
     {
-        if(!Auth::guard('admin')){
-            $shop = Product::find($id);
-            return view('pages.details', compact('shop'));
-        }else {
-            return redirect()->back()->with('message-area-failure', 'Nu ai permisiunea de a accesa aceasta pagina!');
-        }
+        $shop = Product::find($id);
+        return view('pages.details', compact('shop'));
     }
 
     //Functionalitati useri - parte de cos

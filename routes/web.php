@@ -102,7 +102,8 @@ Route::get('/search','SearchController@search');
         Route::GET('/shop', 'ProductController@indexGuest');
         //Pagina individuala produs pentru guest
         Route::get('/details/{id}', 'ProductController@showGuest');
-        // Route::get('/login/user', 'Auth\LoginController@showUserLoginForm');    //pentru redirectare din shop - Authenticate.php, RedirectIfAuthenticated.php, login.blade.php ????
-        // Route::post('/login/user', 'Auth\LoginController@userLogin');
+
+        Route::get('login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@showUserLoginForm']); //pentru userii care acceseaza functionalitatile cosului fara a fi logati
+        Route::post('login', [ 'as' => 'login', 'uses' => 'Auth\LoginController@userLogin']);  //redirectam pe pagina de login/user - se autentifica by default ca si user
     });
     

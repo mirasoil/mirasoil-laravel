@@ -7,6 +7,7 @@ Pasi de urmat:
 -in ShopController se pastreaza doar crud-ul pentru cos (fara vizualizare)
 
 !!!ATENTIE:-user nelogat - accesare cos -este redirectionat spre pagina de login (route = login) care nu exista teoretic, trebuie modificat, by default ruta de login sa fie login/user
+-solved by adding separate route name for '/login', using the same controller with showUserLoginForm function
 
 2.Newsletter - /newsletter colecteaza datele dar nu exista - try ajax validation
 -se primeste mail de confirmare-mailchimp => stocare in baza de date
@@ -20,7 +21,7 @@ Pasi de urmat:
 
 
 7.Left-sidebar - configurare rute
-8.In shop.blade.php trebuie sa pun un link spre pagina cu fiecare produs individual - guests can't access individual pages
+8.In shop.blade.php trebuie sa pun un link spre pagina cu fiecare produs individual 
 -cart: link spre pagina individuala produs
 
 9.Animatie - meh..
@@ -29,7 +30,7 @@ Pasi de urmat:
 10.Cos (https://github.com/Crinsane/LaravelShoppingcart)
 
 
-!!!Pe viitor, ShopController si ProductsController se vor conecta la acelasi model - momentan doar adminul are acces la pagina individuala a fiecarui produs
+!!!Pe viitor, ShopController si ProductsController se vor conecta la acelasi model 
 La implementare - folosind acelasi controller, adminii au acces la /details/{id} si shop (resource for products I guess) - solved by adding if statement for admin guard in ProductController
 -pe viitor - o singura functie atat pentru index cat si pentru show implementata cu un switch-case sau chiar si cu if !!
 
@@ -54,4 +55,4 @@ In revieworder - la actualizare date, daca nu se selecteaza judetul acesta se pu
 
 
 
-Partea de GraphQL - can't find the Type, there are no relationships between tables yet so it won't work 
+Partea de GraphQL - can't find the Type, there are no relationships between tables yet so it won't work - am renuntat pe moment - info guzzle

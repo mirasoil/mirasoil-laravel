@@ -43,7 +43,9 @@
 		</div>	
 	</div>
 	<div class="card-deck justify-content-center">	
+	@if (count($shop) > 0)
 		@foreach($shop as $product)
+		<div class="d-none">{{ ++$i }}</div>
 		<div class="ml-5 my-4 text-center shadow p-4 bg-white rounded" style="width: 23rem;">
 			<a href="{{ url('details', $product->id) }}"><img class="card-img-top" src="img/{{$product->image}}" height="320"></a>
 			<div class="card-body text-center">
@@ -54,5 +56,7 @@
 			</div>
 		</div>
 		@endforeach	
+	@endif
 	</div>
+	<div class="float-right mr-5 pr-5 mb-5">{{$shop->render()}}</div><br>
 @endsection
