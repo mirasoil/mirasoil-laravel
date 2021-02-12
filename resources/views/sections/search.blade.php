@@ -14,15 +14,19 @@
 <script type="text/javascript">
 $('#search').on('keyup',function(){
     $value=$(this).val();
-    $.ajax({
-        type : 'get',
-        url : "{{URL::to('search')}}",
-        data:{'search':$value},
-        success:function(data){
-            $('#suggestions').html(data); //this name should be a link to the product page or something
-            console.log(data);
-        }
-    });
+    if($value != ""){
+        $.ajax({
+            type : 'get',
+            url : "{{URL::to('search')}}",
+            data:{'search':$value},
+            success:function(data){
+                $('#suggestions').html(data); //this name should be a link to the product page or something
+                console.log(data);
+            }
+        });
+    }else {
+        $('#suggestions').html("");
+    }
 })
 $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
 </script>
