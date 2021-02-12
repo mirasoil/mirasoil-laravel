@@ -44,10 +44,10 @@
 	</div>
 	<div class="card-deck justify-content-center">	
 		@foreach($shop as $product)
-		<div class="ml-5 text-center shadow p-4 bg-white rounded" style="width: 23rem;">
-			<a href="{{ url('shop', $product->id) }}"><img class="card-img-top" src="img/{{$product->image}}" height="320"></a>
+		<div class="ml-5 my-4 text-center shadow p-4 bg-white rounded" style="width: 23rem;">
+			<a href="{{ url('details', $product->id) }}"><img class="card-img-top" src="img/{{$product->image}}" height="320"></a>
 			<div class="card-body text-center">
-				<h4><a href="{{ url('shop', $product->id) }}" style="text-decoration:none;color:black;">{{ $product->name }}</a></h4>
+				<h4><a href="{{ url('details', $product->id) }}" style="text-decoration:none;color:black;">{{ $product->name }}</a></h4>
 				<p>{!! Str::limit($product->description, 50) !!}</p>
 				<p><strong>Pret: </strong> {{ $product->price }} RON</p>
 				<p class="btn-holder"><a href="{{ url('add-to-cart/'.$product->id) }}" class="btn btn-warning btn-block text-center" role="button">Adaugă în coș</a> </p>

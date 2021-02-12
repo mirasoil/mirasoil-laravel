@@ -79,18 +79,18 @@ Route::get('/search','SearchController@search');
     //Paginile accesibile userilor logati
     Route::middleware(['auth:user'])->group(function () {
         Route::GET('/shop', 'ProductController@indexUser');
-        Route::get('/shop/{id}', 'ProductController@showUser');
+        Route::get('/details/{id}', 'ProductController@showUser');
 
         Route::get('/user', 'UserController@index');    //pagina de dashboard pentru useri, formularul de update al datelor
         Route::patch('user/{id}', 'UserController@update');    //modificarea propriu-zisa a datelor in tabela dupa id-ul userului
     
-        Route::get('cart', 'ShopController@cart');  //cosul propriu zis - user
-        Route::get('add-to-cart/{id}', 'ShopController@addToCart');  //adaug in cos
-        Route::patch('update-cart', 'ShopController@update');  //modific cos
-        Route::delete('remove-from-cart', 'ShopController@remove'); //sterg din cos
-        Route::get('/revieworder', 'ShopController@getCheckout'); //pentru confirmarea comenzii
-        Route::patch('revieworder/{id}', 'ShopController@updateUserInfo'); //pentru pagina de revieworder, actualizare date utilizator
-        Route::get('cart/success', 'ShopController@empty');  //golire cos
+        Route::get('cart', 'ProductController@cart');  //cosul propriu zis - user
+        Route::get('add-to-cart/{id}', 'ProductController@addToCart');  //adaug in cos
+        Route::patch('update-cart', 'ProductController@updateCart');  //modific cos
+        Route::delete('remove-from-cart', 'ProductController@removeCart'); //sterg din cos
+        Route::get('/revieworder', 'ProductController@getCheckout'); //pentru confirmarea comenzii
+        Route::patch('revieworder/{id}', 'ProductController@updateUserInfo'); //pentru pagina de revieworder, actualizare date utilizator
+        Route::get('cart/success', 'ProductController@emptyCart');  //golire cos
 
         //pentru checkout
         Route::get('/checkout', 'CheckoutController@index');      
@@ -101,7 +101,7 @@ Route::get('/search','SearchController@search');
         //Magazin - doar vizualizare pentru guest
         Route::GET('/shop', 'ProductController@indexGuest');
         //Pagina individuala produs pentru guest
-        Route::get('/shop/{id}', 'ProductController@showGuest');
+        Route::get('/details/{id}', 'ProductController@showGuest');
         // Route::get('/login/user', 'Auth\LoginController@showUserLoginForm');    //pentru redirectare din shop - Authenticate.php, RedirectIfAuthenticated.php, login.blade.php ????
         // Route::post('/login/user', 'Auth\LoginController@userLogin');
     });

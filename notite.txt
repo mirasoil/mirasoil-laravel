@@ -30,7 +30,8 @@ Pasi de urmat:
 
 
 !!!Pe viitor, ShopController si ProductsController se vor conecta la acelasi model - momentan doar adminul are acces la pagina individuala a fiecarui produs
-
+La implementare - folosind acelasi controller, adminii au acces la /details/{id} si shop (resource for products I guess) - solved by adding if statement for admin guard in ProductController
+-pe viitor - o singura functie atat pentru index cat si pentru show implementata cu un switch-case sau chiar si cu if !!
 
 
 I need a table for cart...

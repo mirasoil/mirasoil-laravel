@@ -128,7 +128,7 @@
                             <li><i class="far fa-check-circle"></i> 500ml</li>
                             <li><i class="far fa-check-circle"></i> 1l</li>
                         </ul>
-                        <button type="button" class="btn btn-primary" onclick="location.href='products/2'">Detalii</button>
+                        <button type="button" class="btn btn-primary" onclick="location.href='details/2'">Detalii</button>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 my-3">
@@ -141,7 +141,7 @@
                             <li><i class="far fa-check-circle"></i> 50ml</li>
                             <li><i class="far fa-check-circle"></i> 100ml</li>
                         </ul>
-                        <button type="button" class="btn btn-primary" onclick="location.href='products/1'">Detalii</button>
+                        <button type="button" class="btn btn-primary" onclick="location.href='details/1'">Detalii</button>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 my-3">
@@ -154,7 +154,7 @@
                             <li><i class="far fa-check-circle"></i> 250g</li>
                             <li><i class="far fa-check-circle"></i> 250g</li>
                         </ul>
-                        <button type="button" class="btn btn-primary" onclick="location.href='products/3'">Detalii</button>
+                        <button type="button" class="btn btn-primary" onclick="location.href='details/3'">Detalii</button>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 my-3">
@@ -167,7 +167,7 @@
                             <li><i class="far fa-check-circle"></i> 750ml</li>
                             <li><i class="far fa-check-circle"></i> 1l</li>
                         </ul>
-                        <button type="button" class="btn btn-primary" onclick="location.href='products/4'">Detalii</button>
+                        <button type="button" class="btn btn-primary" onclick="location.href='details/4'">Detalii</button>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 my-3">
@@ -180,7 +180,7 @@
                             <li><i class="far fa-check-circle"></i> medii</li>
                             <li><i class="far fa-check-circle"></i> mari</li>
                         </ul>
-                        <button type="button" class="btn btn-primary" onclick="location.href='products/6'">Detalii</button>
+                        <button type="button" class="btn btn-primary" onclick="location.href='details/6'">Detalii</button>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-6 col-lg-4 my-3">
@@ -193,7 +193,7 @@
                             <li><i class="far fa-check-circle"></i> 250g</li>
                             <li><i class="far fa-check-circle"></i> 250g</li>
                         </ul>
-                        <button type="button" class="btn btn-primary" onclick="location.href='products/5'">Detalii</button>
+                        <button type="button" class="btn btn-primary" onclick="location.href='details/5'">Detalii</button>
                     </div>
                 </div>
             </div>            

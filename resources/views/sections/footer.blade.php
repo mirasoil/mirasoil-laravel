@@ -79,18 +79,33 @@
                 </div>
                 <div class="col-md-3 col-sm-6">
                     <h3>Produsele noastre</h3>
+                    @if(Auth::guard('admin')->check())
                     <ul class="footer-category">
-                        <li><a href="/shop/1">Ulei</a>
+                        <li><a href="/products/1">Ulei</a>
                         </li>
-                        <li><a href="/shop/2">Hidrolat</a>
+                        <li><a href="/products/2">Hidrolat</a>
                         </li>
-                        <li><a href="/shop/3">Săpun</a>
+                        <li><a href="/products/3">Săpun</a>
                         </li>
-                        <li><a href="/shop/4">Sirop</a>
+                        <li><a href="/products/4">Sirop</a>
                         </li>
-                        <li><a href="/shop/6">Buchete</a>
+                        <li><a href="/products/6">Buchete</a>
                         </li>
                     </ul>
+                    @else
+                    <ul class="footer-category">
+                        <li><a href="/details/1">Ulei</a>
+                        </li>
+                        <li><a href="/details/2">Hidrolat</a>
+                        </li>
+                        <li><a href="/details/3">Săpun</a>
+                        </li>
+                        <li><a href="/details/4">Sirop</a>
+                        </li>
+                        <li><a href="/details/6">Buchete</a>
+                        </li>
+                    </ul>
+                    @endif
                     <div class="clearfix"></div>
                 </div>
                 <div class="col-md-3 col-sm-6">

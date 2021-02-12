@@ -14,26 +14,26 @@
                     <a href="{{ url('manufacture') }}">Prelucrare</a>
                 </li>
                 @if(Auth::guard('user')->check())
-                <li class="{{ Request::is('shop') ? 'active' : '' }}"><!-- Link with dropdown items -->
+                <li class="{{ Request::is('details') ? 'active' : '' }}"><!-- Link with dropdown items -->
                         <a class="dropdown-toggle" href="#homeSubmenu" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="homeSubmenu"><i class="fas fa-list-ol"></i> Produse</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                                <a href="/shop/1">Ulei de lavandă</a>
+                                <a href="/details/1">Ulei de lavandă</a>
                             </li>
                             <li>
-                                <a href="/shop/2">Hidrolat de lavandă</a>
+                                <a href="/details/2">Hidrolat de lavandă</a>
                             </li>
                             <li>
-                                <a href="/shop/3">Săpun natural</a>
+                                <a href="/details/3">Săpun natural</a>
                             </li>
                             <li>
-                                <a href="/shop/4">Sirop</a>
+                                <a href="/details/4">Sirop</a>
                             </li>
                             <li>
-                                <a href="/shop/5">Buchete florale</a>
+                                <a href="/details/5">Buchete florale</a>
                             </li>
                             <li>
-                                <a href="/shop/6">Brichete</a>
+                                <a href="/details/6">Brichete</a>
                             </li>
                         </ul>
                 </li>
@@ -62,26 +62,26 @@
                         </ul>
                 </li>
                 @elseif(Auth::guest())
-                <li class="{{ Request::is('shop') ? 'active' : '' }}"><!-- Link with dropdown items -->
+                <li class="{{ Request::is('details') ? 'active' : '' }}"><!-- Link with dropdown items -->
                         <a class="dropdown-toggle" href="#homeSubmenu" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="homeSubmenu"><i class="fas fa-list-ol"></i> Produse</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                                <a href="/shop/1">Ulei de lavandă</a>
+                                <a href="/details/1">Ulei de lavandă</a>
                             </li>
                             <li>
-                                <a href="/shop/2">Hidrolat de lavandă</a>
+                                <a href="/details/2">Hidrolat de lavandă</a>
                             </li>
                             <li>
-                                <a href="/shop/3">Săpun natural</a>
+                                <a href="/details/3">Săpun natural</a>
                             </li>
                             <li>
-                                <a href="/shop/4">Sirop</a>
+                                <a href="/details/4">Sirop</a>
                             </li>
                             <li>
-                                <a href="/shop/5">Buchete florale</a>
+                                <a href="/details/5">Buchete florale</a>
                             </li>
                             <li>
-                                <a href="/shop/6">Brichete</a>
+                                <a href="/details/6">Brichete</a>
                             </li>
                         </ul>
                 </li>

@@ -28,8 +28,18 @@
 @include('sections.left-sidebar')
 <div id="content">
     @include('sections.navigation')
+        @if (\Session::has('message-area-success'))
+        <div class="alert alert-success">
+        <p id="message-response">{{ \Session::get('message-area-success') }}</p>
+        </div>
+        @endif
+        @if (\Session::has('message-area-failure'))
+        <div class="alert alert-danger">
+        <p id="message-response">{{ \Session::get('message-area-failure') }}</p>
+        </div>
+        @endif
 
-         @yield('content')
+    @yield('content')
 
 
 @include('sections.footer')
