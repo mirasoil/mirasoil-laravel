@@ -28,26 +28,26 @@
     </thead>
     <tbody>
     <?php $total = 0 ?>
- @if(session('cart'))
- @foreach(session('cart') as $id => $details)
- <?php $total += $details['price'] * $details['quantity'] ?>
+ @if(Cart::count() > 0)
+ @foreach(Cart::content() as $details)
+ <?php $total += $details->price * $details->qty ?>
     <tr id="product-show">
         <td data-th="Product">
         <div class="row">
-            <div class="col-sm-3 hidden-xs"><img src="img/{{$details['image'] }}" width="100" height="100" class="img-responsive"/></div>
+            <div class="col-sm-3 hidden-xs"><img src="img/{{$details->options}}" width="100" height="100" class="img-responsive"/></div>
                 <div class="col-sm-9">
-                    <h4 class="nomargin">{{ $details['name'] }}</h4>
+                    <h4 class="nomargin">{{ $details->name }}</h4>
                 </div>
             </div>
         </td>
-        <td data-th="Price">{{ $details['price'] }} lei</td>
+        <td data-th="Price">{{ $details->price }} lei</td>
         <td data-th="Quantity">
-            <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity" />
+            <input type="number" value="{{ $details->qty }}" class="form-control quantity" />
         </td>
-        <td data-th="Subtotal" class="text-center" id="total-price">{{ $details['price'] * $details['quantity'] }} Lei</td>
+        <td data-th="Subtotal" class="text-center" id="total-price">{{ $details->price * $details->qty }} Lei</td>
         <td class="actions text-center" data-th="">
-            <button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}" style="margin: 10px;"><i class="fa fa-refresh"></i>Modifică</button>
-            <button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $id }}" style="margin: 10px;"><i class="fa fa-trash-o"></i>Șterge</button>
+            <button class="btn btn-info btn-sm update-cart" data-id="{{ $details->id }}" style="margin: 10px;"><i class="fa fa-refresh"></i>Modifică</button>
+            <button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $details->id }}" style="margin: 10px;"><i class="fa fa-trash-o"></i>Șterge</button>
         </td>
     </tr>
  @endforeach

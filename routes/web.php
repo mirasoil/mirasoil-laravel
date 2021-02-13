@@ -78,28 +78,36 @@ Route::get('/search','SearchController@search');
 
     //Paginile accesibile userilor logati
     Route::middleware(['auth:user'])->group(function () {
-        Route::GET('/shop', 'ProductController@indexUser');
+        Route::GET('/shop', 'ProductController@indexUser')->name('shop');
+        Route::post('/shop/{product}', 'ProductController@addToCart')->name('shop.store');
         Route::get('/details/{id}', 'ProductController@showUser');
 
         Route::get('/user', 'UserController@index');    //pagina de dashboard pentru useri, formularul de update al datelor
         Route::patch('user/{id}', 'UserController@update');    //modificarea propriu-zisa a datelor in tabela dupa id-ul userului
     
-        Route::get('cart', 'ProductController@cart');  //cosul propriu zis - user
-        Route::get('add-to-cart/{id}', 'ProductController@addToCart');  //adaug in cos
-        Route::patch('update-cart', 'ProductController@updateCart');  //modific cos
-        Route::delete('remove-from-cart', 'ProductController@removeCart'); //sterg din cos
-        Route::get('/revieworder', 'ProductController@getCheckout'); //pentru confirmarea comenzii
-        Route::patch('revieworder/{id}', 'ProductController@updateUserInfo'); //pentru pagina de revieworder, actualizare date utilizator
-        Route::get('cart/success', 'ProductController@emptyCart');  //golire cos
+        // Route::get('cart', 'ProductController@cart');  //cosul propriu zis - user
+        // Route::get('add-to-cart/{id}', 'ProductController@addToCart');  //adaug in cos
+        // Route::post('add-to-cart/{product}', 'ProductController@storeCart');  //adaug in cos
+        // Route::patch('update-cart', 'ProductController@updateCart');  //modific cos
+        // Route::delete('remove-from-cart', 'ProductController@removeCart'); //sterg din cos
+        // Route::get('/revieworder', 'ProductController@getCheckout'); //pentru confirmarea comenzii
+        // Route::patch('revieworder/{id}', 'ProductController@updateUserInfo'); //pentru pagina de revieworder, actualizare date utilizator
+        // Route::get('cart/success', 'ProductController@emptyCart');  //golire cos
 
-        //pentru checkout
-        Route::get('/checkout', 'CheckoutController@index');      
+        // //pentru checkout
+        // Route::get('/checkout', 'CheckoutController@index');   
+        
+        
+        Route::get('/cart', 'ProductController@cart')->name('cart');
+        Route::post('/cart/{product}', 'CartController@store')->name('cart.store');
+        Route::patch('/cart/{product}', 'CartController@update')->name('cart.update');
+        Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.destroy');
     });
 
     //Paginile accesibile vizitatorilor
     Route::group(['middleware' => ['guest']], function () {
         //Magazin - doar vizualizare pentru guest
-        Route::GET('/shop', 'ProductController@indexGuest');
+        // Route::GET('/shop', 'ProductController@indexGuest');
         //Pagina individuala produs pentru guest
         Route::get('/details/{id}', 'ProductController@showGuest');
 

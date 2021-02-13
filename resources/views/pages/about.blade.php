@@ -269,3 +269,6 @@
         </p>
     </div>
 @endsection
+@section('extra-scripts')
+<script src="{{ URL::asset('/js/about.js') }}"></script>
+@endsection

@@ -5,29 +5,34 @@ use App\Product;
 use App\User;
 use Session;
 use Illuminate\Http\Request;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ProductController extends Controller
 {
-    public function index(Request $request)
-    {
-        $products = Product::orderBy('id','ASC')->paginate(3);   //apelam modelul care va face legatura cu BD de unde va afisa produsele - pentru admin
-        $value = ($request->input('page',1)-1)*3;    // get the top 5 of all products, ordered by the id of products in descending order
-        return view('products.list', compact('products'))->with('i', $value);     
-    }
+    // public function index(Request $request)
+    // {
+    //     $products = Product::orderBy('id','ASC')->paginate(3);   //apelam modelul care va face legatura cu BD de unde va afisa produsele - pentru admin
+    //     $value = ($request->input('page',1)-1)*3;    // get the top 5 of all products, ordered by the id of products in descending order
+    //     return view('products.list', compact('products'))->with('i', $value);     
+    // }
 
     public function indexUser(Request $request)
     {
-        $shop = Product::orderBy('id','ASC')->paginate(3);   //pentru afisarea paginii de produse din acelasi tabel pentru useri logati
+        $products = Product::orderBy('id','ASC')->paginate(3);   //pentru afisarea paginii de produse din acelasi tabel pentru useri logati
         $value = ($request->input('page',1)-1)*5;
-        return view('pages.shop', compact('shop'))->with('i', $value);    
+        return view('pages.shop', compact('shop'))->with([
+            'products' => $products,
+            'i' => $value
+        ]);
+        //return view('pages.shop', compact('shop'))->with('i', $value);    
     }
 
-    public function indexGuest(Request $request)
-    {
-        $shop = Product::orderBy('id','ASC')->paginate(3);   //pentru afisarea paginii de produse din products pentru vizitatori
-        $value = ($request->input('page',1)-1)*5;
-        return view('pages.shop', compact('shop'))->with('i', $value);   
-    }
+    // public function indexGuest(Request $request)
+    // {
+    //     $shop = Product::orderBy('id','ASC')->paginate(3);   //pentru afisarea paginii de produse din products pentru vizitatori
+    //     $value = ($request->input('page',1)-1)*5;
+    //     return view('pages.shop', compact('shop'))->with('i', $value);   
+    // }
 
     public function showUser($id)  //afisarea paginii individuale a produselor conectandu-ne la acelasi model => acelasi tabel (products)
     {
@@ -43,45 +48,74 @@ class ProductController extends Controller
 
     //Functionalitati useri - parte de cos
     public function cart(){
-        return view('pages.cart', compact('cart'));
+        return view('pages.cart');
     }
 
-    public function addToCart($id){
-        $shop = Product::find($id);
-        if(!$shop) {
-        abort(404);
+    public function addToCart(Product $product){
+        $duplicates = Cart::search(function ($cartItem, $rowId) use ($product){
+            return $cartItem->id === $product->id;
+        });
+        if ($duplicates->isNotEmpty()) {
+            return redirect()->route('shop')->with('success_message', 'Item is already in your cart!');
+        }
+
+        Cart::add(array(
+            'id' => $product->id, 
+            'name' => $product->name,
+            'qty' => 1, 
+            'price' => $product->price,
+            'weight' => $product->quantity,
+            'options' => ['image' => $product->image]))
+                ->associate('Product');
+        $cart = Cart::content();
+        return redirect()->route('shop')->with('cart-success', 'Produs adaugat cu succes!');
     }
+
     
-    $cart = session()->get('cart');          //verificam daca exista un cos in sesiune
-                                            // dacă cart este gol se pune primul product
-    if(!$cart) {
-    $cart = [
-        $id => [
-            "name" => $shop->name,
-            "quantity" => 1,
-            "price" => $shop->price,
-            "image" => $shop->image
-        ]
-    ];
-    session()->put('cart', $cart);
-    return redirect()->back()->with('cart-success', 'Produs adaugat cu succes!');
-    }
+
+
+
+    //Functionalitati useri - parte de cos
+    // public function cart(){
+    //     return view('pages.cart', compact('cart'));
+    // }
+
+    // public function addToCart($id){
+    //     $shop = Product::find($id);
+    //     if(!$shop) {
+    //     abort(404);
+    // }
     
-    if(isset($cart[$id])) {        // daca cart nu este gol at verificam daca produsul exista pt a incrementa cantitate
-        $cart[$id]['quantity']++;
-        session()->put('cart', $cart);
-        return redirect()->back()->with('cart-success', 'Produs adaugat cu succes!');
-    }
+    // $cart = session()->get('cart');          //verificam daca exista un cos in sesiune
+    //                                         // dacă cart este gol se pune primul product
+    // if(!$cart) {
+    // $cart = [
+    //     $id => [
+    //         "name" => $shop->name,
+    //         "quantity" => 1,
+    //         "price" => $shop->price,
+    //         "image" => $shop->image
+    //     ]
+    // ];
+    // session()->put('cart', $cart);
+    // return redirect()->back()->with('cart-success', 'Produs adaugat cu succes!');
+    // }
     
-    $cart[$id] = [       // daca item nu exista in cos at addaugam la cos cu quantity = 1
-        "name" => $shop->name,
-        "quantity" => 1,
-        "price" => $shop->price,
-        "image" => $shop->image
-    ];
-    session()->put('cart', $cart);
-    return redirect()->back()->with('cart-success', 'Produs adaugat cu succes!');
-    }
+    // if(isset($cart[$id])) {        // daca cart nu este gol at verificam daca produsul exista pt a incrementa cantitate
+    //     $cart[$id]['quantity']++;
+    //     session()->put('cart', $cart);
+    //     return redirect()->back()->with('cart-success', 'Produs adaugat cu succes!');
+    // }
+    
+    // $cart[$id] = [       // daca item nu exista in cos at addaugam la cos cu quantity = 1
+    //     "name" => $shop->name,
+    //     "quantity" => 1,
+    //     "price" => $shop->price,
+    //     "image" => $shop->image
+    // ];
+    // session()->put('cart', $cart);
+    // return redirect()->back()->with('cart-success', 'Produs adaugat cu succes!');
+    // }
 
     public function updateCart(Request $request){
         if($request->id and $request->quantity)

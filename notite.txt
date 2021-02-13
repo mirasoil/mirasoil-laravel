@@ -1,5 +1,5 @@
 De rezolvat: redirectionare pentru utilizatori neautentificati pe pagina de login/user nu login !
-
+SEARCH IARASI NU FUNCTIONEAZA
 
 Pasi de urmat:
 1.Product si Shop sa se conecteze la aceeasi baza de date - done - second check on routes 
@@ -14,6 +14,7 @@ Pasi de urmat:
 
 
 4.Stilizare butoane si card-uri pagina principala
+-'/about' bootstrap modal review later on
 
 5.Search bar with  ajax - autocomplete + styling
 
@@ -56,3 +57,17 @@ In revieworder - la actualizare date, daca nu se selecteaza judetul acesta se pu
 
 
 Partea de GraphQL - can't find the Type, there are no relationships between tables yet so it won't work - am renuntat pe moment - info guzzle
+
+
+
+
+
+
+
+
+On the next project:
+-admin/user different type of logging system
+-implementing orders table and pivot table 
+-there will be only one controller for products, just different functions for users
+-the checkout form should be all-in-one, as it was in the beggining
+-table for newsletter and also contact

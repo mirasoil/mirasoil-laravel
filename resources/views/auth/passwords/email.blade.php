@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('content')
 <div class="container">
@@ -44,4 +44,7 @@
         </div>
     </div>
 </div>
+@for ($i = 0; $i < 5; $i++)
+    <br>
+@endfor
 @endsection
