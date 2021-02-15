@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Shop;
+use App\Product;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +14,7 @@ class SearchController extends Controller
         if($request->ajax())
         {
             $output="";
-            $products=Shop::select('name')->where('name','LIKE','%'.$request->search."%")->get();
+            $products=Product::select('name')->where('name','LIKE','%'.$request->search."%")->get();
             if($products){  
                 foreach ($products as $key => $product) {
                     $output.='<tr>'.

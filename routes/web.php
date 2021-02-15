@@ -80,6 +80,7 @@ Route::get('/search','SearchController@search');
     Route::middleware(['auth:user'])->group(function () {
         Route::GET('/shop', 'ProductController@indexUser')->name('shop');
         Route::post('/shop/{product}', 'ProductController@addToCart')->name('shop.store');
+        Route::delete('/delete-from-cart', 'ProductController@destroy')->name('shop.destroy');
         Route::get('/details/{id}', 'ProductController@showUser');
 
         Route::get('/user', 'UserController@index');    //pagina de dashboard pentru useri, formularul de update al datelor
@@ -88,20 +89,18 @@ Route::get('/search','SearchController@search');
         // Route::get('cart', 'ProductController@cart');  //cosul propriu zis - user
         // Route::get('add-to-cart/{id}', 'ProductController@addToCart');  //adaug in cos
         // Route::post('add-to-cart/{product}', 'ProductController@storeCart');  //adaug in cos
-        // Route::patch('update-cart', 'ProductController@updateCart');  //modific cos
+         Route::patch('update-cart', 'ProductController@updateCart');  //modific cos
         // Route::delete('remove-from-cart', 'ProductController@removeCart'); //sterg din cos
-        // Route::get('/revieworder', 'ProductController@getCheckout'); //pentru confirmarea comenzii
-        // Route::patch('revieworder/{id}', 'ProductController@updateUserInfo'); //pentru pagina de revieworder, actualizare date utilizator
+         Route::get('/revieworder', 'ProductController@getCheckout'); //pentru confirmarea comenzii
+         Route::patch('revieworder/{id}', 'ProductController@updateUserInfo'); //pentru pagina de revieworder, actualizare date utilizator
+         Route::post('orders', 'OrderController@store')->name('orders.store');
         // Route::get('cart/success', 'ProductController@emptyCart');  //golire cos
 
         // //pentru checkout
-        // Route::get('/checkout', 'CheckoutController@index');   
+         Route::get('/checkout', 'CheckoutController@index');   
         
         
         Route::get('/cart', 'ProductController@cart')->name('cart');
-        Route::post('/cart/{product}', 'CartController@store')->name('cart.store');
-        Route::patch('/cart/{product}', 'CartController@update')->name('cart.update');
-        Route::delete('/cart/{product}', 'CartController@destroy')->name('cart.destroy');
     });
 
     //Paginile accesibile vizitatorilor

@@ -16,6 +16,9 @@
 <p id="message-response">{{ \Session::get('cart-failure') }}</p>
 </div><br />
 @endif
+<div class="alert">
+<p id="message-response"></p>
+</div><br />
  <table id="cart" class="table table-hover table-condensed mt-3">
     <thead>
         <tr>
@@ -34,7 +37,7 @@
     <tr id="product-show">
         <td data-th="Product">
         <div class="row">
-            <div class="col-sm-3 hidden-xs"><img src="img/{{$details->options}}" width="100" height="100" class="img-responsive"/></div>
+            <div class="col-sm-3 hidden-xs"><img src="img/{!!$details->options->image!!}" width="100" height="100" class="img-responsive"/></div>
                 <div class="col-sm-9">
                     <h4 class="nomargin">{{ $details->name }}</h4>
                 </div>
@@ -46,8 +49,14 @@
         </td>
         <td data-th="Subtotal" class="text-center" id="total-price">{{ $details->price * $details->qty }} Lei</td>
         <td class="actions text-center" data-th="">
-            <button class="btn btn-info btn-sm update-cart" data-id="{{ $details->id }}" style="margin: 10px;"><i class="fa fa-refresh"></i>Modifică</button>
-            <button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $details->id }}" style="margin: 10px;"><i class="fa fa-trash-o"></i>Șterge</button>
+            <button class="btn btn-info btn-sm update-cart" data-id="{{ $details->id }}" style="margin: 10px;"><i class="fa fa-refresh"></i> Modifică</button>
+            <button class="btn btn-danger btn-sm remove-from-cart" data-token="{{ csrf_token() }}" data-id="{{ $details->rowId}}" style="margin: 10px;"><i class="fa fa-trash-o"></i>Șterge</button> 
+            <!-- <form action="{{ route('shop.destroy', $details->rowId) }}" method="POST">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+
+                <button type="submit" class="cart-options btn btn-danger btn-sm"><i class="fa fa-trash-o"></i> Șterge</button>
+            </form> -->
         </td>
     </tr>
  @endforeach
@@ -56,7 +65,7 @@
  <tfoot>
     <tr class="visible-sm">
         <td colspan="3" class="hidden-xs"></td>
-        <td class="text-center" style="font-size: 1.1rem;"><strong>Total: </strong> {{ $total }} Lei</td>
+        <td class="text-center" style="font-size: 1.1rem;"><strong>Total: </strong> <p id="total" >{{ Cart::subtotal() }} Lei</p></td>
         <td></td>
     </tr>
     <tr>
@@ -86,15 +95,22 @@
  $(".remove-from-cart").click(function (e) {
         e.preventDefault();
         var ele = $(this);
+        var id = $(this).data('id');
         if(confirm("Sunteti sigur ca doriti sa stergeti acest produs?")) {
             $.ajax({
-                url: "{{ url('remove-from-cart') }}",
-                method: "DELETE",
-                data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
+                type: 'DELETE',
+                url: "/delete-from-cart",
+                // method: "DELETE",
+                data: {
+                        "_token": "{{ csrf_token() }}",
+                        "id": id
+                    },
                 success: function (response) {
-                    // $("#message-response").addClass("alert alert-success")  //stilizare
+                    $(".alert").addClass("alert-success")  //stilizare
                     $("#message-response").html("Produsul a fost sters")  //continutul mesajului
                     $("#product-show").remove(); //vreau doar sa dispara paragraful cu produsul sters, fara reload
+                    //$("#div_to_refresh").load("url_of_current_page.html #div_to_refresh")
+                    $("#total").replaceWith({{Cart::subtotal()}});
             }
         });
     }

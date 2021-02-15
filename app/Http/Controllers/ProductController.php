@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Product;
 use App\User;
+use App\Order;
 use Session;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -71,8 +72,20 @@ class ProductController extends Controller
         return redirect()->route('shop')->with('cart-success', 'Produs adaugat cu succes!');
     }
 
-    
+    public function destroy(Request $request)
+    {
+        $id = $request->id;
+        Cart::remove($id);
+//refreshing the subtotal
+    }
 
+    public function getCheckout(){       //Confirmarea comenzii care initial ne redirecta pe pagina confirm cu un mesaj specific dar acum doar goleste cosul si afiseaza un mesaj
+        if(!Cart::content()) {
+            return view('pages.cart');
+        }
+        $cart = Cart::content();
+        return view('pages.revieworder')->with('cart', $cart);
+    }
 
 
     //Functionalitati useri - parte de cos
@@ -120,11 +133,15 @@ class ProductController extends Controller
     public function updateCart(Request $request){
         if($request->id and $request->quantity)
         {
-            $cart = session()->get('cart');
-            $cart[$request->id]["quantity"] = $request->quantity;
-            session()->put('cart', $cart);
-            session()->flash('cart-success', 'Cos actualizat!');
+            
+            $cart = Cart::search(function($cartItem, $rowId) use($request) {
+                return $cartItem->id == $request->id;
+            });
+            $cart->qty = $request->quantity;
+            $newQuantity = $cart->qty;
+            Cart::update($request->id, $newQuantity);
         }
+        //dd(Cart::content());
         return view('pages.cart')->with('cart-success', 'Produs actualizat');
     }
 
@@ -144,13 +161,13 @@ class ProductController extends Controller
         return redirect()->back()->with('cart-success', 'Cosul dumneavoastra de cumparaturi este gol!');
     } 
 
-    public function getCheckout(){       //Confirmarea comenzii care initial ne redirecta pe pagina confirm cu un mesaj specific dar acum doar goleste cosul si afiseaza un mesaj
-        if(!Session::has('cart')) {
-            return view('pages.cart');
-        }
-        $cart = session()->get('cart');
-        return view('pages.revieworder');
-    }
+    // public function getCheckout(){       //Confirmarea comenzii care initial ne redirecta pe pagina confirm cu un mesaj specific dar acum doar goleste cosul si afiseaza un mesaj
+    //     if(!Session::has('cart')) {
+    //         return view('pages.cart');
+    //     }
+    //     $cart = session()->get('cart');
+    //     return view('pages.revieworder');
+    // }
 
     public function updateUserInfo(Request $request, $id){
 
@@ -165,7 +182,38 @@ class ProductController extends Controller
         $user-> zipcode = $request->zipcode;
         $user->save();
 
-        return redirect()->back()->with('user-success', 'Informatiile au fost actualizate!');
+    //     $this->validate($request, [
+    //         'billing_fname' => 'required',
+    //         'billing_lname' => 'required',
+    //         'billing_email' => 'required',
+    //         'billing_phone' => 'required',
+    //         'billing_address' => 'required',
+    //         'billing_county' => 'required',
+    //         'billing_locality' => 'required',
+    //         'billing_zipcode' => 'required',
+    //         'billing_total' => 'required',
+    //         'shipped' => 'required'
+    //   ]);
+      
+    //   $order = new Order();
+      
+    //   // $order->id = uniqid('OrderNumber-');
+  
+    //   $order->user_id = $id;
+    //   $order->billing_fname = $request->input('firstname');
+    //   $order->billing_lname = $request->input('lastname');
+    //   $order->billing_email = $request->input('email');
+    //   $order->billing_phone = $request->input('phone');
+    //   $order->billing_address = $request->input('address');
+    //   $order->billing_county = $request->input('county');
+    //   $order->billing_locality = $request->input('locality');
+    //   $order->billing_zipcode = $request->input('zipcode');
+    //   $order->billing_total = \Cart::subtotal();
+    //   $order->shipped = false;
+          
+    //   $order->save();
+
+        return view('revieworder')->with('user-success', 'Informatiile au fost actualizate!');  //405 - method not allowed or 500 - internal server error
     }
 
     //CRUD pentru ADMIN
@@ -210,9 +258,9 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Produs actualizat cu succes!');
     }
 
-    public function destroy($id)
-    {
-        Product::find($id)->delete();
-        return redirect()->route('products.index')->with('success', 'Produs sters cu succes!');
-    }
+    // public function destroy($id)
+    // {
+    //     Product::find($id)->delete();
+    //     return redirect()->route('products.index')->with('success', 'Produs sters cu succes!');
+    // }
 }

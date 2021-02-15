@@ -10,9 +10,9 @@
                 <p class="lead"></p>
             </div>
         <?php $total = 0 ?>
-        @if(session('cart'))
-        @foreach((array) session('cart') as $id => $details)
-        <?php $total += $details['price'] * $details['quantity'] ?>
+        @if(Cart::count() > 0)
+        @foreach(Cart::content() as $details)
+        <?php $total += $details->price * $details->quantity ?>
             
         @endforeach
         @endif

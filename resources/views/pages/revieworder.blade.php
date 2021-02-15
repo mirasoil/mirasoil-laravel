@@ -5,6 +5,11 @@
         <h2>Detalii Comandă</h2>
         <p class="lead"></p>
     </div>
+
+<div class="alert">
+<p id="message-response"></p>
+</div><br />
+
     <div class="row">
         <!-- Sectiunea Cosul Meu si Adresa facturare -->
         <div class="col-md-4 order-md-2 mb-2">
@@ -15,22 +20,22 @@
             <hr>
             <ul class="list-group mb-3">
                 <?php $total = 0 ?>
-                @if(session('cart'))
-                @foreach((array) session('cart') as $id => $details)
-                <?php $total += $details['price'] * $details['quantity'] ?>
+                @if(Cart::count() >0 )
+                @foreach(Cart::content() as $details)
+                <?php $total += $details->price * $details->qty ?>
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <img src="img/{{$details['image']}}" alt="Hidrolat de lavandă" width="40" height="40">
+                        <img src="img/{!!$details->options->image!!}" alt="Hidrolat de lavandă" width="40" height="40">
                         <div>
-                            <h6 class="my-0">{{ $details['name'] }}</h6>
-                            <small class="text-muted">Cantitate: {{ $details['quantity'] }}</small>
+                            <h6 class="my-0">{{ $details->name }}</h6>
+                            <small class="text-muted">Cantitate: {{ $details->qty }}</small>
                         </div>
-                        <span class="text-muted">{{ $details['price'] }} Lei</span>
+                        <span class="text-muted">{{ $details->price }} Lei</span>
                     </li>
                 @endforeach
                 @endif
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Total (RON)</span>
-                    <strong>{{ $total }} Lei</strong>
+                    <strong>{{ Cart::subtotal() }} Lei</strong>
                 </li>
             </ul>
             <div class="card p-2 mb-3">
@@ -62,9 +67,9 @@
             </div>  
         </div>
         <div class="col-md-8 order-md-1">
-            <form method="POST" action="{{ url('revieworder',['id' => $id=Auth::user()->id]) }}">
+            <form method="POST" action="{{ route('orders.store') }}" id="update-data-form">
             @csrf
-            @method('PATCH')
+           
                 <!-- Sectiunea Adresa de Livrare -->
                 <h4 class="mb-3">Adresă livrare</h4><hr>
                 <div class="card p-2 mb-3 shadow-sm">
@@ -126,49 +131,49 @@
                         <div class="col-md-4 mb-3">
                             <label for="county">Județ</label>
                             <select class="custom-select d-block w-100" name="county" id="county">
-                            <option value="">{{ Auth::user()->county }}</option>
-                            <option>Bucuresti</option>
-                            <option>Alba</option>
-                            <option>Arad</option>
-                            <option>Arges</option>
-                            <option>Bacau</option>
-                            <option>Bihor</option>
-                            <option>Bistrita-Nasaud</option>
-                            <option>Botosani</option>
-                            <option>Brasov</option>
-                            <option>Braila</option>
-                            <option>Buzau</option>
-                            <option>Caras-Severin</option>
-                            <option>Calarasi</option>
-                            <option>Cluj</option>
-                            <option>Constanta</option>
-                            <option>Covasna</option>
-                            <option>Dambovita</option>
-                            <option>Dolj</option>
-                            <option>Galati</option>
-                            <option>Giurgiu</option>
-                            <option>Gorj</option>
-                            <option>Harghita</option>
-                            <option>Hunedoara</option>
-                            <option>Ialomita</option>
-                            <option>Iasi</option>
-                            <option>Ilfov</option>
-                            <option>Maramures</option>
-                            <option>Mehedinti</option>
-                            <option>Mures</option>
-                            <option>Neamt</option>
-                            <option>Olt</option>
-                            <option>Prahova</option>
-                            <option>Satu Mare</option>
-                            <option>Salaj</option>
-                            <option>Sibiu</option>
-                            <option>Suceava</option>
-                            <option>Teleorman</option>
-                            <option>Timis</option>
-                            <option>Tulcea</option>
-                            <option>Valcea</option>
-                            <option>Vaslui</option>
-                            <option>Vrancea</option>
+                            <option value="{{ Auth::user()->county }}">{{ Auth::user()->county }}</option>
+                            <option value="Bucuresti">Bucuresti</option>
+                            <option value="Alba">Alba</option>
+                            <option value="Arad">Arad</option>
+                            <option value="Arges">Arges</option>
+                            <option value="Bacau">Bacau</option>
+                            <option value="Bihor">Bihor</option>
+                            <option value="Bistrita-Nasaud">Bistrita-Nasaud</option>
+                            <option value="Botosani">Botosani</option>
+                            <option value="Brasov">Brasov</option>
+                            <option value="Braila">Braila</option>
+                            <option value="Buzau">Buzau</option>
+                            <option value="Caras-Severin">Caras-Severin</option>
+                            <option value="Calarasi">Calarasi</option>
+                            <option value="Cluj">Cluj</option>
+                            <option value="Constanta">Constanta</option>
+                            <option value="Covasna">Covasna</option>
+                            <option value="Dambovita">Dambovita</option>
+                            <option value="Dolj">Dolj</option>
+                            <option value="Galati">Galati</option>
+                            <option value="Giurgiu">Giurgiu</option>
+                            <option value="Gorj">Gorj</option>
+                            <option value="Harghita">Harghita</option>
+                            <option value="Hunedoara">Hunedoara</option>
+                            <option value="Ialomita">Ialomita</option>
+                            <option value="Iasi">Iasi</option>
+                            <option value="Ilfov">Ilfov</option>
+                            <option value="Maramures">Maramures</option>
+                            <option value="Mehedinti">Mehedinti</option>
+                            <option value="Mures">Mures</option>
+                            <option value="Neamt">Neamt</option>
+                            <option value="Olt">Olt</option>
+                            <option value="Prahova">Prahova</option>
+                            <option value="Satu Mare">Satu Mare</option>
+                            <option value="Salaj">Salaj</option>
+                            <option value="Sibiu">Sibiu</option>
+                            <option value="Suceava">Suceava</option>
+                            <option value="Teleorman">Teleorman</option>
+                            <option value="Timis">Timis</option>
+                            <option value="Tulcea">Tulcea</option>
+                            <option value="Valcea">Valcea</option>
+                            <option value="Vaslui">Vaslui</option>
+                            <option value="Vrancea">Vrancea</option>
                             </select>
                         </div>
                         <div class="col-md-5 mb-3">
@@ -194,7 +199,7 @@
                     </div>
                     <div class="form-group row mb-0">
                         <div class="col-md-8">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary" id="save-data" data-id="{{ Auth::user()->id }}">
                                 {{ __('Actualizează') }}
                             </button>
                         </div>
@@ -209,6 +214,7 @@
                         <label class="custom-control-label" for="save-info">Salvează informația pentru mai târziu</label>
                     </div>
                 </div>
+                <button type="submit" id="complete-order" class="button-primary full-width">Complete Order</button>
             </form>
         </div>  
     </div>
@@ -217,4 +223,43 @@
 @for ($i = 0; $i < 5; $i++)
     <br>
 @endfor
+<script>
+$("#save-data").click(function(event){
+      event.preventDefault();
+
+      let firstname = $("input[name=firstname]").val();
+      let lastname = $("input[name=lastname]").val();
+      let email = $("input[name=email]").val();
+      let phone = $("input[name=phone]").val();
+      let address = $("#address").val();
+      let county = $("#county").val();
+      let locality = $("input[name=locality]").val();
+      let zipcode = $("input[name=zipcode]").val();
+
+      var id = $(this).data('id');
+
+      $.ajax({
+        url: "revieworder/"+id,
+        type:"PATCH",
+        data:{
+            "_token": "{{ csrf_token() }}",
+            id:id,
+          firstname:firstname,
+          lastname:lastname,
+          email:email,
+          phone:phone,
+          address:address,
+          county:county,
+          locality:locality,
+          zipcode:zipcode,
+        },
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        success: function(response){
+            $(".alert").addClass("alert-success")  //stilizare
+            $("#message-response").html("Informațiile au fost actualizate")  //continutul mesajului  
+            $("#update-data-form")[0].reset();         
+        },
+       });
+  });
+</script>
 @endsection

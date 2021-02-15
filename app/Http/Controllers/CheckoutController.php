@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
 use Illuminate\Support\Arr;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Order;
+use App\Product;
+use App\User;
+use App\OrderProduct;
+use Auth;
 
 class CheckoutController extends Controller
 {
@@ -23,4 +29,7 @@ class CheckoutController extends Controller
           $clientSecret = Arr::get($paymentIntent, 'client_secret');
         return view('checkout.index')->with('clientSecret', $output);
         }
+
+        
+        
 }
