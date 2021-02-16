@@ -94,7 +94,7 @@ Route::get('/search','SearchController@search');
          Route::get('/revieworder', 'ProductController@getCheckout'); //pentru confirmarea comenzii
          Route::patch('revieworder/{id}', 'ProductController@updateUserInfo'); //pentru pagina de revieworder, actualizare date utilizator
          Route::post('orders', 'OrderController@store')->name('orders.store');
-        // Route::get('cart/success', 'ProductController@emptyCart');  //golire cos
+         Route::get('cart/success', 'ProductController@emptyCart');  //golire cos
 
         // //pentru checkout
          Route::get('/checkout', 'CheckoutController@index');   

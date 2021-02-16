@@ -52,6 +52,7 @@ class ProductController extends Controller
         return view('pages.cart');
     }
 
+    //Adauga in cos - functional
     public function addToCart(Product $product){
         $duplicates = Cart::search(function ($cartItem, $rowId) use ($product){
             return $cartItem->id === $product->id;
@@ -72,102 +73,39 @@ class ProductController extends Controller
         return redirect()->route('shop')->with('cart-success', 'Produs adaugat cu succes!');
     }
 
+    //Steregere produs din cos - functional partial, necesita refresh pentru pret
     public function destroy(Request $request)
     {
         $id = $request->id;
         Cart::remove($id);
-//refreshing the subtotal
+        //refreshing the subtotal
     }
 
-    public function getCheckout(){       //Confirmarea comenzii care initial ne redirecta pe pagina confirm cu un mesaj specific dar acum doar goleste cosul si afiseaza un mesaj
-        if(!Cart::content()) {
+    //Plaseaza comanda doar daca avem produse in cos - functional 
+    public function getCheckout(){   
+        $cart = Cart::content();
+
+        if(Cart::count() > 0) {
+            return view('pages.revieworder')->with('cart', $cart);
+        }else {
             return view('pages.cart');
         }
-        $cart = Cart::content();
-        return view('pages.revieworder')->with('cart', $cart);
+    
     }
 
-
-    //Functionalitati useri - parte de cos
-    // public function cart(){
-    //     return view('pages.cart', compact('cart'));
-    // }
-
-    // public function addToCart($id){
-    //     $shop = Product::find($id);
-    //     if(!$shop) {
-    //     abort(404);
-    // }
-    
-    // $cart = session()->get('cart');          //verificam daca exista un cos in sesiune
-    //                                         // dacă cart este gol se pune primul product
-    // if(!$cart) {
-    // $cart = [
-    //     $id => [
-    //         "name" => $shop->name,
-    //         "quantity" => 1,
-    //         "price" => $shop->price,
-    //         "image" => $shop->image
-    //     ]
-    // ];
-    // session()->put('cart', $cart);
-    // return redirect()->back()->with('cart-success', 'Produs adaugat cu succes!');
-    // }
-    
-    // if(isset($cart[$id])) {        // daca cart nu este gol at verificam daca produsul exista pt a incrementa cantitate
-    //     $cart[$id]['quantity']++;
-    //     session()->put('cart', $cart);
-    //     return redirect()->back()->with('cart-success', 'Produs adaugat cu succes!');
-    // }
-    
-    // $cart[$id] = [       // daca item nu exista in cos at addaugam la cos cu quantity = 1
-    //     "name" => $shop->name,
-    //     "quantity" => 1,
-    //     "price" => $shop->price,
-    //     "image" => $shop->image
-    // ];
-    // session()->put('cart', $cart);
-    // return redirect()->back()->with('cart-success', 'Produs adaugat cu succes!');
-    // }
-
+    //Acualizare cantitate - nefunctional
     public function updateCart(Request $request){
-        if($request->id and $request->quantity)
-        {
-            
-            $cart = Cart::search(function($cartItem, $rowId) use($request) {
-                return $cartItem->id == $request->id;
-            });
-            $cart->qty = $request->quantity;
-            $newQuantity = $cart->qty;
-            Cart::update($request->id, $newQuantity);
-        }
-        //dd(Cart::content());
+        $cart = Cart::content()->where('rowId', $request->id);
+        //update quantity
         return view('pages.cart')->with('cart-success', 'Produs actualizat');
     }
 
-    public function removeCart(Request $request){
-        if($request->id) {
-        $cart = session()->get('cart');
-        if(isset($cart[$request->id])) {
-            unset($cart[$request->id]);
-            session()->put('cart', $cart);
-            }
-        session()->flash('cart-success', 'Produsul a fost sters.');
-        }  
-    }
+    //Golire cos - functional
+    public function emptyCart(){         
+        Cart::destroy(); 
 
-    public function emptyCart(){         //Functie ce gleste cosul si returneaza un mesaj specific
-        session()->forget('cart');
         return redirect()->back()->with('cart-success', 'Cosul dumneavoastra de cumparaturi este gol!');
     } 
-
-    // public function getCheckout(){       //Confirmarea comenzii care initial ne redirecta pe pagina confirm cu un mesaj specific dar acum doar goleste cosul si afiseaza un mesaj
-    //     if(!Session::has('cart')) {
-    //         return view('pages.cart');
-    //     }
-    //     $cart = session()->get('cart');
-    //     return view('pages.revieworder');
-    // }
 
     public function updateUserInfo(Request $request, $id){
 
@@ -258,9 +196,4 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Produs actualizat cu succes!');
     }
 
-    // public function destroy($id)
-    // {
-    //     Product::find($id)->delete();
-    //     return redirect()->route('products.index')->with('success', 'Produs sters cu succes!');
-    // }
 }

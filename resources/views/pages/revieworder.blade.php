@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('extra-scripts')
+<script src="https://js.stripe.com/v3/"></script>
+@endsection
 @section('content')
 <div id="checkout" class="container">
     <div class="py-5 text-center">
@@ -57,8 +60,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email1" placeholder="exemplu@example.com" value="{{ Auth::user()->email }}" b="" disabled="">
+                    <label for="email1">Email</label>
+                    <input type="email1" class="form-control" id="email1" placeholder="exemplu@example.com" value="{{ Auth::user()->email }}" b="" disabled="">
                 </div>
                 <div class="form-group">
                     <label for="address">Adresă</label>
@@ -197,13 +200,6 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-group row mb-0">
-                        <div class="col-md-8">
-                            <button type="submit" class="btn btn-primary" id="save-data" data-id="{{ Auth::user()->id }}">
-                                {{ __('Actualizează') }}
-                            </button>
-                        </div>
-                    </div>
                     <hr class="mb-4">
                     <div class="custom-control custom-checkbox">
                         <input type="checkbox" class="custom-control-input" id="same-address">
@@ -214,7 +210,27 @@
                         <label class="custom-control-label" for="save-info">Salvează informația pentru mai târziu</label>
                     </div>
                 </div>
-                <button type="submit" id="complete-order" class="button-primary full-width">Complete Order</button>
+                <div class="form-group row mb-0">
+                    <div class="col-md-8">
+                        <button type="submit" id="complete-order" class="btn btn-primary">
+                            {{ __('Salvează') }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <h5 class="mt-5">Detalii plată</h5>
+            <hr>
+            <form id="payment-form" class="my-4">
+                @csrf
+                <input type="text" id="email-stripe" class="form-control" placeholder="Email address" value="{{ Auth::user()->email }}" />
+                    <div id="card-element" class="my-3"><!--Stripe.js injects the Card Element--></div>
+                    <button id="submitButton" type="submit" class="btn btn-success my-4">
+                        <span id="button-text">Plătește</span>
+                    </button>
+                    <p id="card-error" role="alert"></p>
+                    <p class="result-message hidden">
+                        Plata a fost realizată cu succes. Mulțumim pentru încredere !
+                    </p>
             </form>
         </div>  
     </div>
@@ -261,5 +277,63 @@ $("#save-data").click(function(event){
         },
        });
   });
+
+//Stripe script
+var stripe = Stripe("pk_test_51IIzThFPoGjTfy5WZEzx4HhJ923HVamP4Ul8zA1D1Z961FxJXnnK6im7bDRA17LzsToUNLe0YySRY0Dn75M2HAjm00c0GgoLHD");
+var elements = stripe.elements();
+
+var clientSecret = 'pi_1IJ0LNFPoGjTfy5WMpaX3SCT_secret_ZtZJcMKUJEKXNGhYwrWjcFevU';
+
+var style = {
+    base: {
+    color: "#32325d",
+    fontFamily: 'Arial, sans-serif',
+    fontSmoothing: "antialiased",
+    fontSize: "16px",
+    "::placeholder": {
+        color: "#32325d"
+    }
+    },
+    invalid: {
+    fontFamily: 'Arial, sans-serif',
+    color: "#fa755a",
+    iconColor: "#fa755a"
+    }
+};
+var card = elements.create("card", { style: style });
+// Stripe injects an iframe into the DOM
+card.mount("#card-element");
+
+card.on("change", function (event) {
+    // Disable the Pay button if there are no card details in the Element
+    document.querySelector("button").disabled = event.empty;
+    document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
+});
+
+var form = document.getElementById("payment-form");
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    // Complete payment when the submit button is clicked
+    payWithCard(stripe, card, data.clientSecret);
+});
+
+submitButton.addEventListener('click', function(ev) {
+stripe.confirmCardPayment(clientSecret, {
+    receipt_email: document.getElementById('email-stripe').value,
+    payment_method: {
+    card: card
+    }
+})
+.then(function(result) {
+    if (result.error) {
+    // Show error to your customer
+    showError(result.error.message);
+    } else {
+    // The payment succeeded!
+    orderComplete(result.paymentIntent.id);
+    console.log($paymentIntent);
+    }
+});
+});
 </script>
 @endsection

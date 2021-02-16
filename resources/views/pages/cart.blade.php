@@ -45,11 +45,11 @@
         </td>
         <td data-th="Price">{{ $details->price }} lei</td>
         <td data-th="Quantity">
-            <input type="number" value="{{ $details->qty }}" class="form-control quantity" />
+            <input type="number" value="{{ $details->qty }}" class="form-control quantity" class="quantity"/>
         </td>
         <td data-th="Subtotal" class="text-center" id="total-price">{{ $details->price * $details->qty }} Lei</td>
         <td class="actions text-center" data-th="">
-            <button class="btn btn-info btn-sm update-cart" data-id="{{ $details->id }}" style="margin: 10px;"><i class="fa fa-refresh"></i> Modifică</button>
+            <button class="btn btn-info btn-sm update-cart" data-token="{{ csrf_token() }}" data-id="{{ $details->rowId}}" style="margin: 10px;"><i class="fa fa-refresh"></i> Modifică</button>
             <button class="btn btn-danger btn-sm remove-from-cart" data-token="{{ csrf_token() }}" data-id="{{ $details->rowId}}" style="margin: 10px;"><i class="fa fa-trash-o"></i>Șterge</button> 
             <!-- <form action="{{ route('shop.destroy', $details->rowId) }}" method="POST">
                 {{ csrf_field() }}
@@ -88,7 +88,9 @@
         data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity:
         ele.parents("tr").find(".quantity").val()},
         success: function (response) {
-            window.location.reload(); //pagina isi face refresh
+            //window.location.reload(); //pagina isi face refresh
+            console.log("{{Cart::content()}}");
+            
         }
     });
  });

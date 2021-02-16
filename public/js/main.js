@@ -1,11 +1,11 @@
 // NavBar Toggle Controls
-$(document).ready(function () {
+(function () {
     $('#sidebarCollapse').on('click', function () {
       $('#sidebar').toggleClass('active');
       $(this).toggleClass('active');
     });
   });
-  $(document).ready(function () {
+(function () {
     $('#sidebarCollapseRight').on('click', function () {
       $('#sidebar-right').toggleClass('active');
       $(this).toggleClass('active');
@@ -25,7 +25,7 @@ $(document).ready(function () {
     js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
-  
+
   
   
   
@@ -58,6 +58,7 @@ $(document).ready(function () {
     document.getElementById("mySidebar1").style.width = "0";
     document.getElementById("main1").style.marginRight = "0";
   }
+  
   /*
   // Get the modal
   var modal = document.getElementById("nav-bar");
