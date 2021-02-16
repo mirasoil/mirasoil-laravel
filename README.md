@@ -7,50 +7,41 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+## Administrator
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+La autentificare exista 2 posibilitati:
+-logare ca si client existent in baza de date
+-logare ca si administrator
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Pentru a doua optiune avem urmatoarele avantaje:
+-o interactiune mult mai usoara cu ajutorul interfetei cu baza de date: adaugare, modificare sau stergerea produselor din baza de date aferenta
+-administratorul nu are acces la partea de client (cos de cumparaturi) si vice-versa, utilizatorii nu pot accesa interfata responsabila de comunicarea cu baza de date
+-pe partea de administrator se vor implementa cereri cu ajutorul Ajax pentru o mai buna interactiune
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Utilizator
 
-## Learning Laravel
+Pentru utilizator, logarea in sistem il redirectioneaza pe pagina contului sau unde are optiunea de actualizare a datelor personale.
+-pagina de produse este magazinul propriu-zis, acesta poate adauga momentan un singur produs din aceasta pagina, avand posibilitatea modificarii cantitatii ulterior, in pagina aferenta cosului (cart.blade.php)
+-la fel ca si in cazul administratorului, se doreste implementarea de cereri ajax pentru majoritatea optiunilor disponibile: adauga in cos, modifica, sterge, goleste cos, majoritatea fiind deja implementate
+-la plasarea comenzii, utilizatorul este redirectionat pe pagina de verificare a comenzii (revieworder) unde trebuie sa isi poata modifica datele de livrare si facturare (momentan se stocheaza doar in tabela orders fara a fi actualizate si in tabela principala, users)
+-dupa salvarea datelor aferente comenzii, utilizatorului ii este pus la dispozitie un formular de plata (implementat cu Stripe) unde isi poate introduce detaliile cardului
+-de aici, datele vor fi stocate intr-o alta tabela cel mai probabil si afisate ulterior pe pagina de comenzi (care pe moment nu exista) la care utilizatorul va avea acces si in viitor
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Cos de cumparaturi
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Initial, cosul de cumparaturi a fost implementat cu sesiune insa acesta s-a dovedid destul de "nepractic" la stocarea detaliilor aferente comenzii, fapt pentru care am renuntat complet la aceasta metoda, implementand libraria "bumbummen99/shoppingcart" pentru o mai buna gestionare a cosului
+-partea ce tine de cosul de cumparaturi a trebuit modificata complet deoarece metodele folosite anterior nu corespundeau functiilor predefinite in librarie
+-astfel, cosul de cumparaturi este momentan nefunctional, plasarea comenzii se poate face pentru nu mai mult de 1 produs din fiecare datorita esuarii implementarii cererii ajax pentru actualizarea cantitatii unui produs deja existent in cos
 
-## Laravel Sponsors
+## Contributii
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. Shopping cart: (https://packagist.org/packages/bumbummen99/shoppingcart)
+2. GraphQL: (https://www.twilio.com/blog/build-graphql-powered-api-laravel-php) - uninstalled
+3. Contact form: (https://www.positronx.io/laravel-contact-form-example-tutorial/)
+4. Newsletter: (https://packagist.org/packages/spatie/laravel-newsletter) - needs to be stored in a database
+5. Stripe: (https://github.com/stripe/stripe-php)
+6. Auth: (https://pusher.com/tutorials/multiple-authentication-guards-laravel)
+7. Mailable: (https://mailchimp.com/)
 
 ## Security Vulnerabilities
 
