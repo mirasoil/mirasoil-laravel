@@ -71,3 +71,17 @@ On the next project:
 -there will be only one controller for products, just different functions for users
 -the checkout form should be all-in-one, as it was in the beggining
 -table for newsletter and also contact
+
+
+
+
+
+
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+Cart: 
+-update quantity not working 
+-nuwave/lighthouse error
+???
