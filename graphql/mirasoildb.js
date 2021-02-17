@@ -1,4 +1,7 @@
-module.exports= {
+import { buildSchema } from "graphql";
+
+export default buildSchema(`
+{
     products: [
     	{id: 1,  name: "Ulei esential de lavanda", quantity: 10, price: 30, stock: 100, description: "Descriere ulei", properties: "Proprietati ulei", uses: "Utilizari ulei"},
     	{id: 2,  name: "Hidrolat de lavanda", quantity: 100, price: 16, stock: 50, description: "Descriere hidrolat", properties: "Proprietati hidrolat", uses: "Utilizari hidrolat"},
@@ -97,4 +100,4 @@ module.exports= {
         }
     ]
 
-}
+}`);

@@ -6,6 +6,56 @@ use App\Http\Controllers\ContactUsFormController;
 //RUTE ACCESATE FARA A FI LOGAT
 //Pagina principala
 Route::get('/', function(){
+    //GET REQUEST
+    // $response = Http::get('https://jsonplaceholder.typicode.com/todos/1');
+
+    // dd($response->json());
+    // dd($response->headers());
+    // dd($response->status());
+    // dd($response->effectiveUri());
+    // dd($response->ok());
+    // dd($response->cookies());
+
+    //POST REQUEST
+    // $response = Http::post('https://jsonplaceholder.typicode.com/posts', [
+    //     'userId' => 123
+    // ]);
+
+    // dd($response->json());
+    // dd($response->throw());   //server error or a client error -> throws request exception
+
+    // if($response->offsetExists('userId')){
+    //     // dd($response['userId']);
+    //     dd($response->offsetGet('userId'));
+    // }
+
+    //POST REQUEST WITH PROPER HEADERS
+    // $response = Http::asForm()->post('https://jsonplaceholder.typicode.com/posts', [
+    //     'userId' => 456
+    // ]);
+    // if($response->offsetExists('userId')){
+    //     dd($response->offsetGet('userId'));
+    // }
+
+    //ATTACH A FILE
+    // $response = Http::attach('image-upload', file_get_contents('photo.jpg'))->post('https://jsonplaceholder.typicode.com/posts', [
+    //         'userId' => 456
+    //     ]);
+
+    //WITH HEADERS
+    // $response = Http::withHeaders([
+    //     'X-CODERS-TAPE' => 'HELLO WORLD'
+    // ])->withBasicAuth(
+    //     'admin@gmail.com', 'password'
+    // )->post('https://jsonplaceholder.typicode.com/posts', [
+    //     'userId' => 456
+    // ]);
+
+    //IF HTTP REQUEST FAILS, RETRY
+    // $response = Http::retries(2, 500)->post('https://jsonplaceholder.typicode.com/posts', [    //1st param: retry 2 times, 2nd param: how long wait between retries
+    //         'userId' => 123
+    //     ]);
+
     return view('welcome');
 });
 
