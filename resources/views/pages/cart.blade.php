@@ -36,6 +36,9 @@
  <?php $total += $details->price * $details->qty ?>
     <tr id="product-show-{{$details->id}}">
         <td data-th="Product">
+        <form>
+            @csrf
+            @method('PATCH')
         <div class="row">
             <div class="col-sm-3 hidden-xs"><img src="img/{!!$details->options->image!!}" width="100" height="100" class="img-responsive"/></div>
                 <div class="col-sm-9">
@@ -49,11 +52,9 @@
         </td>
         <td data-th="Subtotal" class="text-center" id="total-price">{{ $details->price * $details->qty }} Lei</td>
         <td class="actions text-center" data-th="">
-        <form>
-            @csrf
-            @method('PATCH')
-            <button class="btn btn-info btn-sm update-cart"  data-id="{{ $details->rowId}}" style="margin: 10px;"><i class="fa fa-refresh"></i> Modifică</button>
-            <button class="btn btn-danger btn-sm remove-from-cart"  data-id="{{ $details->rowId}}" style="margin: 10px;" id="{{$details->id}}"><i class="fa fa-trash-o"></i>Șterge</button> 
+        
+            <button class="btn btn-info btn-sm update-cart"  data-id="{{ $details->rowId}}" style="margin: 10px;" id="{{$details->id}}"><i class="fa fa-refresh"></i> Modifică</button>
+            <!-- <button class="btn btn-danger btn-sm remove-from-cart"  data-id="{{ $details->rowId}}" style="margin: 10px;" id="{{$details->id}}"><i class="fa fa-trash-o"></i>Șterge</button>  -->
         </form>
             <!-- <form action="{{ route('shop.destroy', $details->rowId) }}" method="POST">
                 {{ csrf_field() }}
@@ -86,16 +87,18 @@
  $(".update-cart").click(function (e) {
         e.preventDefault();
         var ele = $(this);
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': '"{{ csrf_token() }}"'
-            }
-        });
+        var id = ele.attr('data-id');
+        var quantity = $('.quantity').val();
+        var prod_id = ele.attr('id');
         $.ajax({
-        url: "/update-cart",
-        method: "patch",
-        data: {id: ele.attr("data-id"), quantity:
-        ele.parents("tr").find(".quantity").val()}
+            url: "/update-cart",
+            method: "PATCH",
+            data: {
+                _token: '{{ csrf_token() }}',
+                id: id, 
+                quantity: quantity,
+                prod_id: prod_id
+            }
         
     });
  });

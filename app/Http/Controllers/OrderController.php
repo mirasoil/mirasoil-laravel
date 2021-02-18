@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\User;
 use App\Order;
 use App\Product;
@@ -16,10 +17,76 @@ class OrderController extends Controller
         public function index()  
     {  
             
-    //  
+        $user_id = Auth::user()->id;
+        $orders = Order::where('user_id', $user_id)->get();
+
+        return view('pages.myorders', array(
+            'orders' => $orders,
+        ));
+
+        // dd($user_id);
         
-    }  
+    } 
+    //ORDERS for admin
+    function getOrders(Request $request){
+
+        $orders = Order::all();
+
+        return view('products.orders', array(
+            'orders' => $orders,
+        ));
+    } 
      
+    public function getOrderSpecs($id){
+        $orders = Order::where('id', $id)->get();
+        
+        $details = OrderProduct::where('order_id', $id)->get();    //pentru o comanda cu acelasi order id putem avea mai multe produse => array
+        // $order_id = OrderProduct::where('id', $id)->get('order_id');
+        $product_id = OrderProduct::where('order_id', $id)->get('product_id');
+
+        $items = array();
+        $products = array();
+        foreach($details as $detail){
+            $items[] = $detail->product_id;    //array-ul cu toate detaliile din comanda respectiva
+
+            $prod = Product::findOrFail($detail->product_id);   //cautama produsele cu id-ul respectiv si le adaugam in array
+            $products[] = $prod;
+        }
+
+        return view('products.orderdetails', array(
+            'orders' => $orders,
+            'details' => $details,
+            'products' => $products   //returnam toate detaliile referitoare la produsele respective cosului din tabela products
+        ));
+
+        // dd($items);
+    }
+
+    public function getMyOrderSpecs($id){
+        $orders = Order::where('id', $id)->get();
+        
+        $details = OrderProduct::where('order_id', $id)->get();    //pentru o comanda cu acelasi order id putem avea mai multe produse => array
+        // $order_id = OrderProduct::where('id', $id)->get('order_id');
+        $product_id = OrderProduct::where('order_id', $id)->get('product_id');
+
+        $items = array();
+        $products = array();
+        foreach($details as $detail){
+            $items[] = $detail->product_id;    //array-ul cu toate detaliile din comanda respectiva
+
+            $prod = Product::findOrFail($detail->product_id);   //cautama produsele cu id-ul respectiv si le adaugam in array
+            $products[] = $prod;
+        }
+
+        return view('pages.myorder', array(
+            'orders' => $orders,
+            'details' => $details,
+            'products' => $products   //returnam toate detaliile referitoare la produsele respective cosului din tabela products
+        ));
+
+        // dd($items);
+    }
+
     public function create()  
     {  
             

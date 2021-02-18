@@ -123,7 +123,11 @@ Route::get('/search','SearchController@search');
         //View pentru pagina specifica fiecarui produs - ruta este /products/id-ul produsului care apeleaza view-ul show din subdirectorul products
         Route::get('/products/{id}', function(){
             return view('products.show');
-        });       
+        });    
+        
+        //orders
+        Route::get('orders', 'OrderController@getOrders');   //display all orders
+        Route::get('orderdetails/{id}', 'OrderController@getOrderSpecs');
     });
 
     //Paginile accesibile userilor logati
@@ -149,6 +153,9 @@ Route::get('/search','SearchController@search');
         // //pentru checkout
          Route::get('/checkout', 'CheckoutController@index');   
         
+         //pagina pentru istoricul comenzilor
+         Route::get('/myorders', 'OrderController@index');
+         Route::get('/myorder/{id}', 'OrderController@getMyOrderSpecs');
         
     });
 

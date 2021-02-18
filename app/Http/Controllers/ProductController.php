@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\User;
 use App\Order;
+use Auth;
 use Session;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -97,9 +98,12 @@ class ProductController extends Controller
 
     //Acualizare cantitate - nefunctional
     public function updateCart(Request $request){
-        // $cart = Cart::content()->where('rowId', $request->id);
+        $cart = Cart::content()->where('rowId', $request->id);
         
-        dd($request->all());
+        $prod = Product::findOrFail($request->prod_id);
+        Cart::update($request->id, ['qty' => $request->quantity]);  //nu functioneaza
+        
+        dd($prod);
     }
 
     //Golire cos - functional
@@ -197,5 +201,6 @@ class ProductController extends Controller
         Product::find($id)->update($request->all());        //in model trimitem pentru id-ul specific toate campurile cu date de actualizat
         return redirect()->route('products.index')->with('success', 'Produs actualizat cu succes!');
     }
+
 
 }
