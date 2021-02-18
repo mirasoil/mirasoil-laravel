@@ -1,5 +1,3 @@
-De rezolvat: redirectionare pentru utilizatori neautentificati pe pagina de login/user nu login !
-SEARCH IARASI NU FUNCTIONEAZA
 
 Pasi de urmat:
 1.Product si Shop sa se conecteze la aceeasi baza de date - done - second check on routes 
@@ -16,7 +14,7 @@ Pasi de urmat:
 4.Stilizare butoane si card-uri pagina principala
 -'/about' bootstrap modal review later on
 
-5.Search bar with  ajax - autocomplete + styling
+5.Search bar with  ajax - autocomplete + styling + link to product page
 
 6.Meniu pentru desktop -- ?
 
@@ -29,6 +27,8 @@ Pasi de urmat:
 
 
 10.Cos (https://github.com/Crinsane/LaravelShoppingcart)
+-add to cart made with ajax needs to check if product is already in cart or keep it simple, without ajax
+-stripe is not working and it should be visible only after saving all the order data
 
 
 !!!Pe viitor, ShopController si ProductsController se vor conecta la acelasi model 
@@ -36,23 +36,10 @@ La implementare - folosind acelasi controller, adminii au acces la /details/{id}
 -pe viitor - o singura functie atat pentru index cat si pentru show implementata cu un switch-case sau chiar si cu if !!
 
 
-I need a table for cart...
-NOT WORKING
-// add cart items to a specific user
-    // $userId = auth()->user()->id; // or any string represents user identifier
-    // Cart::session($userId)->add(array(
-    //     'name' => $cart->name,
-    //     'price' => $cart->price,
-    //     'quantity' => $cart->quantity,
-    //     'associatedModel' => $ProductController
-    // ));
-
-
-
 
 Obs. pretul trebuie modificat - decimal
 
-In revieworder - la actualizare date, daca nu se selecteaza judetul acesta se pune by default null la actualizare
+In revieworder - la actualizare date, daca nu se selecteaza judetul acesta se pune by default null la actualizare  -  solved
 
 
 
@@ -86,4 +73,5 @@ On the next project:
 Cart: 
 -update quantity not working 
 -nuwave/lighthouse error
-???
+
+-on add to cart url gets token as query param - TO FIX

@@ -129,14 +129,14 @@ Route::get('/search','SearchController@search');
     //Paginile accesibile userilor logati
     Route::middleware(['auth:user'])->group(function () {
         Route::GET('/shop', 'ProductController@indexUser')->name('shop');
-        Route::post('/shop/{product}', 'ProductController@addToCart')->name('shop.store');
+        Route::post('add-to-cart/{product}', 'ProductController@addToCart')->name('shop.store');   //add to cart
         Route::delete('/delete-from-cart', 'ProductController@destroy')->name('shop.destroy');
         Route::get('/details/{id}', 'ProductController@showUser');
 
         Route::get('/user', 'UserController@index');    //pagina de dashboard pentru useri, formularul de update al datelor
         Route::patch('user/{id}', 'UserController@update');    //modificarea propriu-zisa a datelor in tabela dupa id-ul userului
     
-        // Route::get('cart', 'ProductController@cart');  //cosul propriu zis - user
+        Route::get('/cart', 'ProductController@cart')->name('cart');  //cosul propriu zis - user
         // Route::get('add-to-cart/{id}', 'ProductController@addToCart');  //adaug in cos
         // Route::post('add-to-cart/{product}', 'ProductController@storeCart');  //adaug in cos
          Route::patch('update-cart', 'ProductController@updateCart');  //modific cos
@@ -150,7 +150,6 @@ Route::get('/search','SearchController@search');
          Route::get('/checkout', 'CheckoutController@index');   
         
         
-        Route::get('/cart', 'ProductController@cart')->name('cart');
     });
 
     //Paginile accesibile vizitatorilor

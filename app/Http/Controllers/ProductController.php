@@ -54,31 +54,33 @@ class ProductController extends Controller
 
     //Adauga in cos - functional
     public function addToCart(Product $product){
-        $duplicates = Cart::search(function ($cartItem, $rowId) use ($product){
+        $duplicates = Cart::search(function ($cartItem, $rowId) use ($product){    //verificam daca produsul nu este deja in cos
             return $cartItem->id === $product->id;
         });
         if ($duplicates->isNotEmpty()) {
-            return redirect()->route('shop')->with('success_message', 'Item is already in your cart!');
+            return redirect()->route('shop')->with('success_message', 'Produsul exista deja in cos!');
         }
 
-        Cart::add(array(
-            'id' => $product->id, 
-            'name' => $product->name,
+        $prod = Product::findOrFail($product->id);   //cautam produsul in baza de date dupa id
+
+        Cart::add(array(                            //il adaugam in Cart
+            'id' => $prod->id, 
+            'name' => $prod->name,
             'qty' => 1, 
-            'price' => $product->price,
-            'weight' => $product->quantity,
-            'options' => ['image' => $product->image]))
+            'price' => $prod->price,
+            'weight' => $prod->quantity,
+            'options' => ['image' => $prod->image]))
                 ->associate('Product');
-        $cart = Cart::content();
-        return redirect()->route('shop')->with('cart-success', 'Produs adaugat cu succes!');
+
+        //return redirect()->back()->with('success_message', 'Produs adaugat cu succes!');
     }
 
-    //Steregere produs din cos - functional partial, necesita refresh pentru pret
+    //Steregere produs din cos - functional 
     public function destroy(Request $request)
     {
         $id = $request->id;
+
         Cart::remove($id);
-        //refreshing the subtotal
     }
 
     //Plaseaza comanda doar daca avem produse in cos - functional 
@@ -95,9 +97,9 @@ class ProductController extends Controller
 
     //Acualizare cantitate - nefunctional
     public function updateCart(Request $request){
-        $cart = Cart::content()->where('rowId', $request->id);
-        //update quantity
-        return view('pages.cart')->with('cart-success', 'Produs actualizat');
+        // $cart = Cart::content()->where('rowId', $request->id);
+        
+        dd($request->all());
     }
 
     //Golire cos - functional

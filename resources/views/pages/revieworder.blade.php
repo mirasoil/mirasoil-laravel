@@ -70,9 +70,9 @@
             </div>  
         </div>
         <div class="col-md-8 order-md-1">
-            <form method="POST" action="{{ route('orders.store') }}" id="update-data-form">
+            <form method="POST" id="update-data-form">
             @csrf
-           
+            
                 <!-- Sectiunea Adresa de Livrare -->
                 <h4 class="mb-3">Adresă livrare</h4><hr>
                 <div class="card p-2 mb-3 shadow-sm">
@@ -218,17 +218,17 @@
                     </div>
                 </div>
             </form>
-            <h5 class="mt-5">Detalii plată</h5>
-            <hr>
-            <form id="payment-form" class="my-4">
+            <form id="payment-form" class="d-none my-4">
                 @csrf
+                <h5 class="mt-5">Detalii plată</h5>
+                <hr>
                 <input type="text" id="email-stripe" class="form-control" placeholder="Email address" value="{{ Auth::user()->email }}" />
                     <div id="card-element" class="my-3"><!--Stripe.js injects the Card Element--></div>
                     <button id="submitButton" type="submit" class="btn btn-success my-4">
                         <span id="button-text">Plătește</span>
                     </button>
                     <p id="card-error" role="alert"></p>
-                    <p class="result-message hidden">
+                    <p class="result-message d-none">
                         Plata a fost realizată cu succes. Mulțumim pentru încredere !
                     </p>
             </form>
@@ -240,7 +240,7 @@
     <br>
 @endfor
 <script>
-$("#save-data").click(function(event){
+$("#complete-order").click(function(event){
       event.preventDefault();
 
       let firstname = $("input[name=firstname]").val();
@@ -255,8 +255,8 @@ $("#save-data").click(function(event){
       var id = $(this).data('id');
 
       $.ajax({
-        url: "revieworder/"+id,
-        type:"PATCH",
+        url: "{{route('orders.store')}}",
+        type:"POST",
         data:{
             "_token": "{{ csrf_token() }}",
             id:id,
@@ -273,10 +273,16 @@ $("#save-data").click(function(event){
         success: function(response){
             $(".alert").addClass("alert-success")  //stilizare
             $("#message-response").html("Informațiile au fost actualizate")  //continutul mesajului  
-            $("#update-data-form")[0].reset();         
+            $("#update-data-form")[0].reset(); 
+            showPaymentForm();        
         },
        });
   });
+
+function showPaymentForm(){
+    $('#payment-form').removeClass('d-none');
+    $('#complete-order').remove();
+}
 
 //Stripe script
 var stripe = Stripe("pk_test_51IIzThFPoGjTfy5WZEzx4HhJ923HVamP4Ul8zA1D1Z961FxJXnnK6im7bDRA17LzsToUNLe0YySRY0Dn75M2HAjm00c0GgoLHD");
@@ -331,6 +337,7 @@ stripe.confirmCardPayment(clientSecret, {
     } else {
     // The payment succeeded!
     orderComplete(result.paymentIntent.id);
+    $('.result message').removeClass('d-none');
     console.log($paymentIntent);
     }
 });

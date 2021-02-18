@@ -34,7 +34,7 @@
  @if(Cart::count() > 0)
  @foreach(Cart::content() as $details)
  <?php $total += $details->price * $details->qty ?>
-    <tr id="product-show">
+    <tr id="product-show-{{$details->id}}">
         <td data-th="Product">
         <div class="row">
             <div class="col-sm-3 hidden-xs"><img src="img/{!!$details->options->image!!}" width="100" height="100" class="img-responsive"/></div>
@@ -49,8 +49,12 @@
         </td>
         <td data-th="Subtotal" class="text-center" id="total-price">{{ $details->price * $details->qty }} Lei</td>
         <td class="actions text-center" data-th="">
-            <button class="btn btn-info btn-sm update-cart" data-token="{{ csrf_token() }}" data-id="{{ $details->rowId}}" style="margin: 10px;"><i class="fa fa-refresh"></i> Modifică</button>
-            <button class="btn btn-danger btn-sm remove-from-cart" data-token="{{ csrf_token() }}" data-id="{{ $details->rowId}}" style="margin: 10px;"><i class="fa fa-trash-o"></i>Șterge</button> 
+        <form>
+            @csrf
+            @method('PATCH')
+            <button class="btn btn-info btn-sm update-cart"  data-id="{{ $details->rowId}}" style="margin: 10px;"><i class="fa fa-refresh"></i> Modifică</button>
+            <button class="btn btn-danger btn-sm remove-from-cart"  data-id="{{ $details->rowId}}" style="margin: 10px;" id="{{$details->id}}"><i class="fa fa-trash-o"></i>Șterge</button> 
+        </form>
             <!-- <form action="{{ route('shop.destroy', $details->rowId) }}" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
@@ -65,7 +69,7 @@
  <tfoot>
     <tr class="visible-sm">
         <td colspan="3" class="hidden-xs"></td>
-        <td class="text-center" style="font-size: 1.1rem;"><strong>Total: </strong> <p id="total" >{{ Cart::subtotal() }} Lei</p></td>
+        <td class="text-center" style="font-size: 1.1rem;"><strong>Total: </strong> <p id="total">{{ Cart::subtotal() }} Lei</p></td>
         <td></td>
     </tr>
     <tr>
@@ -82,27 +86,28 @@
  $(".update-cart").click(function (e) {
         e.preventDefault();
         var ele = $(this);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': '"{{ csrf_token() }}"'
+            }
+        });
         $.ajax({
-        url: "{{ url('update-cart') }}",
+        url: "/update-cart",
         method: "patch",
-        data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity:
-        ele.parents("tr").find(".quantity").val()},
-        success: function (response) {
-            //window.location.reload(); //pagina isi face refresh
-            console.log("{{Cart::content()}}");
-            
-        }
+        data: {id: ele.attr("data-id"), quantity:
+        ele.parents("tr").find(".quantity").val()}
+        
     });
  });
  $(".remove-from-cart").click(function (e) {
         e.preventDefault();
         var ele = $(this);
         var id = $(this).data('id');
+        var prod_id = ele.attr('id');
         if(confirm("Sunteti sigur ca doriti sa stergeti acest produs?")) {
             $.ajax({
                 type: 'DELETE',
                 url: "/delete-from-cart",
-                // method: "DELETE",
                 data: {
                         "_token": "{{ csrf_token() }}",
                         "id": id
@@ -110,9 +115,8 @@
                 success: function (response) {
                     $(".alert").addClass("alert-success")  //stilizare
                     $("#message-response").html("Produsul a fost sters")  //continutul mesajului
-                    $("#product-show").remove(); //vreau doar sa dispara paragraful cu produsul sters, fara reload
-                    //$("#div_to_refresh").load("url_of_current_page.html #div_to_refresh")
-                    $("#total").replaceWith({{Cart::subtotal()}});
+                    $("#product-show-"+prod_id).remove(); //vreau doar sa dispara paragraful cu produsul sters, fara reload
+                    $('#total').load('/cart #total');    //reincarca doar sectiunea #total din pagina
             }
         });
     }

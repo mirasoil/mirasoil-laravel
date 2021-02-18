@@ -57,6 +57,20 @@ class OrderController extends Controller
     return $order;
     }
 
+
+    //Might be useful for generating unique bill number
+    // public function generateOrderNR()
+    // {
+    //     $orderObj = \DB::table('orders')->select('order_nr')->latest('id')->first();
+    //     if ($orderObj) {
+    //         $orderNr = $orderObj->order_nr;
+    //         $removed1char = substr($orderNr, 1);
+    //         $generateOrder_nr = $stpad = '#' . str_pad($removed1char + 1, 8, "0", STR_PAD_LEFT);
+    //     } else {
+    //         $generateOrder_nr = '#' . str_pad(1, 8, "0", STR_PAD_LEFT);
+    //     }
+    //     return $generateOrder_nr;
+    // }
       
     public function show($id)  
     {  
