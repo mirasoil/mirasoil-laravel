@@ -53,8 +53,8 @@
         <td data-th="Subtotal" class="text-center" id="total-price">{{ $details->price * $details->qty }} Lei</td>
         <td class="actions text-center" data-th="">
         
-            <button class="btn btn-info btn-sm update-cart"  data-id="{{ $details->rowId}}" style="margin: 10px;" id="{{$details->id}}"><i class="fa fa-refresh"></i> Modifică</button>
-            <!-- <button class="btn btn-danger btn-sm remove-from-cart"  data-id="{{ $details->rowId}}" style="margin: 10px;" id="{{$details->id}}"><i class="fa fa-trash-o"></i>Șterge</button>  -->
+            <button class="btn btn-info btn-sm update-cart"  data-id="{{ $details->rowId}}" style="margin: 10px;" ><i class="fa fa-refresh"></i> Modifică</button>
+            <button class="btn btn-danger btn-sm remove-from-cart"  data-id="{{ $details->rowId}}" style="margin: 10px;" id="{{$details->id}}"><i class="fa fa-trash-o"></i>Șterge</button> 
         </form>
             <!-- <form action="{{ route('shop.destroy', $details->rowId) }}" method="POST">
                 {{ csrf_field() }}

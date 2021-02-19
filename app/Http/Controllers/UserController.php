@@ -38,4 +38,48 @@ class UserController extends Controller
 
         return redirect()->back()->with('user-success', 'Informatiile au fost actualizate!');
     }
+
+    // Display all the users
+    public function getUsers(Request $request){
+        $users = User::orderBy('id','DESC')->paginate(3); 
+        $value = ($request->input('page',1)-1)*3;
+        return view('users.list', compact('users'))->with('i', $value); 
+    }
+    
+    // Edit a user's details
+    public function editUser($id)
+    {
+        $user = User::find($id);
+        return view('users.edit', compact('user'));
+    }
+
+    // Delete a user
+    public function destroyUser($id)
+    {
+        User::find($id)->delete();
+        return redirect()->route('users')->with('success', 'Utilizator sters cu succes!');
+    }
+
+    // Display user details
+    public function getUserDetails($id){
+        $user = User::find($id);
+        return view('users.show', compact('user'));
+
+        // dd($items);
+    } 
+
+    // Update user details
+    public function updateUser(Request $request, $id)
+    {
+        $this->validate($request, [
+            'phone' => 'required',
+            'address' => 'required',
+            'county' => 'required',
+            'locality' => 'required',
+            'zipcode' => 'required',
+        ]);
+        User::find($id)->update($request->all());        //in model trimitem pentru id-ul specific toate campurile cu date de actualizat
+        return redirect()->route('users')->with('success', 'Detalii utilizator actualizate cu succes!');
+        // dd($request->all());
+    }
 }

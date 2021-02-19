@@ -81,4 +81,5 @@ Cart:
 ----------------------------------------------------------------------
 ----------------------------------------------------------------------
 ORDERS:
--user: it still displays all the products found in the table, not only the specific ones foreach order
+-user: it still displays all the products found in the table, not only the specific ones foreach order - fixed by showing them only in myorder
+-incorrect password -> display message

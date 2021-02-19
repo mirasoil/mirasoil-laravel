@@ -39,49 +39,6 @@ class OrderController extends Controller
         
     } 
 
-    // public function index2()  
-    // {  
-   
-    //     $user_id = Auth::user()->id;
-    //     $orders = Order::where('user_id', $user_id)->get();   
-    //     return view('orders.myorders', array('orders' => $orders));
-    // }
-
-    //ORDERS for admin
-    function getOrders(Request $request){
-
-        $orders = Order::all();
-
-        return view('orders.orders', array(
-            'orders' => $orders,
-        ));
-    } 
-     
-    public function getOrderSpecs($id){
-        $orders = Order::where('id', $id)->get();
-        
-        $details = OrderProduct::where('order_id', $id)->get();    //pentru o comanda cu acelasi order id putem avea mai multe produse => array
-        // $order_id = OrderProduct::where('id', $id)->get('order_id');
-        $product_id = OrderProduct::where('order_id', $id)->get('product_id');
-
-        $items = array();
-        $products = array();
-        foreach($details as $detail){
-            $items[] = $detail->product_id;    //array-ul cu toate detaliile din comanda respectiva
-
-            $prod = Product::findOrFail($detail->product_id);   //cautama produsele cu id-ul respectiv si le adaugam in array
-            $products[] = $prod;
-        }
-
-        return view('orders.orderdetails', array(
-            'orders' => $orders,
-            'details' => $details,
-            'products' => $products   //returnam toate detaliile referitoare la produsele respective cosului din tabela products
-        ));
-
-        // dd($items);
-    }
-
     public function getMyOrderSpecs($id){
         $orders = Order::where('id', $id)->get();
         
@@ -107,12 +64,79 @@ class OrderController extends Controller
         // dd($items);
     }
 
-    public function create()  
-    {  
-            
-    //  
+    // public function index2()  
+    // {  
+   
+    //     $user_id = Auth::user()->id;
+    //     $orders = Order::where('user_id', $user_id)->get();   
+    //     return view('orders.myorders', array('orders' => $orders));
+    // }
+
+    //ORDERS for admin
+    function getOrders(Request $request){
+
+        // $orders = Order::all();
+
+        // return view('orders.orders', array(
+        //     'orders' => $orders,
+        // ));
+
+        $orders = Order::orderBy('id','DESC')->paginate(5);   //apelam modelul care va face legatura cu BD de unde va afisa produsele - pentru admin
+        $value = ($request->input('page',1)-1)*5;    // get the top 5 of all products, ordered by the id of products in descending order
+        return view('orders.orders', compact('orders'))->with('i', $value); 
+    } 
+    
+    // Display all order's details
+    public function getOrderSpecs($id){
+        $orders = Order::where('id', $id)->get();
         
-    }  
+        $details = OrderProduct::where('order_id', $id)->get();    //pentru o comanda cu acelasi order id putem avea mai multe produse => array
+        // $order_id = OrderProduct::where('id', $id)->get('order_id');
+        $product_id = OrderProduct::where('order_id', $id)->get('product_id');
+
+        $items = array();
+        $products = array();
+        foreach($details as $detail){
+            $items[] = $detail->product_id;    //array-ul cu toate detaliile din comanda respectiva
+
+            $prod = Product::findOrFail($detail->product_id);   //cautama produsele cu id-ul respectiv si le adaugam in array
+            $products[] = $prod;
+        }
+
+        return view('orders.order', array(
+            'orders' => $orders,
+            'details' => $details,
+            'products' => $products   //returnam toate detaliile referitoare la produsele respective cosului din tabela products
+        ));
+
+        // dd($items);
+    }   
+
+    // Display form for edit order details
+    public function editOrder($id)
+    {
+        $order = Order::find($id);
+        return view('orders.edit', compact('order'));
+    }
+
+    // Update order details
+    public function updateOrder(Request $request, $id)
+    {
+        $this->validate($request, [
+            'billing_fname' => 'required',
+            'billing_lname' => 'required',
+            'billing_email' => 'required',
+            'billing_phone' => 'required',
+            'billing_address' => 'required',
+            'billing_county' => 'required',
+            'billing_locality' => 'required',
+            'billing_zipcode' => 'required',
+            'billing_total' => 'required',
+        ]);
+        Order::find($id)->update($request->all());        //in model trimitem pentru id-ul specific toate campurile cu date de actualizat
+        return redirect()->route('orders')->with('success', 'Comanda actualizata cu succes!');
+        // dd($order);
+    }
      
 
     public function store(Request $request){
@@ -158,33 +182,11 @@ class OrderController extends Controller
     //     }
     //     return $generateOrder_nr;
     // }
-      
-    public function show($id)  
-    {  
     
-    //  
-    }  
-    
-    
-    public function edit($id)  
-        
-    {  
-            
-    //  
-        
-    }  
-    
-    
-    public function update(Request $request, $id)  
-    {  
-            
-    //  
-        
-    }  
-    
-    
-    public function destroy($id)  
-    {  
-        
+    //Stergerea unei comenzi
+    public function destroyOrder($id)
+    {
+        Order::find($id)->delete();
+        return redirect()->route('orders')->with('success', 'Comanda sters cu succes!');
     }
 }

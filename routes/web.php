@@ -126,15 +126,26 @@ Route::get('/search','SearchController@search');
         });    
         
         //orders
-        Route::get('orders', 'OrderController@getOrders');   //display all orders
-        Route::get('orderdetails/{id}', 'OrderController@getOrderSpecs');
+        Route::get('orders', 'OrderController@getOrders')->name('orders');   //display all orders
+        Route::get('order/{id}', 'OrderController@getOrderSpecs');
+        Route::get('order/edit/{id}', 'OrderController@editOrder');
+        Route::patch('order/edit/{id}', 'OrderController@updateOrder')->name('orders.update');
+        Route::delete('order/{id}', 'OrderController@destroyOrder')->name('order.destroy');
+
+        //users
+        Route::get('users', 'UserController@getUsers')->name('users');
+        Route::get('user/{id}', 'UserController@getUserDetails')->name('user.show');
+        Route::get('user/edit/{id}', 'UserController@editUser')->name('user.edit');
+        Route::patch('user/edit/{id}', 'UserController@updateUser')->name('user.update');
+        Route::delete('user/{id}', 'UserController@destroyUser')->name('user.destroy');
+
     });
 
     //Paginile accesibile userilor logati
     Route::middleware(['auth:user'])->group(function () {
         Route::GET('/shop', 'ProductController@indexUser')->name('shop');
         Route::post('add-to-cart/{product}', 'ProductController@addToCart')->name('shop.store');   //add to cart
-        Route::delete('/delete-from-cart', 'ProductController@destroy')->name('shop.destroy');
+        Route::delete('/delete-from-cart', 'ProductController@destroyCart')->name('shop.destroy');
         Route::get('/details/{id}', 'ProductController@showUser');
 
         Route::get('/user', 'UserController@index');    //pagina de dashboard pentru useri, formularul de update al datelor

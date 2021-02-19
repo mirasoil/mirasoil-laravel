@@ -32,6 +32,9 @@
                             <li class="{{ Request::is('account') ? 'active' : '' }}">
                                 <a href="/orders"> Gestionare comenzi</a>
                             </li>
+                            <li class="{{ Request::is('account') ? 'active' : '' }}">
+                                <a href="/users"> Gestionare utilizatori</a>
+                            </li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();

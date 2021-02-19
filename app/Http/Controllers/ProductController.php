@@ -11,12 +11,12 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ProductController extends Controller
 {
-    // public function index(Request $request)
-    // {
-    //     $products = Product::orderBy('id','ASC')->paginate(3);   //apelam modelul care va face legatura cu BD de unde va afisa produsele - pentru admin
-    //     $value = ($request->input('page',1)-1)*3;    // get the top 5 of all products, ordered by the id of products in descending order
-    //     return view('products.list', compact('products'))->with('i', $value);     
-    // }
+    public function index(Request $request)
+    {
+        $products = Product::orderBy('id','ASC')->paginate(3);   //apelam modelul care va face legatura cu BD de unde va afisa produsele - pentru admin
+        $value = ($request->input('page',1)-1)*3;    // get the top 5 of all products, ordered by the id of products in descending order
+        return view('products.list', compact('products'))->with('i', $value);     
+    }
 
     public function indexUser(Request $request)
     {
@@ -77,7 +77,7 @@ class ProductController extends Controller
     }
 
     //Steregere produs din cos - functional 
-    public function destroy(Request $request)
+    public function destroyCart(Request $request)
     {
         $id = $request->id;
 
@@ -200,6 +200,12 @@ class ProductController extends Controller
         ]);
         Product::find($id)->update($request->all());        //in model trimitem pentru id-ul specific toate campurile cu date de actualizat
         return redirect()->route('products.index')->with('success', 'Produs actualizat cu succes!');
+    }
+
+    public function destroy($id)
+    {
+        Product::find($id)->delete();
+        return redirect()->route('products.index')->with('success', 'Produs sters cu succes!');
     }
 
 
