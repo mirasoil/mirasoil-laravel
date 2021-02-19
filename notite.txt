@@ -75,3 +75,10 @@ Cart:
 -nuwave/lighthouse error
 
 -on add to cart url gets token as query param - TO FIX
+
+
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+----------------------------------------------------------------------
+ORDERS:
+-user: it still displays all the products found in the table, not only the specific ones foreach order

@@ -14,25 +14,45 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-        public function index()  
+    public function index()  
     {  
             
         $user_id = Auth::user()->id;
-        $orders = Order::where('user_id', $user_id)->get();
+        $orders = Order::where('user_id', $user_id)->get();   //din orders toate id-urile comenzilor plasate de utilizatorul cu id-ul $user_id
 
-        return view('pages.myorders', array(
+        $items = array();
+        foreach($orders as $order){
+            $items[] = OrderProduct::where('order_id', $order->id)->first();     //din order_product toate id-urile produselor corespunzatoare comenzilor cu order_id egal cu id-ul din orders
+        }
+
+        $products = array();
+        foreach($items as $item){
+            $prod = Product::where('id', $item->product_id)->first();   //cautam produsele cu id-ul respectiv si le adaugam in array
+            $products[] = $prod;
+        }
+        return view('orders.myorders', array(
             'orders' => $orders,
+            'products' => $products
         ));
 
-        // dd($user_id);
+        // dd($products);
         
     } 
+
+    // public function index2()  
+    // {  
+   
+    //     $user_id = Auth::user()->id;
+    //     $orders = Order::where('user_id', $user_id)->get();   
+    //     return view('orders.myorders', array('orders' => $orders));
+    // }
+
     //ORDERS for admin
     function getOrders(Request $request){
 
         $orders = Order::all();
 
-        return view('products.orders', array(
+        return view('orders.orders', array(
             'orders' => $orders,
         ));
     } 
@@ -53,7 +73,7 @@ class OrderController extends Controller
             $products[] = $prod;
         }
 
-        return view('products.orderdetails', array(
+        return view('orders.orderdetails', array(
             'orders' => $orders,
             'details' => $details,
             'products' => $products   //returnam toate detaliile referitoare la produsele respective cosului din tabela products
@@ -78,7 +98,7 @@ class OrderController extends Controller
             $products[] = $prod;
         }
 
-        return view('pages.myorder', array(
+        return view('orders.myorder', array(
             'orders' => $orders,
             'details' => $details,
             'products' => $products   //returnam toate detaliile referitoare la produsele respective cosului din tabela products

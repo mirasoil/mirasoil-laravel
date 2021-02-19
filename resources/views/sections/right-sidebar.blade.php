@@ -12,6 +12,9 @@
                             <li class="{{ Request::is('account') ? 'active' : '' }}">
                                 <a href="/user"> Contul meu</a>
                             </li>
+                            <li class="{{ Request::is('account') ? 'active' : '' }}">
+                                <a href="/myorders"> Comenzile mele</a>
+                            </li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -25,6 +28,9 @@
                         @elseif(Auth::guard('admin')->check())
                             <li class="{{ Request::is('controlPanel') ? 'active' : '' }}">
                                 <a href="/products"><i class="fa fa-user"></i> Control Panel</a>
+                            </li>
+                            <li class="{{ Request::is('account') ? 'active' : '' }}">
+                                <a href="/orders"> Gestionare comenzi</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
