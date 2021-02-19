@@ -55,9 +55,9 @@
                @foreach($products as $product)
                <tr>
                   <td>
-                     <p>{{ $product->name }}</p>
+                     <a href="{{url('details', $product->id)}}" style="text-decoration:none;"><p>{{ $product->name }}</p></a>
                   </td>
-                  <td><img src="../img/{{$product->image}}" width="100" height="100"></td>
+                  <td><a href="{{url('details', $product->id)}}"><img src="../img/{{$product->image}}" width="100" height="100"></a></td>
                   <td>
                      <p>{{$product->price}} RON</p>
                   </td>

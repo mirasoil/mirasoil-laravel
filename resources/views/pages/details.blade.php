@@ -1,6 +1,12 @@
 @extends('layouts.master')
+@section('extra-scripts')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
 @section('content')
 <div class="container">
+<div class="alert d-none">
+    <p class="shop-success"></p>
+</div>
 <div id="ulei">
             <div class="card">
             <div class="container-fliud">
@@ -18,14 +24,14 @@
                     <div class="product-stock">În stoc</div>
                     <hr>
                     <div class="btn-group cart">
-                        <a href="{{ url('add-to-cart/'.$shop->id) }}" class="btn btn-success btn-block text-center" type="button">
+                        <button  class="btn btn-info btn-block text-center" id="{{$shop->id}}" onclick="btnAddCart(this.id)">
                             Adaugă în coș 
-                        </a>
+                        </button>
                     </div>
                     <div class="btn-group wishlist">
-                        <a href="{{ url('add-to-cart/'.$shop->id) }}" class="btn btn-warning btn-block text-center" type="button">
+                        <button  class="btn btn-warning btn-block text-center" id="{{$shop->id}}" onclick="btnAddCart(this.id)">
                             Adaugă la favorite 
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div class="container-fluid">       
@@ -59,5 +65,34 @@
 </div>
 </div>
 </div>
+<script>
+function btnAddCart(param) {
+  var product = param;
+  var url = "/add-to-cart/"+product;
+
+  $.ajaxSetup({
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+  $.ajax({
+    type: "POST",
+    url: url,
+    data: { 
+        "product": product
+	 },
+	 success: function (response) {
+			$('#mini-cart').load('/details/'+product+' #mini-cart'); 
+            // $('#mini-cart').css('margin-right', '0');   
+			$(".alert").removeClass("d-none").addClass("alert alert-success")  //stilizare
+			$('.shop-success').html('Produs adaugat in cos');
+
+    },
+    error: function (response) {
+      console.log('Error:', response);
+    }
+  });
+};
+</script>
 @endsection
 <!--- afiseaza datele pe ecran cum sunt in baza de date cu id-ul curent --->
