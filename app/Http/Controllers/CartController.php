@@ -23,13 +23,13 @@ class CartController extends Controller
         });
 
         if ($duplicates->isNotEmpty()) {
-            return redirect()->route('cart.index')->with('cart-success', 'Item is already in your cart!');
+            return redirect()->route('cart.index', app()->getLocale())->with('cart-success', 'Item is already in your cart!');
         }
 
         Cart::add($product->id, $product->name, 1, $product->price)
             ->associate('App\Product');
 
-        return redirect()->route('cart.index')->with('cart-success', 'Item was added to your cart!');
+        return redirect()->route('cart.index', app()->getLocale())->with('cart-success', 'Item was added to your cart!');
     }
 
     public function update(Request $request, $id)

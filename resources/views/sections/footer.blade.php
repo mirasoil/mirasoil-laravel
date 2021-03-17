@@ -60,6 +60,21 @@
                         <img src="{{ url('img/Logo-mirasoil.png') }}" width="100" height="100" alt="logo" class="ml-5">
                     </div>
                     <p>Magazin online pentru produsele tale favorite !</p>
+                    <div itemscope itemtype="http://schema.org/LocalBusiness" class="d-none">
+
+                        <p itemprop="name">MIRASOIL</p>
+
+                        <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                            <p itemprop="streetAddress">Str. Principală, Nr. 130</p>
+                            <p itemprop="addressLocality">Miraslău</p>
+                            <p itemprop="addressRegion">Alba</p>
+                            <p itemprop="postalCode">515470</p>
+                        </div>
+                        <p itemprop="telephone">0754916986</p>
+                        <meta itemprop="latitude" content="46.361340"/>
+
+                        <meta itemprop="longitude" content="23.705730"/>
+                    </div>
                 </div>
                 <div class="col-md-2 col-sm-6">
                     <h3>Acces rapid</h3>

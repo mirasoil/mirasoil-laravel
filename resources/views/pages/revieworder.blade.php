@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('title')
+<title>Detalii Comandă - Mirasoil</title>
+@endsection
 @section('extra-scripts')
 <script src="https://js.stripe.com/v3/"></script>
 @endsection
@@ -255,7 +258,7 @@ $("#complete-order").click(function(event){
       var id = $(this).data('id');
 
       $.ajax({
-        url: "{{route('orders.store')}}",
+        url: "{{route('orders.store', app()->getLocale())}}",
         type:"POST",
         data:{
             "_token": "{{ csrf_token() }}",

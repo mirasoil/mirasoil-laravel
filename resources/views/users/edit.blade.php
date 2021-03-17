@@ -133,7 +133,7 @@
 
         <div class="form-group">
                 <input type="submit" value="Salvează" class="btn btn-info">
-                <a href="{{route('users') }}" class="btn btn-danger">Renunță</a>
+                <a href="{{route('users', app()->getLocale()) }}" class="btn btn-danger">Renunță</a>
             </div>
             {!! Form::close() !!}
         </div>

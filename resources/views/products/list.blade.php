@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('title')
+<title>Gestionare produse - Admin</title>
+@endsection
 @section('content')
 <h1 class="text-center">Control Panel</h1>
 @if ($message = Session::get('success'))

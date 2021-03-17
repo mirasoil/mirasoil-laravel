@@ -134,7 +134,7 @@ class OrderController extends Controller
             'billing_total' => 'required',
         ]);
         Order::find($id)->update($request->all());        //in model trimitem pentru id-ul specific toate campurile cu date de actualizat
-        return redirect()->route('orders')->with('success', 'Comanda actualizata cu succes!');
+        return redirect()->route('orders', app()->getLocale())->with('success', 'Comanda actualizata cu succes!');
         // dd($order);
     }
      
@@ -187,6 +187,6 @@ class OrderController extends Controller
     public function destroyOrder($id)
     {
         Order::find($id)->delete();
-        return redirect()->route('orders')->with('success', 'Comanda sters cu succes!');
+        return redirect()->route('orders', app()->getLocale())->with('success', 'Comanda sters cu succes!');
     }
 }

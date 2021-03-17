@@ -13,14 +13,14 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::orderBy('id','ASC')->paginate(3);   //apelam modelul care va face legatura cu BD de unde va afisa produsele - pentru admin
-        $value = ($request->input('page',1)-1)*3;    // get the top 5 of all products, ordered by the id of products in descending order
+        $products = Product::orderBy('id','ASC')->paginate(4);   //apelam modelul care va face legatura cu BD de unde va afisa produsele - pentru admin
+        $value = ($request->input('page',1)-1)*4;    // get the top 5 of all products, ordered by the id of products in descending order
         return view('products.list', compact('products'))->with('i', $value);     
     }
 
     public function indexUser(Request $request)
     {
-        $products = Product::orderBy('id','ASC')->paginate(3);   //pentru afisarea paginii de produse din acelasi tabel pentru useri logati
+        $products = Product::orderBy('id','ASC')->paginate(4);   //pentru afisarea paginii de produse din acelasi tabel pentru useri logati
         $value = ($request->input('page',1)-1)*5;
         return view('pages.shop', compact('shop'))->with([
             'products' => $products,
@@ -29,12 +29,12 @@ class ProductController extends Controller
         //return view('pages.shop', compact('shop'))->with('i', $value);    
     }
 
-    // public function indexGuest(Request $request)
-    // {
-    //     $shop = Product::orderBy('id','ASC')->paginate(3);   //pentru afisarea paginii de produse din products pentru vizitatori
-    //     $value = ($request->input('page',1)-1)*5;
-    //     return view('pages.shop', compact('shop'))->with('i', $value);   
-    // }
+    public function indexGuest(Request $request)
+    {
+        $products = Product::orderBy('id','ASC')->paginate(4);   //pentru afisarea paginii de produse din products pentru vizitatori
+        $value = ($request->input('page',1)-1)*5;
+        return view('pages.shop', compact('products'))->with('i', $value);   
+    }
 
     public function showUser($id)  //afisarea paginii individuale a produselor conectandu-ne la acelasi model => acelasi tabel (products)
     {
@@ -59,7 +59,7 @@ class ProductController extends Controller
             return $cartItem->id === $product->id;
         });
         if ($duplicates->isNotEmpty()) {
-            return redirect()->route('shop')->with('success_message', 'Produsul exista deja in cos!');
+            return redirect()->route('shop', app()->getLocale())->with('success_message', 'Produsul exista deja in cos!'); //cresc cantitatea
         }
 
         $prod = Product::findOrFail($product->id);   //cautam produsul in baza de date dupa id
@@ -171,7 +171,7 @@ class ProductController extends Controller
         $this->validate($request, ['name'=>'required', 'quantity'=>'required', 'price'=>'required', 'stock'=>'required', 'image'=>'required', 'description'=>'required', 'properties'=>'required', 'uses'=>'required']);   //validarea datelor
         //crearea unui produs nou
         Product::create($request->all());       //apelam modelul cu functia predefinita create prin care trimitem toate argumentele
-        return redirect()->route('products.index')->with('succes', 'Produsul a fost creat cu succes!');
+        return redirect()->route('products.index', app()->getLocale())->with('succes', 'Produsul a fost creat cu succes!');
     }
 
     public function show($id)
@@ -199,13 +199,13 @@ class ProductController extends Controller
             'uses' => 'required',
         ]);
         Product::find($id)->update($request->all());        //in model trimitem pentru id-ul specific toate campurile cu date de actualizat
-        return redirect()->route('products.index')->with('success', 'Produs actualizat cu succes!');
+        return redirect()->route('products.index', app()->getLocale())->with('success', 'Produs actualizat cu succes!');
     }
 
     public function destroy($id)
     {
         Product::find($id)->delete();
-        return redirect()->route('products.index')->with('success', 'Produs sters cu succes!');
+        return redirect()->route('products.index', app()->getLocale())->with('success', 'Produs sters cu succes!');
     }
 
 

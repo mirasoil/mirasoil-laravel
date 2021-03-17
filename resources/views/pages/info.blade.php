@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('title')
+<title>Informații clienți - Mirasoil</title>
+@endsection
 @section('content')
 <div id="transport">
     <div class="columns-container">

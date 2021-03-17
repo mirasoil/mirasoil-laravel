@@ -57,7 +57,7 @@ class UserController extends Controller
     public function destroyUser($id)
     {
         User::find($id)->delete();
-        return redirect()->route('users')->with('success', 'Utilizator sters cu succes!');
+        return redirect()->route('users', app()->getLocale())->with('success', 'Utilizator sters cu succes!');
     }
 
     // Display user details
@@ -79,7 +79,7 @@ class UserController extends Controller
             'zipcode' => 'required',
         ]);
         User::find($id)->update($request->all());        //in model trimitem pentru id-ul specific toate campurile cu date de actualizat
-        return redirect()->route('users')->with('success', 'Detalii utilizator actualizate cu succes!');
+        return redirect()->route('users', app()->getLocale())->with('success', 'Detalii utilizator actualizate cu succes!');
         // dd($request->all());
     }
 }

@@ -1,5 +1,7 @@
 @extends('layouts.master')
-@section('title', 'Cos')
+@section('title')
+<title>Coș - Mirasoil</title>
+@endsection
 @section('content')
 <div class="container">
     <div class="py-2 text-center">

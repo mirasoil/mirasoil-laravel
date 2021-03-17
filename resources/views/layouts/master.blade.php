@@ -3,10 +3,13 @@
 <html lang="ro">
 
 <head>
-    <title> HOME | Lavandă Miraslău</title>
+    <!-- <title> HOME | Lavandă Miraslău</title> -->
+    @yield('title')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="Description" content="Produse naturale din lavanda">
+    <meta name="Description" content="Ești fan lavandă ? Ei bine, la Mirasoil avem o gamă largă de produse naturale pentru tine. Află mai multe chiar acum !">
+    <meta name="keywords" content="ulei de lavandă, apă florală, săpun, buchete florale lavandă, produse naturale din lavandă">
+    <meta http-equiv="expires" content="0">  <!-- force the browser to not cache a page -->
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/style.css') }}">    
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">

@@ -26,7 +26,7 @@
                 <strong>Cod postal: </strong><p> {{ $user->zipcode }} </p>
             </div>
             <div class="float-right m-4">
-                <a class="btn btn-info m-4" href="{{ route('users') }}">Înapoi</a>
+                <a class="btn btn-info m-4" href="{{ route('users', app()->getLocale()) }}">Înapoi</a>
             </div>
         </div>
     </div>

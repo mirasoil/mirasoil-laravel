@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('title')
+<title>Despre - Mirasoil</title>
+@endsection
 @section('content')
 <div class="container">
             <div class="titlu-about">

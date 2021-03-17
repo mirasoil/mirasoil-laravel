@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('title')
+<title>Vizualizare comanda - Admin</title>
+@endsection
 @section('content')
 <div class="container">
 @foreach($orders as $order)

@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('title')
+<title>Detalii produs - Admin</title>
+@endsection
 @section('content')
 <div class="container">
 <h3 class="text-center">{{ $product->name }}</h3>
@@ -27,7 +30,7 @@
                 <strong>Utilizări: </strong><p> {!! $product->uses !!} </p>
             </div>
             <div class="float-right m-4">
-                <a class="btn btn-info m-4" href="{{ route('products.index') }}">Înapoi</a>
+                <a class="btn btn-info m-4" href="{{ route('products.index', app()->getLocale()) }}">Înapoi</a>
             </div>
         </div>
     </div>

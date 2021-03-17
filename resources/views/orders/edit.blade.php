@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('title')
+<title>Modificare comandă - Admin</title>
+@endsection
 @section('content')
 <div class="container">
 <h1 class="text-center">Comanda nr. {{ $order->id }}</h1>

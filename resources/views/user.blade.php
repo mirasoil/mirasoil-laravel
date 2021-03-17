@@ -1,5 +1,7 @@
 @extends('layouts.master')
-
+@section('title')
+<title>Contul Meu - Mirasoil</title>
+@endsection
 @section('content')
 <div class="container">
 @if (\Session::has('user-success'))
@@ -19,7 +21,7 @@
 
                 <div class="card-body">
                     <h1>Bine ai revenit, {{ Auth::user()->firstname }} !</h1>
-                        <form method="POST" action="{{ url('user',['id' => $id=Auth::user()->id]) }}">
+                        <form method="POST" action="{{ route('user',['id' => $id=Auth::user()->id]) }}">
                             @csrf
                             @method('PATCH')
                             <div class="form-group row">

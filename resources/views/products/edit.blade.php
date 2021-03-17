@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('title')
+<title>Modificare produs - Admin</title>
+@endsection
 @section('content')
 <div class="container">
 <h1 class="text-center">{{ $product->name }}</h1>
@@ -52,7 +55,7 @@
         </div>
         <div class="form-group">
                 <input type="submit" value="Salvează" class="btn btn-info">
-                <a href="{{route('products.index') }}" class="btn btn-danger">Renunță</a>
+                <a href="{{route('products.index', app()->getLocale()) }}" class="btn btn-danger">Renunță</a>
             </div>
             {!! Form::close() !!}
         </div>

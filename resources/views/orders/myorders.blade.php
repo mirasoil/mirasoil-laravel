@@ -1,4 +1,7 @@
 @extends('layouts.master')
+@section('title')
+<title>Comenzile mele - Mirasoil</title>
+@endsection
 @section('extra-scripts')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection

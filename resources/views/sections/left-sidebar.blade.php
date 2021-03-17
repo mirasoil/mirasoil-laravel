@@ -1,93 +1,93 @@
 <!--Left Sidebar Holder -->
 <nav id="sidebar" class="active">
             <div class="sidebar-header">
-                <h3><i class="fas fa-bars"></i> MENIU</h3>
+                <h3><i class="fas fa-bars"></i> {{ __('MENU') }}</h3>
             </div>
             <ul class="list-unstyled components">
                 <li class="{{ Request::is('/') ? 'active' : '' }}">
-                    <a href="{{ url('/') }}">Acasă</a>
+                    <a href="{{ route('/', app()->getLocale()) }}">{{ __('Home') }}</a>
                 </li>
                 <li class="{{ Request::is('about') ? 'active' : '' }}">
-                    <a href="{{ url('about') }}">Despre</a>
+                    <a href="{{ route('about', app()->getLocale()) }}">{{ __('About us') }}</a>
                 </li>
                 <li class="{{ Request::is('manufacture') ? 'active' : '' }}">
-                    <a href="{{ url('manufacture') }}">Prelucrare</a>
+                    <a href="{{ route('manufacture', app()->getLocale()) }}">{{ __('Processing') }}</a>
                 </li>
                 @if(Auth::guard('user')->check())
                 <li class="{{ Request::is('details') ? 'active' : '' }}"><!-- Link with dropdown items -->
-                        <a class="dropdown-toggle" href="#homeSubmenu" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="homeSubmenu"><i class="fas fa-list-ol"></i> Produse</a>
+                        <a class="dropdown-toggle" href="#homeSubmenu" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="homeSubmenu"><i class="fas fa-list-ol"></i> {{ __('Products') }}</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                                <a href="/details/1">Ulei de lavandă</a>
+                                <a href="/details/1">{{ __('Lavender Oil') }}</a>
                             </li>
                             <li>
-                                <a href="/details/2">Hidrolat de lavandă</a>
+                                <a href="/details/2">{{ __('Floral water') }}</a>
                             </li>
                             <li>
-                                <a href="/details/3">Săpun natural</a>
+                                <a href="/details/3">{{ __('Soap') }}</a>
                             </li>
                             <li>
-                                <a href="/details/4">Sirop</a>
+                                <a href="/details/4">{{ __('Syrup') }}</a>
                             </li>
                             <li>
-                                <a href="/details/5">Buchete florale</a>
+                                <a href="/details/5">{{ __('Floral bouquets') }}</a>
                             </li>
                             <li>
-                                <a href="/details/6">Brichete</a>
+                                <a href="/details/6">{{ __('Fire briquettes') }}</a>
                             </li>
                         </ul>
                 </li>
                 @elseif(Auth::guard('admin')->check())
                 <li class="{{ Request::is('products') ? 'active' : '' }}"><!-- Link with dropdown items -->
-                        <a class="dropdown-toggle" href="#homeSubmenu" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="homeSubmenu"><i class="fas fa-list-ol"></i> Produse</a>
+                        <a class="dropdown-toggle" href="#homeSubmenu" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="homeSubmenu"><i class="fas fa-list-ol"></i> {{ __('Products') }}</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                                <a href="/products/1">Ulei de lavandă</a>
+                                <a href="/products/1">{{ __('Essential Lavender Oil') }}</a>
                             </li>
                             <li>
-                                <a href="/products/2">Hidrolat de lavandă</a>
+                                <a href="/products/2">{{ __('Floral water') }}</a>
                             </li>
                             <li>
-                                <a href="/products/3">Săpun natural</a>
+                                <a href="/products/3">{{ __('Soap') }}</a>
                             </li>
                             <li>
-                                <a href="/products/4">Sirop</a>
+                                <a href="/products/4">{{ __('Syrup') }}</a>
                             </li>
                             <li>
                                 <a href="/products/5">Buchete florale</a>
                             </li>
                             <li>
-                                <a href="/products/6">Brichete</a>
+                                <a href="/products/6">{{ __('Fire briquettes') }}</a>
                             </li>
                         </ul>
                 </li>
                 @elseif(Auth::guest())
                 <li class="{{ Request::is('details') ? 'active' : '' }}"><!-- Link with dropdown items -->
-                        <a class="dropdown-toggle" href="#homeSubmenu" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="homeSubmenu"><i class="fas fa-list-ol"></i> Produse</a>
+                        <a class="dropdown-toggle" href="#homeSubmenu" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="homeSubmenu"><i class="fas fa-list-ol"></i> {{ __('Products') }}</a>
                         <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                                <a href="/details/1">Ulei de lavandă</a>
+                                <a href="/details/1">{{ __('Essential Lavender Oil') }}</a>
                             </li>
                             <li>
-                                <a href="/details/2">Hidrolat de lavandă</a>
+                                <a href="/details/2">{{ __('Floral water') }}</a>
                             </li>
                             <li>
-                                <a href="/details/3">Săpun natural</a>
+                                <a href="/details/3">{{ __('Soap') }}</a>
                             </li>
                             <li>
-                                <a href="/details/4">Sirop</a>
+                                <a href="/details/4">{{ __('Syrup') }}</a>
                             </li>
                             <li>
                                 <a href="/details/5">Buchete florale</a>
                             </li>
                             <li>
-                                <a href="/details/6">Brichete</a>
+                                <a href="/details/6">{{ __('Fire briquettes') }}</a>
                             </li>
                         </ul>
                 </li>
                 @endif
                 <li class="{{ Request::is('shop') ? 'active' : '' }}">
-                    <a href="/shop"><i class="fas fa-store-alt"></i> Magazin</a>
+                    <a href="/shop"><i class="fas fa-store-alt"></i> {{ __('Shop') }}</a>
                 </li>
                 <li>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-users"></i> Social</a>
