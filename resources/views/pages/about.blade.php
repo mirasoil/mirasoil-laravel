@@ -18,64 +18,64 @@
         </div>
     <div class="row m-0 p-1">
         <div class="col-3 p-1">
-            <img src="img/lav1.jpg" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+            <img src="../img/lav1.jpg" style="width:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav2.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
+            <img src="../img/lav2.jpg" style="width:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav3.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
+            <img src="../img/lav3.jpg" style="width:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav5.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+            <img src="../img/lav5.jpg" style="width:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav8.jpg" style="width:100%" onclick="openModal();currentSlide(5)" class="hover-shadow cursor">
+            <img src="../img/lav8.jpg" style="width:100%" onclick="openModal();currentSlide(5)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav7.jpg" style="width:100%" onclick="openModal();currentSlide(6)" class="hover-shadow cursor">
+            <img src="../img/lav7.jpg" style="width:100%" onclick="openModal();currentSlide(6)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav6.jpg" style="width:100%" onclick="openModal();currentSlide(7)" class="hover-shadow cursor">
+            <img src="../img/lav6.jpg" style="width:100%" onclick="openModal();currentSlide(7)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav9.jpg" style="width:100%" onclick="openModal();currentSlide(8)" class="hover-shadow cursor">
+            <img src="../img/lav9.jpg" style="width:100%" onclick="openModal();currentSlide(8)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav32.jpg" style="width:100%" onclick="openModal();currentSlide(9)" class="hover-shadow cursor">
+            <img src="../img/lav32.jpg" style="width:100%" onclick="openModal();currentSlide(9)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav34.jpg" style="width:100%" onclick="openModal();currentSlide(10)" class="hover-shadow cursor">
+            <img src="../img/lav34.jpg" style="width:100%" onclick="openModal();currentSlide(10)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav15.jpg" style="width:100%" onclick="openModal();currentSlide(11)" class="hover-shadow cursor">
+            <img src="../img/lav15.jpg" style="width:100%" onclick="openModal();currentSlide(11)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav11.jpg" style="width:100%" onclick="openModal();currentSlide(12)" class="hover-shadow cursor">
+            <img src="../img/lav11.jpg" style="width:100%" onclick="openModal();currentSlide(12)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav10.jpg" style="width:100%" onclick="openModal();currentSlide(13)" class="hover-shadow cursor">
+            <img src="../img/lav10.jpg" style="width:100%" onclick="openModal();currentSlide(13)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav20.jpg" style="width:100%" onclick="openModal();currentSlide(14)" class="hover-shadow cursor">
+            <img src="../img/lav20.jpg" style="width:100%" onclick="openModal();currentSlide(14)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav36.jpg" style="width:100%" onclick="openModal();currentSlide(15)" class="hover-shadow cursor">
+            <img src="../img/lav36.jpg" style="width:100%" onclick="openModal();currentSlide(15)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav18.jpg" style="width:100%" onclick="openModal();currentSlide(16)" class="hover-shadow cursor">
+            <img src="../img/lav18.jpg" style="width:100%" onclick="openModal();currentSlide(16)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav17.jpg" style="width:100%" onclick="openModal();currentSlide(17)" class="hover-shadow cursor">
+            <img src="../img/lav17.jpg" style="width:100%" onclick="openModal();currentSlide(17)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav22.jpg" style="width:100%" onclick="openModal();currentSlide(18)" class="hover-shadow cursor">
+            <img src="../img/lav22.jpg" style="width:100%" onclick="openModal();currentSlide(18)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav14.jpg" style="width:100%" onclick="openModal();currentSlide(19)" class="hover-shadow cursor">
+            <img src="../img/lav14.jpg" style="width:100%" onclick="openModal();currentSlide(19)" class="hover-shadow cursor">
         </div>
         <div class="col-3 p-1">
-            <img src="img/lav25.jpg" style="width:100%" onclick="openModal();currentSlide(20)" class="hover-shadow cursor">
+            <img src="../img/lav25.jpg" style="width:100%" onclick="openModal();currentSlide(20)" class="hover-shadow cursor">
         </div>
     </div>
 
@@ -85,42 +85,42 @@
 
             <div class="mySlides">
                 <div class="numbertext">1 / 20</div>
-                <img src="img/lav1.jpg" alt="Anul1" style="width:100%">
+                <img src="../img/lav1.jpg" alt="Anul1" style="width:100%">
             </div>
 
             <div class="mySlides">
                 <div class="numbertext">2 / 20</div>
-                <img src="img/lav2.jpg" alt="Anul2" style="width:100%">
+                <img src="../img/lav2.jpg" alt="Anul2" style="width:100%">
             </div>
 
             <div class="mySlides">
                 <div class="numbertext">3 / 20</div>
-                <img src="img/lav3.jpg" alt="Anul3" style="width:100%">
+                <img src="../img/lav3.jpg" alt="Anul3" style="width:100%">
             </div>
 
             <div class="mySlides">
                 <div class="numbertext">4 / 20</div>
-                <img src="img/lav5.jpg" alt="Anul3" style="width:100%">
+                <img src="../img/lav5.jpg" alt="Anul3" style="width:100%">
             </div>
 
             <div class="mySlides">
                 <div class="numbertext">5 / 20</div>
-                <img src="img/lav6.jpg" alt="Anul3" style="width:100%">
+                <img src="../img/lav6.jpg" alt="Anul3" style="width:100%">
             </div>
 
             <div class="mySlides">
                 <div class="numbertext">6 / 20</div>
-                <img src="img/lav7.jpg" alt="Anul3" style="width:100%">
+                <img src="../img/lav7.jpg" alt="Anul3" style="width:100%">
             </div>
 
             <div class="mySlides">
                 <div class="numbertext">7 / 20</div>
-                <img src="img/lav8.jpg" alt="Anul3" style="width:100%">
+                <img src="../img/lav8.jpg" alt="Anul3" style="width:100%">
             </div>
 
             <div class="mySlides">
                 <div class="numbertext">8 / 20</div>
-                <img src="img/lav9.jpg" alt="Anul3" style="width:100%">
+                <img src="../img/lav9.jpg" alt="Anul3" style="width:100%">
             </div>
 
             <div class="caption-container">
@@ -128,113 +128,113 @@
             </div>
             <div class="mySlides">
                 <div class="numbertext">9 / 20</div>
-                <img src="img/lav32.jpg" alt="Anul1" style="width:100%">
+                <img src="../img/lav32.jpg" alt="Anul1" style="width:100%">
             </div>
             <div class="mySlides">
                 <div class="numbertext">10 / 20</div>
-                <img src="img/lav34.jpg" alt="Anul1" style="width:100%">
+                <img src="../img/lav34.jpg" alt="Anul1" style="width:100%">
             </div>
             <div class="mySlides">
                 <div class="numbertext">11 / 20</div>
-                <img src="img/lav15.jpg" alt="Anul1" style="width:100%">
+                <img src="../img/lav15.jpg" alt="Anul1" style="width:100%">
             </div>
             <div class="mySlides">
                 <div class="numbertext">12 / 20</div>
-                <img src="img/lav11.jpg" alt="Anul1" style="width:100%">
+                <img src="../img/lav11.jpg" alt="Anul1" style="width:100%">
             </div>
 
             <div class="mySlides">
                 <div class="numbertext">13 / 20</div>
-                <img src="img/lav10.jpg" alt="Anul1" style="width:100%">
+                <img src="../img/lav10.jpg" alt="Anul1" style="width:100%">
             </div>
             <div class="mySlides">
                 <div class="numbertext">14 / 20</div>
-                <img src="img/lav20.jpg" alt="Anul1" style="width:100%">
+                <img src="../img/lav20.jpg" alt="Anul1" style="width:100%">
             </div>
             <div class="mySlides">
                 <div class="numbertext">15 / 20</div>
-                <img src="img/lav36.jpg" alt="Anul1" style="width:100%">
+                <img src="../img/lav36.jpg" alt="Anul1" style="width:100%">
             </div><div class="mySlides">
                 <div class="numbertext">16 / 20</div>
-                <img src="img/lav18.jpg" alt="Anul1" style="width:100%">
+                <img src="../img/lav18.jpg" alt="Anul1" style="width:100%">
             </div>
             <div class="mySlides">
                 <div class="numbertext">17 / 20</div>
-                <img src="img/lav17.jpg" alt="Anul1" style="width:100%">
+                <img src="../img/lav17.jpg" alt="Anul1" style="width:100%">
             </div>
             <div class="mySlides">
                 <div class="numbertext">18 / 20</div>
-                <img src="img/lav22.jpg" alt="Anul1" style="width:100%">
+                <img src="../img/lav22.jpg" alt="Anul1" style="width:100%">
             </div>
             <div class="mySlides">
                 <div class="numbertext">19 / 20</div>
-                <img src="img/lav14.jpg" alt="Anul1" style="width:100%">
+                <img src="../img/lav14.jpg" alt="Anul1" style="width:100%">
             </div><div class="mySlides">
                 <div class="numbertext">20 / 20</div>
-                <img src="img/lav25.jpg" alt="Anul1" style="width:100%">
+                <img src="../img/lav25.jpg" alt="Anul1" style="width:100%">
             </div>
             <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
             <div class="row m-0 bg-dark">
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav1.jpg" style="width:100%" onclick="currentSlide(1)" >
+                    <img class="demo cursor" src="../img/lav1.jpg" style="width:100%" onclick="currentSlide(1)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav2.jpg" style="width:100%" onclick="currentSlide(2)" >
+                    <img class="demo cursor" src="../img/lav2.jpg" style="width:100%" onclick="currentSlide(2)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav3.jpg" style="width:100%" onclick="currentSlide(3)" >
+                    <img class="demo cursor" src="../img/lav3.jpg" style="width:100%" onclick="currentSlide(3)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav5.jpg" style="width:100%" onclick="currentSlide(4)" >
+                    <img class="demo cursor" src="../img/lav5.jpg" style="width:100%" onclick="currentSlide(4)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav6.jpg" style="width:100%" onclick="currentSlide(5)" >
+                    <img class="demo cursor" src="../img/lav6.jpg" style="width:100%" onclick="currentSlide(5)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav7.jpg" style="width:100%" onclick="currentSlide(6)" >
+                    <img class="demo cursor" src="../img/lav7.jpg" style="width:100%" onclick="currentSlide(6)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav8.jpg" style="width:100%" onclick="currentSlide(7)" >
+                    <img class="demo cursor" src="../img/lav8.jpg" style="width:100%" onclick="currentSlide(7)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav9.jpg" style="width:100%" onclick="currentSlide(8)" >
+                    <img class="demo cursor" src="../img/lav9.jpg" style="width:100%" onclick="currentSlide(8)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav32.jpg" style="width:100%" onclick="currentSlide(9)" >
+                    <img class="demo cursor" src="../img/lav32.jpg" style="width:100%" onclick="currentSlide(9)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav34.jpg" style="width:100%" onclick="currentSlide(10)" >
+                    <img class="demo cursor" src="../img/lav34.jpg" style="width:100%" onclick="currentSlide(10)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav15.jpg" style="width:100%" onclick="currentSlide(11)" >
+                    <img class="demo cursor" src="../img/lav15.jpg" style="width:100%" onclick="currentSlide(11)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav11.jpg" style="width:100%" onclick="currentSlide(12)" >
+                    <img class="demo cursor" src="../img/lav11.jpg" style="width:100%" onclick="currentSlide(12)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav10.jpg" style="width:100%" onclick="currentSlide(13)" >
+                    <img class="demo cursor" src="../img/lav10.jpg" style="width:100%" onclick="currentSlide(13)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav20.jpg" style="width:100%" onclick="currentSlide(14)" >
+                    <img class="demo cursor" src="../img/lav20.jpg" style="width:100%" onclick="currentSlide(14)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav36.jpg" style="width:100%" onclick="currentSlide(15)" >
+                    <img class="demo cursor" src="../img/lav36.jpg" style="width:100%" onclick="currentSlide(15)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav18.jpg" style="width:100%" onclick="currentSlide(16)" >
+                    <img class="demo cursor" src="../img/lav18.jpg" style="width:100%" onclick="currentSlide(16)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav17.jpg" style="width:100%" onclick="currentSlide(17)" >
+                    <img class="demo cursor" src="../img/lav17.jpg" style="width:100%" onclick="currentSlide(17)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav22.jpg" style="width:100%" onclick="currentSlide(18)" >
+                    <img class="demo cursor" src="../img/lav22.jpg" style="width:100%" onclick="currentSlide(18)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav14.jpg" style="width:100%" onclick="currentSlide(19)" >
+                    <img class="demo cursor" src="../img/lav14.jpg" style="width:100%" onclick="currentSlide(19)" >
                 </div>
                 <div class="col-1 p-1">
-                    <img class="demo cursor" src="img/lav25.jpg" style="width:100%" onclick="currentSlide(20)" >
+                    <img class="demo cursor" src="../img/lav25.jpg" style="width:100%" onclick="currentSlide(20)" >
                 </div>
             </div>
         </div>

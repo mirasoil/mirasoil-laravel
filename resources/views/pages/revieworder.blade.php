@@ -26,22 +26,22 @@
             <hr>
             <ul class="list-group mb-3">
                 <?php $total = 0 ?>
-                @if(Cart::count() >0 )
-                @foreach(Cart::content() as $details)
-                <?php $total += $details->price * $details->qty ?>
+                @if(session('cart'))
+                @foreach(session('cart') as $id => $details)
+                <?php $total += $details['price'] * $details['quantity'] ?>
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <img src="img/{!!$details->options->image!!}" alt="Hidrolat de lavandă" width="40" height="40">
+                        <img src="../img/{{ $details['image'] }}" alt="Hidrolat de lavandă" width="40" height="40">
                         <div>
-                            <h6 class="my-0">{{ $details->name }}</h6>
-                            <small class="text-muted">Cantitate: {{ $details->qty }}</small>
+                            <h6 class="my-0">{{ $details['name'] }}</h6>
+                            <small class="text-muted">{{ __('Quantity') }}: {{ $details['quantity'] }}</small>
                         </div>
-                        <span class="text-muted">{{ $details->price }} Lei</span>
+                        <span class="text-muted">{{ $details['price'] }} Lei</span>
                     </li>
                 @endforeach
                 @endif
                 <li class="list-group-item d-flex justify-content-between">
                     <span>Total (RON)</span>
-                    <strong>{{ Cart::subtotal() }} Lei</strong>
+                    <strong id="total">{{ $total.' Lei' }}</strong>
                 </li>
             </ul>
             <div class="card p-2 mb-3">
@@ -258,7 +258,7 @@ $("#complete-order").click(function(event){
       var id = $(this).data('id');
 
       $.ajax({
-        url: "{{route('orders.store', app()->getLocale())}}",
+        url: "{{route('orders.store')}}",
         type:"POST",
         data:{
             "_token": "{{ csrf_token() }}",

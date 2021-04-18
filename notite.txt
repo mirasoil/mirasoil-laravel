@@ -4,48 +4,27 @@ Pasi de urmat:
 -afisarea produselor se face acum doar din ProductController cu functii separate pentru fiecare tip de utilizator
 -in ShopController se pastreaza doar crud-ul pentru cos (fara vizualizare)
 
-!!!ATENTIE:-user nelogat - accesare cos -este redirectionat spre pagina de login (route = login) care nu exista teoretic, trebuie modificat, by default ruta de login sa fie login/user
--solved by adding separate route name for '/login', using the same controller with showUserLoginForm function
-
 2.Newsletter - /newsletter colecteaza datele dar nu exista - try ajax validation
 -se primeste mail de confirmare-mailchimp => stocare in baza de date
 
 
-4.Stilizare butoane si card-uri pagina principala
--'/about' bootstrap modal review later on
-
-5.Search bar with  ajax - autocomplete + styling + link to product page
-
-6.Meniu pentru desktop -- ?
-
-
-7.Left-sidebar - configurare rute
 8.In shop.blade.php trebuie sa pun un link spre pagina cu fiecare produs individual 
 -cart: link spre pagina individuala produs
 
-9.Animatie - meh..
 
 
-10.Cos (https://github.com/Crinsane/LaravelShoppingcart)
+10.Cos (https://github.com/Crinsane/LaravelShoppingcart) -NOT ANYMORE, I've implemented back session cart
 -add to cart made with ajax needs to check if product is already in cart or keep it simple, without ajax
 -stripe is not working and it should be visible only after saving all the order data
 
-
-!!!Pe viitor, ShopController si ProductsController se vor conecta la acelasi model 
-La implementare - folosind acelasi controller, adminii au acces la /details/{id} si shop (resource for products I guess) - solved by adding if statement for admin guard in ProductController
--pe viitor - o singura functie atat pentru index cat si pentru show implementata cu un switch-case sau chiar si cu if !!
 
 
 
 Obs. pretul trebuie modificat - decimal
 
-In revieworder - la actualizare date, daca nu se selecteaza judetul acesta se pune by default null la actualizare  -  solved
+In revieworder - actualizare date nu functioneaza
 
 
-
-Partea de GraphQL 
-https://auth0.com/blog/build-and-secure-a-graphql-server-with-node-js/
--requires type and modules, can't handle without appropiate server
 
 
 

@@ -18,7 +18,7 @@
           @else
             <div class="row mx-5" style="width:10%;" id="mini-cart">
               <button type="button" class="btn btn-info" onclick="location.href='/cart'" id="cart-button" style="height:38px;;">
-                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Coș <span class="badge badge-pill badge-danger">{{ Cart::count() }}</span>
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Coș <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
               </button>
             </div>
           @endif

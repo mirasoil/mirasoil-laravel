@@ -24,10 +24,10 @@ class RedirectIfAuthenticated
 
         // return $next($request);
         if ($guard == "admin" && Auth::guard($guard)->check()) {
-            return route('admin', app()->getlocale());
+            return route('admin');
         }
         if ($guard == "user" && Auth::guard($guard)->check()) {
-            return redirect('/user', app()->getlocale());
+            return route('user');
         }
         if (Auth::guard($guard)->check()) {
             return redirect('/');

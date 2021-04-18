@@ -26,6 +26,7 @@
                     <div class="product-price"><strong>Preț:</strong> {{$shop->price}} RON</div>
                     <div class="product-stock">În stoc</div>
                     <hr>
+                    @if(Auth::user())
                     <div class="btn-group cart">
                         <button  class="btn btn-info btn-block text-center" id="{{$shop->id}}" onclick="btnAddCart(this.id)">
                             Adaugă în coș 
@@ -36,6 +37,18 @@
                             Adaugă la favorite 
                         </button>
                     </div>
+                    @else 
+                    <div class="btn-group cart">
+                        <button  class="btn btn-info btn-block text-center" id="{{$shop->id}}" onclick="location.href='/login/user'">
+                            Adaugă în coș 
+                        </button>
+                    </div>
+                    <div class="btn-group wishlist">
+                        <button  class="btn btn-warning btn-block text-center" id="{{$shop->id}}" onclick="location.href='/login/user'">
+                            Adaugă la favorite 
+                        </button>
+                    </div>
+                    @endif
                 </div>
                 <div class="container-fluid">       
             <div class="col-md-12 product-info p-4">
@@ -70,8 +83,9 @@
 </div>
 <script>
 function btnAddCart(param) {
+	let currentUrl = "{{ url('/shop') }}";
   var product = param;
-  var url = "/add-to-cart/"+product;
+  var url = "{{ url('/add-to-cart/') }}"+'/'+product;
 
   $.ajaxSetup({
         headers: {
@@ -79,16 +93,14 @@ function btnAddCart(param) {
         }
     });
   $.ajax({
+	contentType: "application/x-www-form-urlencoded",
     type: "POST",
     url: url,
     data: { 
         "product": product
 	 },
 	 success: function (response) {
-			$('#mini-cart').load('/details/'+product+' #mini-cart'); 
-            // $('#mini-cart').css('margin-right', '0');   
-			$(".alert").removeClass("d-none").addClass("alert alert-success")  //stilizare
-			$('.shop-success').html('Produs adaugat in cos');
+			alert('Produs adăugat în coș!');
 
     },
     error: function (response) {

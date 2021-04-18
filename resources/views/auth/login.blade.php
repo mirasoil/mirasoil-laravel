@@ -1,5 +1,7 @@
 @extends('layouts.master')
-
+@section('title')
+<title>Logare - Mirasoil</title>
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -69,6 +71,9 @@
                                 @endif
                             </div>
                         </div>
+                        <a class="btn btn-link mt-5 ml-5" href="/register/user" style="float:right;">
+                            {{ __('Nu ai cont? Înregistrează-te aici') }}
+                        </a>
                     </form>
                 </div>
             </div>

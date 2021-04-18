@@ -13,16 +13,11 @@ class SearchController extends Controller
     {
         if($request->ajax())
         {
-            $output="";
-            $products=Product::select('name')->where('name','LIKE','%'.$request->search."%")->get();
+            $output = "";
+            $products = Product::where('name','LIKE','%'.$request->search.'%')->get();
             if($products){  
                 foreach ($products as $key => $product) {
-                    $output.='<tr>'.
-                    '<td>'.$product->id.'</td>'.
-                    '<td>'.$product->name.'</td>'.
-                    '<td>'.$product->quantity.'</td>'.
-                    '<td>'.$product->price.'</td>'.
-                    '</tr>';
+                    $output.='<a class="dropdown-item" href="/'.app()->getLocale().'/details/'.$product->id.'" style="text-decoration:none;">'.$product->name.'</a>';
                 }
             return Response($output);
             }

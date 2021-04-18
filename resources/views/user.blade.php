@@ -21,7 +21,7 @@
 
                 <div class="card-body">
                     <h1>Bine ai revenit, {{ Auth::user()->firstname }} !</h1>
-                        <form method="POST" action="{{ route('user',['id' => $id=Auth::user()->id]) }}">
+                        <form method="POST" action="{{ url('/user/'.Auth::user()->id) }}">
                             @csrf
                             @method('PATCH')
                             <div class="form-group row">
