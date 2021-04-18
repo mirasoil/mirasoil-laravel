@@ -3860,18 +3860,6 @@
         },
         {
             "name": "symfony/console",
-<<<<<<< HEAD
-            "version": "v5.2.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/console.git",
-                "reference": "938ebbadae1b0a9c9d1ec313f87f9708609f1b79"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/938ebbadae1b0a9c9d1ec313f87f9708609f1b79",
-                "reference": "938ebbadae1b0a9c9d1ec313f87f9708609f1b79",
-=======
             "version": "v5.2.6",
             "source": {
                 "type": "git",
@@ -3882,7 +3870,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/console/zipball/35f039df40a3b335ebf310f244cb242b3a83ac8d",
                 "reference": "35f039df40a3b335ebf310f244cb242b3a83ac8d",
->>>>>>> 48cc1412e3f461f64a0bdce0348786605572ea11
                 "shasum": ""
             },
             "require": {
@@ -5803,18 +5790,6 @@
         },
         {
             "name": "symfony/string",
-<<<<<<< HEAD
-            "version": "v5.2.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/string.git",
-                "reference": "4e78d7d47061fa183639927ec40d607973699609"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/4e78d7d47061fa183639927ec40d607973699609",
-                "reference": "4e78d7d47061fa183639927ec40d607973699609",
-=======
             "version": "v5.2.6",
             "source": {
                 "type": "git",
@@ -5825,7 +5800,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/string/zipball/ad0bd91bce2054103f5eaa18ebeba8d3bc2a0572",
                 "reference": "ad0bd91bce2054103f5eaa18ebeba8d3bc2a0572",
->>>>>>> 48cc1412e3f461f64a0bdce0348786605572ea11
                 "shasum": ""
             },
             "require": {
@@ -5892,11 +5866,7 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2021-02-16T10:20:28+00:00"
-=======
             "time": "2021-03-17T17:12:15+00:00"
->>>>>>> 48cc1412e3f461f64a0bdce0348786605572ea11
         },
         {
             "name": "symfony/translation",
@@ -6065,18 +6035,6 @@
         },
         {
             "name": "symfony/var-dumper",
-<<<<<<< HEAD
-            "version": "v5.2.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "002ab5a36702adf0c9a11e6d8836623253e9045e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/002ab5a36702adf0c9a11e6d8836623253e9045e",
-                "reference": "002ab5a36702adf0c9a11e6d8836623253e9045e",
-=======
             "version": "v5.2.6",
             "source": {
                 "type": "git",
@@ -6087,7 +6045,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/var-dumper/zipball/89412a68ea2e675b4e44f260a5666729f77f668e",
                 "reference": "89412a68ea2e675b4e44f260a5666729f77f668e",
->>>>>>> 48cc1412e3f461f64a0bdce0348786605572ea11
                 "shasum": ""
             },
             "require": {
@@ -6159,11 +6116,7 @@
                     "type": "tidelift"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2021-03-06T07:59:01+00:00"
-=======
             "time": "2021-03-28T09:42:18+00:00"
->>>>>>> 48cc1412e3f461f64a0bdce0348786605572ea11
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -6657,18 +6610,6 @@
         },
         {
             "name": "filp/whoops",
-<<<<<<< HEAD
-            "version": "2.10.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/filp/whoops.git",
-                "reference": "6ecda5217bf048088b891f7403b262906be5a957"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/6ecda5217bf048088b891f7403b262906be5a957",
-                "reference": "6ecda5217bf048088b891f7403b262906be5a957",
-=======
             "version": "2.12.0",
             "source": {
                 "type": "git",
@@ -6679,7 +6620,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/filp/whoops/zipball/d501fd2658d55491a2295ff600ae5978eaad7403",
                 "reference": "d501fd2658d55491a2295ff600ae5978eaad7403",
->>>>>>> 48cc1412e3f461f64a0bdce0348786605572ea11
                 "shasum": ""
             },
             "require": {
@@ -6733,11 +6673,7 @@
                     "type": "github"
                 }
             ],
-<<<<<<< HEAD
-            "time": "2021-03-16T12:00:00+00:00"
-=======
             "time": "2021-03-30T12:00:00+00:00"
->>>>>>> 48cc1412e3f461f64a0bdce0348786605572ea11
         },
         {
             "name": "hamcrest/hamcrest-php",
